@@ -1,0 +1,206 @@
+<template>
+    <div class="mulSelectors">
+        <div v-transfer-dom>
+            <div class="search" v-if="showPopup">
+                <search @on-change="goSearch" v-model="search" @on-cancel="onSearchCancel" @on-clear="onSearchCancel" placeholder="请输入关键字"></search>
+            </div>
+            <popup v-model="showPopup" height="100%" :popup-style="{zIndex: 1000}" style="-webkit-overflow-scrolling:touch;">
+                <div class="popup1">
+                    <group class="checkcontent_sin">
+                        <checklist :max='maxLimit' label-position="left" :options="ArrBox" v-model="selectedItem" @on-change="changeSelect"></checklist>
+                    </group>
+                </div>
+            </popup>
+            <box class="schecklistbtn" v-if="showPopup">
+                <flexbox>
+                    <flexbox-item>
+                        <x-button type="primary" @click.native="confirm">确认</x-button>
+                    </flexbox-item>
+                    <flexbox-item>
+                        <x-button type="default" @click.native="cancel">取消</x-button>
+                    </flexbox-item>
+                </flexbox>
+            </box>
+        </div>
+    </div>
+</template>
+
+<script>
+import {
+    Popup,
+    Checklist,
+    Search,
+    Box,
+    Group,
+    XTextarea,
+    XButton,
+    Flexbox,
+    FlexboxItem,
+    TransferDomDirective as TransferDom
+} from "vux";
+import { setTimeout } from "timers";
+export default {
+    directives: {
+        TransferDom
+    },
+    components: {
+        Popup,
+        Checklist,
+        Box,
+        Search,
+        Group,
+        XButton,
+        Flexbox,
+        FlexboxItem,
+        XTextarea
+    },
+    props: {
+        max: Number,//0为无限制多选，1为单选
+        dataList: Array, //传入的数组，格式必须为[{value:"", key:"",}]
+        sendData: [String, Boolean, Number, Array], //选中的值
+        showPopup: Boolean,
+    },
+    data() {
+        return {
+            // showPopup: false,
+            sValue: "",
+            ArrBox: [],
+            search: "", //搜索框
+            maxLimit:"",
+            selectedItem: [] //选中的值
+        };
+    },
+    created() {
+        if(this.max !== undefined){
+            this.maxLimit = this.max;
+        } else {
+            this.maxLimit = 1;
+        }
+        this.ArrBox = this.dataList;
+    },
+    watch: {
+        "dataList": function(newVal, oldVal) {//传入的list发生变化时，重新匹配数据
+            this.getData()
+        },
+        "sendData": function(newVal, oldVal) {//传入的key发生变化时，重新匹配数据
+            this.getData()
+        }
+    },
+    mounted() {
+        var _this = this
+        setTimeout(function() {//list比key先加载完，就会选不中
+            _this.getData()
+        }, 0);
+    },
+    methods: {
+        getData(){
+            this.ArrBox = this.dataList;
+            if(this.sendData) this.selectedItem = this.sendData;
+            
+        },
+        goSearch() {
+            if (this.search == "") {
+                this.ArrBox = this.dataList;
+            } else {
+                this.ArrBox = [];
+                this.dataList.forEach((item, index) => {
+                    if (item.value.indexOf(this.search) != -1) {
+                        this.ArrBox.push(item);
+                    }
+                });
+            }
+        },
+        changeSelect(value){
+
+        },
+        confirm() {
+            this.search = "";
+            this.ArrBox = this.dataList;
+            this.$emit("update:selectedItem", this.selectedItem);
+            this.$emit("on-change", this.selectedItem); //添加change事件
+        },
+        cancel() {
+            this.search = "";
+            this.ArrBox = this.dataList;
+            this.$emit("on-cancel"); //添加change事件
+        },
+        onSearchCancel() {
+            this.search = "";
+            this.ArrBox = this.dataList;
+        }
+    }
+};
+</script>
+
+<style lang="less">
+.mulSelectors {
+    .weui-cells {
+        margin-top: 0 !important;
+    }
+    .vux-no-group-title {
+        margin-top: 0 !important;
+    }
+    .weui-cells:before {
+        left: 15px !important;
+    }
+    .weui-cells:after {
+        border-bottom: none !important;
+    }
+    .weui-textarea {
+        text-align: right !important;
+    }
+    .mulsele{
+        display: flex;
+        padding: 10px 15px;
+        font-size: 17px;
+        .stitle{
+            position: relative;
+            padding-right:5px; 
+            .srequired{
+                position: absolute;
+                left: -8px;
+                color: red;
+            }
+        }
+        .svalue{ //是文本单行向左对齐，多行向右对齐
+            line-height: 27px;
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            width: 100%;
+            text-align: right;
+            div{
+                width : auto;
+                display : inline-block; 
+                text-align : left; 
+            }
+        }
+    }
+}
+.schecklistbtn {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 10000;
+    background: #eee;
+}
+.popup1 {
+    padding-bottom: 62px;
+}
+.search {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 10000;
+    background: #eee;
+}
+.checkcontent_sin {
+    margin-top: 43px;
+}
+
+</style>
