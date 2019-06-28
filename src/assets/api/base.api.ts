@@ -1,11 +1,10 @@
 import axios from '@/assets/api/axios';
-import baseConfig from '@/assets/api/baseConfig'
+import config from '@/config/config';
 //  公用部分api var NODE_ENV = process.env.NODE_ENV; var baseurl = NODE_ENV ==
 // 'development' ? 'http://192.168.0.206:9028/trade' : '../trade';
 
-var apiUrl = baseConfig.apiUrl;
-var api:any = {};
-api.baseUrl = baseConfig.apiUrl;
+var api: any = {};
+api.baseUrl = config.baseURL;
 api.isBind = api.baseUrl + '/notify/isBind';
 api.bindOpenId = api.baseUrl + '/notify/bindOpenId';
 api.getValidateCode = api.baseUrl + '/notify/getValidateCode';
@@ -24,4 +23,4 @@ api.reportDetail = apiUrl + '/report'; //报表详情
 api.test = apiUrl + '/test';
 */
 
-export default api
+export default api;

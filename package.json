@@ -9,6 +9,7 @@
     "H5": "node build/dev-server.js H5",
     "HB": "node build/dev-server.js HB",
     "start": "npm run dev",
+    "build:test": "node build/build.js test",
     "build": "node build/build.js"
   },
   "dependencies": {

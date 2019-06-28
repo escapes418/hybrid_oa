@@ -17,6 +17,10 @@
                             <span class="long-detail">{{dataArr.detail.applyTime}}</span>
                         </div>
                         <div class="long-content">
+                            <span class="detail-title long-title">成本中心</span>
+                            <span class="long-detail">{{dataArr.detail.costCenterName}}</span>
+                        </div>
+                        <div class="long-content">
                             <span class="detail-title long-title">所属部门</span>
                             <span class="long-detail">{{dataArr.detail.officeName}}</span>
                         </div>
@@ -132,7 +136,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </cell-box>
             <!-- <div class="detail-btn" @click="shwoAmtList=true">
                 <span class="pointer">查看科目费用</span>
@@ -315,7 +319,7 @@ export default {
                             } else {
                                 this.dataArr.detail = { ...rtn.data.detail, office: {} };
                             }
-                            
+
                         } else {
                             this.dataArr.detail = { office: {} };
                         }
@@ -343,7 +347,7 @@ export default {
                                     value:`￥${item.amt}`,
                                 })
                             })
-                            
+
                         }
                         this.isReady = true;
                     })
