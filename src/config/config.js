@@ -13,13 +13,15 @@ const config = {
   },
   // 测试配置
   test: {
-    baseURL: 'http://o222a.sijibao.co/OA/wechat',
+    baseURL: 'http://web.sijibao.co/OA/wechat',
+    loginPhone: loginPhone,
     clientType: 2,
     env: 'test'
   },
   // 生产配置
   prod: {
-    baseURL: 'https://oa.sijibao.co/OA/wechat',
+    baseURL: 'https://oa.sijibao.com/OA/wechat',
+    loginPhone: loginPhone,
     clientType: 2,
     env: 'prod'
   }
