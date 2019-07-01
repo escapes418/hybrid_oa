@@ -290,8 +290,6 @@ export default {
   methods: {
     getPermission() {
       com.covertHttp(api.isBind).then(res => {
-        // this.isLogout(res.data.appCode) //是否登出
-        console.log(res,"isbind--------------")
         if (!res.data.permissionList) {
           this.myOffice = 0;
         } else {
@@ -335,9 +333,6 @@ export default {
       this.$store.dispatch('getAddressList');
       this.$store.dispatch('getSubjectList');
     },
-    // isLogout(c) {
-    //     com.comSetStorage('appCode', {appCode:c});
-    // },
     phoneInfo() {
       if (process.env.NODE_ENV == 'development') {
         // 开发
