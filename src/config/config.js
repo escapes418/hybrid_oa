@@ -1,7 +1,6 @@
 // 配置文件
 import loginPhone from './loginPhone.js';
 const NODE_ENV = process.env.NODE_ENV;
-console.log('this node_env is ' + NODE_ENV);
 
 const config = {
   // 内网配置
@@ -38,7 +37,7 @@ if (NODE_ENV == 'development') {
    * debug_server：prod 生产服务器
    */
 
-  let envkey = localStorage.getItem('debug_server') || 'dev';
+  let envkey = window.localStorage.getItem('debug_server') || 'dev';
   if (envkey != 'dev' && envkey != 'test' && envkey != 'prod') envkey = 'dev';
 
   envConfig = { ...config[envkey] };
@@ -46,13 +45,17 @@ if (NODE_ENV == 'development') {
   if (envkey === 'dev') {
     // 本机开发模式默认连接内网服务器
     // 若本地localStorage存在dev_host 则覆盖默认目标
-    const dev_host = localStorage.getItem('dev_host') || '';
+    const dev_host = window.localStorage.getItem('dev_host') || '';
     // const dev_host = 'http://192.168.12.4:8089/OA/wechat'; //万雄波
 
     if (dev_host) envConfig.baseURL = dev_host;
   }
 } else if (process.env.NODE_ENV == 'test') {
   envConfig = { ...config.test };
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = './static/js/vconsole.min.js';
+  document.getElementsByTagName('head')[0].appendChild(script);
 } else {
   envConfig = { ...config.prod };
 }
