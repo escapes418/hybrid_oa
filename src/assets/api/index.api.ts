@@ -2,7 +2,6 @@ import axios from '@/assets/api/axios';
 import config from '@/config/config';
 
 var baseUrl = config.baseURL;
-console.log(baseUrl, 'baseUrl');
 var api = {
   baseApi: baseUrl,
   isBind: baseUrl + '/notify/isBind',
@@ -176,5 +175,4 @@ var api = {
   saveUserNew: baseUrl + '/lucklyPerson/saveUserNew', //账号绑定
   queryUserIsBindForNew: baseUrl + '/lucklyPerson/queryUserIsBindForNew' //账号绑定
 };
-console.log(api);
 export default api;

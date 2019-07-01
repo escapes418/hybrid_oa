@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import axios from 'axios';
+import utils from '@/assets/api/utils';
 import qs from 'qs';
 import store from '@/store/index/index';
 import storage from 'store'; // git地址  https://github.com/marcuswestin/store.js#user-content-api
@@ -14,15 +15,15 @@ axios.defaults.timeout = 60000;
 
 axios.interceptors.request.use(
   config => {
-    //初始化post参数
-    //store.dispatch('updateLoading', true); //开启loading
     vueTips.$vux.loading.show({
       text: '加载中'
     });
-    // config.headers.sjboacertphone = store.state.openid || "";
-    /* config.headers.sjboacertphone = localStorage.getItem('userPhone') || ''; */
-    config.headers.sjboacert = WEBConfig.loginPhone;
-    // console.log(config.headers.sjboacert, 'config.headers.sjboacert');
+    var phonecert = JSON.parse(window.localStorage.getItem('sjboacert')) || {};
+    if (utils.isH5()) {
+      config.headers.sjboacert = phonecert.phone || WEBConfig.loginPhone;
+    } else {
+      config.headers.sjboacert = phonecert.phone || '';
+    }
     // 客户端类型，1.公众号，2混合开发
     config.headers.clientType = WEBConfig.clientType;
     return config;
@@ -39,7 +40,19 @@ axios.interceptors.response.use(
     vueTips.$vux.loading.hide();
     //store.dispatch('updateLoading', false); //关闭loading
     if (res.status === 200) {
-      return res.data;
+      if (res.data.status == 0) {
+        return res.data;
+      } else if (res.data.status == 1) {
+        vueTips.$vux.toast.text(res.data.message || '网络异常');
+        return;
+      } else if (res.data.status == 20) {
+        vueTips.$vux.toast.text(res.data.message || '登录信息已失效，即将跳转至登录页面');
+        setTimeout(function() {
+          utils.logout();
+          window.location.href = './#/login';
+        }, 3000);
+        return;
+      }
     } else {
       vueTips.$vux.toast.text('服务异常，请稍后重试！[status:!200]', 'center');
       return;
