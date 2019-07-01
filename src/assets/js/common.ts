@@ -205,20 +205,21 @@ const com = {
     return com.covertHttp(url, params);
   },
   covertHttp: function(url: string, params?: any, showLoading = true) {
-    console.log(url, 'url------');
-    if (process.env.NODE_ENV == 'development') {
-      // 开发
-      if (process.argv[0] == 'H5') {
-        // H5 命令行参数
-        return axios.post(url, params);
-      } else {
-        // 混合开发
-        return XHR.http(url, params, showLoading);
-      }
-    } else {
-      // 正式
-      return XHR.http(url, params, showLoading);
-    }
+    // console.log(url, 'url');
+    return axios.post(url, params);
+    // if (process.env.NODE_ENV == 'development') {
+    //   // 开发
+    //   if (process.argv[0] == 'H5') {
+    //     // H5 命令行参数
+    //     return axios.post(url, params);
+    //   } else {
+    //     // 混合开发
+    //     return XHR.http(url, params, showLoading);
+    //   }
+    // } else {
+    //   // 正式
+    //   return XHR.http(url, params, showLoading);
+    // }
   },
   hasChildren: function(data: Array<HasChildren>, count: number = 0): Array<HasChildren> {
     data[count].check = '0';
@@ -491,17 +492,20 @@ const com = {
       // 开发
       if (process.argv[0] == 'H5') {
         // H5 命令行参数
-        com.comRemoveStorage('sjboacert');
+        // com.comRemoveStorage('sjboacert');
+        window.localStorage.removeItem('sjboacert');
         com.comRemoveStorage('autoSave');
       } else {
         // 混合开发
-        com.comRemoveStorage('sjboacert');
+        // com.comRemoveStorage('sjboacert');
+        window.localStorage.removeItem('sjboacert');
         com.comRemoveStorage('autoSave');
         sdk.ability.logout();
       }
     } else {
       // 正式
-      com.comRemoveStorage('sjboacert');
+      // com.comRemoveStorage('sjboacert');
+      window.localStorage.removeItem('sjboacert');
       com.comRemoveStorage('autoSave');
       sdk.ability.logout();
     }
@@ -537,29 +541,42 @@ const com = {
         // H5 命令行参数
       } else {
         // 混合开发
-        com.getStorage('sjboacert').then((res: Ajax.AjaxResponse) => {
-          if (res.status == 0) {
-            // 获取本地数据成功
-            sdk.ability.login(res);
-          } else {
-            sdk.ability.logout();
-            com.delAllKeepAlive(_this);
-            _this.$router.push({ path: '/login' });
-          }
-        });
+        // com.getStorage('sjboacert').then((res: Ajax.AjaxResponse) => {
+        //   if (res.status == 0) {
+        //     // 获取本地数据成功
+        //     sdk.ability.login(res);
+        //   } else {
+        //     sdk.ability.logout();
+        //     com.delAllKeepAlive(_this);
+        //     _this.$router.push({ path: '/login' });
+        //   }
+        // });
+        var res = JSON.parse(window.localStorage.getItem('sjboacert'));
+        sdk.ability.login(res.phone);
       }
     } else {
       // 正式
-      com.getStorage('sjboacert').then((res: Ajax.AjaxResponse) => {
-        if (res.status == 0) {
-          // 获取本地数据成功
-          sdk.ability.login(res);
-        } else {
-          sdk.ability.logout();
-          com.delAllKeepAlive(_this);
-          _this.$router.push({ path: '/login' });
-        }
-      });
+      // com.getStorage('sjboacert').then((res: Ajax.AjaxResponse) => {
+      //   if (res.status == 0) {
+      //     // 获取本地数据成功
+      //     sdk.ability.login(res);
+      //   } else {
+      //     sdk.ability.logout();
+      //     com.delAllKeepAlive(_this);
+      //     _this.$router.push({ path: '/login' });
+      //   }
+      // });
+      var res = JSON.parse(window.localStorage.getItem('sjboacert'));
+      sdk.ability.login(res.phone);
+    }
+  },
+  isH5: function() {
+    if (process.argv[0] == 'H5') {
+      // H5 命令行参数
+      return true;
+    } else {
+      // 混合开发
+      return false;
     }
   }
   // autoSaveTimer:false,
