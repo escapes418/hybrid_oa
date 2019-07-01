@@ -410,7 +410,6 @@ export default {
       });
       com
         .covertHttp(api.queryDictInfo, {
-          //项目名称
           dictType: 'oa_project'
         })
         .then(res => {
