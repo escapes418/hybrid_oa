@@ -3,7 +3,9 @@
     <group title="个人主页" class="index-cell">
       <cell-box>
         <flexbox>
-          <flexbox-item :span="3"><img src="../../assets/img/tx.png" class="img-width60"/></flexbox-item>
+          <flexbox-item :span="3"
+            ><img src="../../assets/img/tx.png" class="img-width60"
+          /></flexbox-item>
           <flexbox-item class="font-size16">
             <div class="flex-demo">
               {{ baseInfo.userName }}
@@ -23,16 +25,32 @@
     </group>
     <group title="个人办公" class="index-cell" v-if="myOffice == 1">
       <grid :cols="3" class="mt-15 bg-white">
-        <grid-item :label="'报销申请'" @on-item-click="gotoEditApproval" v-if="permission['me-reimForm'] == 1">
+        <grid-item
+          :label="'报销申请'"
+          @on-item-click="gotoEditApproval"
+          v-if="permission['me-reimForm'] == 1"
+        >
           <img slot="icon" src="../../assets/img/approval.png" />
         </grid-item>
-        <grid-item :label="'接待申请'" @on-item-click="gotoReceptionApply" v-if="permission['me-recepList'] == 1">
+        <grid-item
+          :label="'接待申请'"
+          @on-item-click="gotoReceptionApply"
+          v-if="permission['me-recepList'] == 1"
+        >
           <img slot="icon" src="../../assets/img/reception.png" />
         </grid-item>
-        <grid-item :label="'线索管理'" @on-item-click="gotoClue" v-if="permission['inforManage-clueList'] == 1">
+        <grid-item
+          :label="'线索管理'"
+          @on-item-click="gotoClue"
+          v-if="permission['inforManage-clueList'] == 1"
+        >
           <img slot="icon" src="../../assets/img/clue.png" />
         </grid-item>
-        <grid-item :label="'工作日志'" @on-item-click="gotoLog" v-if="permission['inforManage-logList'] == 1">
+        <grid-item
+          :label="'工作日志'"
+          @on-item-click="gotoLog"
+          v-if="permission['inforManage-logList'] == 1"
+        >
           <img slot="icon" src="../../assets/img/log.png" />
         </grid-item>
         <grid-item
@@ -42,16 +60,32 @@
         >
           <img slot="icon" src="../../assets/img/customer.png" />
         </grid-item>
-        <grid-item :label="'出差申请'" @on-item-click="gotoTrip" v-if="permission['me-travelingList'] == 1">
+        <grid-item
+          :label="'出差申请'"
+          @on-item-click="gotoTrip"
+          v-if="permission['me-travelingList'] == 1"
+        >
           <img slot="icon" src="../../assets/img/trip.png" />
         </grid-item>
-        <grid-item :label="'资源申请'" @on-item-click="gotoEditResource" v-if="permission['me-resourceList'] == 1">
+        <grid-item
+          :label="'资源申请'"
+          @on-item-click="gotoEditResource"
+          v-if="permission['me-resourceList'] == 1"
+        >
           <img slot="icon" src="../../assets/img/resource.png" />
         </grid-item>
-        <grid-item :label="'资源申请办理'" @on-item-click="gotoResHandle" v-if="permission['me-resHandleList'] == 1">
+        <grid-item
+          :label="'资源申请办理'"
+          @on-item-click="gotoResHandle"
+          v-if="permission['me-resHandleList'] == 1"
+        >
           <img slot="icon" src="../../assets/img/resHandle.png" />
         </grid-item>
-        <grid-item :label="'实施状态标记'" @on-item-click="gotoempStatus" v-if="permission['empStatus'] == 1">
+        <grid-item
+          :label="'实施状态标记'"
+          @on-item-click="gotoempStatus"
+          v-if="permission['empStatus'] == 1"
+        >
           <img slot="icon" src="../../assets/img/empStatus.png" />
         </grid-item>
         <grid-item
@@ -61,13 +95,25 @@
         >
           <img slot="icon" src="../../assets/img/contract.png" />
         </grid-item>
-        <grid-item :label="'合同归档'" @on-item-click="gotoContractFill" v-if="permission['contractFill'] == 1">
+        <grid-item
+          :label="'合同归档'"
+          @on-item-click="gotoContractFill"
+          v-if="permission['contractFill'] == 1"
+        >
           <img slot="icon" src="../../assets/img/contract.png" />
         </grid-item>
-        <grid-item :label="'协作功能'" @on-item-click="gotoCoop" v-if="permission['oa-coopList'] == 1">
+        <grid-item
+          :label="'协作功能'"
+          @on-item-click="gotoCoop"
+          v-if="permission['oa-coopList'] == 1"
+        >
           <img slot="icon" src="../../assets/img/coop.png" />
         </grid-item>
-        <grid-item :label="'项目管理'" @on-item-click="gotoProject" v-if="permission['inforManage-projectList'] == 1">
+        <grid-item
+          :label="'项目管理'"
+          @on-item-click="gotoProject"
+          v-if="permission['inforManage-projectList'] == 1"
+        >
           <img slot="icon" src="../../assets/img/btn-01.png" />
         </grid-item>
         <!-- <grid-item :label="('工作内务管理')" @on-item-click="gotoHousekeeping">
@@ -107,8 +153,16 @@
           <badge v-if="myApplyCount != 0" class="badge" :text="myApplyCount"></badge>
           <img slot="icon" src="../../assets/img/listSend.png" />
         </grid-item>
-        <grid-item :label="'异常单'" @on-item-click="gotoExcTicket" v-if="permission['excTicket'] == 1">
-          <badge v-if="errorStockOrderCount != 0" class="badge" :text="errorStockOrderCount"></badge>
+        <grid-item
+          :label="'异常单'"
+          @on-item-click="gotoExcTicket"
+          v-if="permission['excTicket'] == 1"
+        >
+          <badge
+            v-if="errorStockOrderCount != 0"
+            class="badge"
+            :text="errorStockOrderCount"
+          ></badge>
           <img slot="icon" src="../../assets/img/excTicket.png" />
         </grid-item>
       </grid>
@@ -126,19 +180,24 @@
       </grid>
     </group>
     <div v-transfer-dom>
-      <confirm v-model="loginConfirm" title="是否退出登录？" @on-cancel="loginConfirm = false" @on-confirm="logout">
-        <p style="text-align:center;">{{ "确定执行操作?" }}</p>
+      <confirm
+        v-model="loginConfirm"
+        title="是否退出登录？"
+        @on-cancel="loginConfirm = false"
+        @on-confirm="logout"
+      >
+        <p style="text-align:center;">{{ '确定执行操作?' }}</p>
       </confirm>
     </div>
   </div>
 </template>
 
 <script>
-import Vue from "vue";
-import { mapState } from "vuex";
-import com from "@/assets/js/common";
-import XHR from "@/assets/js/XHR";
-import api from "@/assets/api/index.api";
+import Vue from 'vue';
+import { mapState } from 'vuex';
+import com from '@/assets/js/common';
+import XHR from '@/assets/js/XHR';
+import api from '@/assets/api/index.api';
 import {
   Group,
   Flexbox,
@@ -153,10 +212,10 @@ import {
   GroupTitle,
   XButton,
   TransferDomDirective as TransferDom
-} from "vux";
+} from 'vux';
 
 export default {
-  name: "UserIndex",
+  name: 'UserIndex',
   directives: { TransferDom },
   components: {
     Grid,
@@ -175,41 +234,41 @@ export default {
   data() {
     return {
       baseInfo: {
-        userName: "",
-        officeName: "",
-        phone: "",
+        userName: '',
+        officeName: '',
+        phone: '',
         roleList: [
           {
-            name: ""
+            name: ''
           }
         ]
       },
       loginConfirm: false,
-      myApplyCount: "", //我的申请红点
-      todoCount: "", //带我审批红点
-      errorStockOrderCount: "", //异常单红点
+      myApplyCount: '', //我的申请红点
+      todoCount: '', //带我审批红点
+      errorStockOrderCount: '', //异常单红点
       permission: {
-        "me-reimForm": 0, //报销
-        "me-recepList": 0, //接待
-        "inforManage-clueList": 0, //线索
-        "inforManage-logList": 0, //工作日志
-        "inforManage-customerList": 0, //客户信息
-        "me-travelingList": 0, //出差申请
-        "me-resourceList": 0, //资源申请
-        "me-resHandleList": 0, //资源申请办理
+        'me-reimForm': 0, //报销
+        'me-recepList': 0, //接待
+        'inforManage-clueList': 0, //线索
+        'inforManage-logList': 0, //工作日志
+        'inforManage-customerList': 0, //客户信息
+        'me-travelingList': 0, //出差申请
+        'me-resourceList': 0, //资源申请
+        'me-resHandleList': 0, //资源申请办理
         empStatus: 0, //实施状态标记
-        "me-contractCheckList": 0, //合同
+        'me-contractCheckList': 0, //合同
         contractFill: 0, //合同归档
         excTicket: 0, //异常单
         listSend: 0, //我的申请
         listRecived: 0, //待我审批
-        "oa-coopList": 0, //协作
-        "inforManage-projectList": 0 //项目管理
+        'oa-coopList': 0, //协作
+        'inforManage-projectList': 0 //项目管理
       },
       listTools: {
-        "tool-colcu": 0 //计算器
+        'tool-colcu': 0 //计算器
       },
-      messageCount: "0",
+      messageCount: '0',
       myTask: 1,
       myOffice: 1,
       myTools: 1
@@ -231,8 +290,8 @@ export default {
   methods: {
     getPermission() {
       com.covertHttp(api.isBind).then(res => {
-        console.log(api.isBind, "api.isBind");
         // this.isLogout(res.data.appCode) //是否登出
+        console.log(res,"isbind--------------")
         if (!res.data.permissionList) {
           this.myOffice = 0;
         } else {
@@ -263,25 +322,26 @@ export default {
         };
 
         if (!res.data.listRecived && !res.data.listSend) this.myTask = 0;
-        if (res.data.listRecived && res.data.listRecived.length != 0) this.permission["listRecived"] = 1;
-        if (res.data.listSend && res.data.listSend.length != 0) this.permission["listSend"] = 1;
-        com.comSetStorage("userInfo", this.baseInfo);
+        if (res.data.listRecived && res.data.listRecived.length != 0)
+          this.permission['listRecived'] = 1;
+        if (res.data.listSend && res.data.listSend.length != 0) this.permission['listSend'] = 1;
+        com.comSetStorage('userInfo', this.baseInfo);
         // this.myApplyCount = res.data.myApplyCount;
         // this.todoCount = res.data.todoCount;
         // this.errorStockOrderCount = res.data.errorStockOrderCount || 0;
       });
     },
     init() {
-      this.$store.dispatch("getAddressList");
-      this.$store.dispatch("getSubjectList");
+      this.$store.dispatch('getAddressList');
+      this.$store.dispatch('getSubjectList');
     },
     // isLogout(c) {
     //     com.comSetStorage('appCode', {appCode:c});
     // },
     phoneInfo() {
-      if (process.env.NODE_ENV == "development") {
+      if (process.env.NODE_ENV == 'development') {
         // 开发
-        if (process.argv[0] == "H5") {
+        if (process.argv[0] == 'H5') {
           // H5 命令行参数
         } else {
           // 混合开发
@@ -312,20 +372,20 @@ export default {
             });
         },
         fail(res) {
-          console.log("获取设备码失败", res);
+          console.log('获取设备码失败', res);
         }
       });
     },
     setAutoSave() {
-      com.comGetStorage("autoSave").then(
+      com.comGetStorage('autoSave').then(
         rtn => {
           if (rtn == null) {
-            com.comSetStorage("autoSave", {});
+            com.comSetStorage('autoSave', {});
           }
         },
         error => {
           if (error.status == 1) {
-            com.comSetStorage("autoSave", {});
+            com.comSetStorage('autoSave', {});
           }
         }
       );
@@ -351,100 +411,102 @@ export default {
     },
     getDictionary() {
       com.covertHttp(api.queryDict).then(res => {
-        com.comSetStorage("queryDict", { dict: res.data });
+        com.comSetStorage('queryDict', { dict: res.data });
       });
       com
         .covertHttp(api.queryDictInfo, {
           //项目名称
-          dictType: "oa_project"
+          dictType: 'oa_project'
         })
         .then(res => {
-          com.comSetStorage("queryDictInfo", { dict: res.data });
+          com.comSetStorage('queryDictInfo', { dict: res.data });
         });
     },
     gotoApprovalListSend() {
       //我申请的列表
-      this.$router.push({ path: "TaskOption/approvalListSend" });
+      this.$router.push({ path: 'TaskOption/approvalListSend' });
     },
     gotoApprovalListRecived() {
       //待我审批
-      this.$router.push({ path: "TaskOption/approvalListRecived" });
+      this.$router.push({ path: 'TaskOption/approvalListRecived' });
     },
     gotoEditApproval() {
       //报销申请
-      this.$router.push({ path: "/approval/apply/0" });
+      this.$router.push({ path: '/approval/apply/0' });
     },
     gotoImplementationApply() {
       //市场需求申请
-      this.$router.push({ path: "/market/Apply/0/0" });
+      this.$router.push({ path: '/market/Apply/0/0' });
     },
     gotoImplementationApplyOriginate() {
       //实施需求发起
-      this.$router.push({ path: "/implementation/apply/0" });
+      this.$router.push({ path: '/implementation/apply/0' });
     },
     gotoResHandle() {
       //工作内务管理
-      this.$router.push({ path: "/resHandle/apply/0" });
+      this.$router.push({ path: '/resHandle/apply/0' });
     },
     gotoReceptionApply() {
-      this.$router.push({ path: "/reception/Apply/0" });
+      this.$router.push({ path: '/reception/Apply/0' });
     },
     gotoCustomer() {
-      this.$router.push({ path: "/customer/cusType" });
+      this.$router.push({ path: '/customer/cusType' });
     },
     gotoLog() {
-      this.$router.push({ path: "/log/list" });
+      this.$router.push({ path: '/log/list' });
     },
     gotoClue() {
-      this.$router.push({ path: "/clue/list" });
+      this.$router.push({ path: '/clue/list' });
     },
     gotoHousekeeping() {
-      this.$router.push({ path: "/housekeeping/apply" });
+      this.$router.push({ path: '/housekeeping/apply' });
     },
     gotoempStatus() {
-      this.$router.push({ path: "/empStatus/list" });
+      this.$router.push({ path: '/empStatus/list' });
     },
     gotoCoop() {
-      this.$router.push({ path: "/coop/list" });
+      this.$router.push({ path: '/coop/list' });
     },
     logout() {
       var _this = this;
-      sdk.ability.removeStorage({
-        key: "sjboacert",
-        success: function(data) {
-          _this.$router.push({ path: "/login" });
-        }
-      });
+      // sdk.ability.removeStorage({
+      //   key: "sjboacert",
+      //   success: function(data) {
+      //     _this.$router.push({ path: "/login" });
+      //   }
+      // });
+      window.localStorage.removeItem('sjboacert');
+      this.$router.push({ path: '/login' });
     },
     // 出差申请
     gotoTrip() {
-      this.$router.push({ path: "/trip/form/0" });
+      this.$router.push({ path: '/trip/form/0' });
     },
     goSetting() {
       //设置
-      this.$router.push({ path: "/setting" });
+      this.$router.push({ path: '/setting' });
     },
     goMessage() {
-      this.$router.push({ path: "/messageList" });
+      this.$router.push({ path: '/messageList' });
     },
     // 资源申请
     gotoEditResource() {
-      this.$router.push({ path: "/resource/apply" });
+      this.$router.push({ path: '/resource/apply' });
     },
     gotoExcTicket() {
-      this.$router.push({ path: "/excTicket/comList" });
+      this.$router.push({ path: '/excTicket/comList' });
     },
     gotoContractApply() {
-      this.$router.push({ path: "/contract/apply/0" });
+      this.$router.push({ path: '/contract/apply/0' });
     },
     gotoProject() {
-      this.$router.push({ path: "/project/apply" });
+      this.$router.push({ path: '/project/apply' });
     },
     gotoCalcu() {
-      this.$router.push({ path: "/calcu/form" });
+      this.$router.push({ path: '/calcu/form' });
     },
     gotoContractFill() {
-      this.$router.push({ path: "/contractFill/listSend" });
+      this.$router.push({ path: '/contractFill/listSend' });
     }
   }
 };
