@@ -514,6 +514,7 @@ export default {
             {
               id: rtnData.detail.id,
               procInsId: rtnData.detail.procInsId,
+              costCenterId: rtnData.detail.costCenterId,
               taskId: rtnData.detail.taskId || '',
 
               taxCity: rtnData.detail.taxCity,
