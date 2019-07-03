@@ -48,14 +48,14 @@ axios.interceptors.response.use(
         return res.data;
       } else if (res.data.status == 1) {
         vueTips.$vux.toast.text(res.data.message || '网络异常');
-        return (res.data.status = 1);
+        return res.data;
       } else if (res.data.status == 20) {
         vueTips.$vux.toast.text(res.data.message || '登录信息已失效，即将跳转至登录页面');
         setTimeout(function() {
           utils.logout();
           window.location.href = './#/login';
         }, 3000);
-        return (res.data.status = 20);
+        return res.data;
       }
     } else {
       vueTips.$vux.toast.text('服务异常，请稍后重试！[status:!200]', 'center');
