@@ -41,6 +41,10 @@ axios.interceptors.response.use(
     //store.dispatch('updateLoading', false); //关闭loading
     if (res.status === 200) {
       if (res.data.status == 0) {
+        if (process.env.NODE_ENV == 'test') {
+          //打印接口信息
+          console.log(res.config.url, res);
+        }
         return res.data;
       } else if (res.data.status == 1) {
         vueTips.$vux.toast.text(res.data.message || '网络异常');
