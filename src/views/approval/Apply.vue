@@ -499,6 +499,7 @@ export default {
     init() {
       com.comGetStorage('userInfo').then(res => {
         this.baseInfo = Object.assign({}, this.baseInfo, res);
+        this.approvalForm.costCenterId = this.baseInfo.officeId
       });
       if (this.$route.params.id == 0) {
         // 新增
