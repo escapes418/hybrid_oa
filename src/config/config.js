@@ -1,5 +1,5 @@
+// 配置文件
 import loginPhone from './loginPhone.js';
-import utils from '@/assets/api/utils';
 const NODE_ENV = process.env.NODE_ENV;
 
 const config = {
@@ -36,6 +36,7 @@ if (NODE_ENV == 'development') {
    * debug_server：test 测试服务器
    * debug_server：prod 生产服务器
    */
+
   let envkey = window.localStorage.getItem('debug_server') || 'dev';
   if (envkey != 'dev' && envkey != 'test' && envkey != 'prod') envkey = 'dev';
 
@@ -50,9 +51,6 @@ if (NODE_ENV == 'development') {
     if (dev_host) envConfig.baseURL = dev_host;
   }
 } else if (process.env.NODE_ENV == 'test') {
-  utils.isApp().then(() => {
-    console.log('isApp');
-  });
   envConfig = { ...config.test };
   var script = document.createElement('script');
   script.type = 'text/javascript';
