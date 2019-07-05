@@ -20,10 +20,10 @@
                             <span class="detail-title long-title">成本中心</span>
                             <span class="long-detail">{{dataArr.detail.costCenterName}}</span>
                         </div>
-                        <div class="long-content">
+                        <!-- <div class="long-content">
                             <span class="detail-title long-title">所属部门</span>
                             <span class="long-detail">{{dataArr.detail.officeName}}</span>
-                        </div>
+                        </div> -->
                         <div class="long-content">
                             <span class="detail-title long-title">报销类型</span>
                             <span class="long-detail">{{dataArr.detail.applyTypeName}}</span>

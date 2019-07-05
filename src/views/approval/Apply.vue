@@ -29,18 +29,13 @@
         :sendData="approvalForm.costCenterId"
         :selectedItem.sync="approvalForm.costCenterId"
       ></departTree>
-      <x-input
-        title="成本中心"
-        v-if="!useCostCenter"
-        readonly
-        :value="baseInfo.officeName"
-      ></x-input>
-      <x-input
+      <x-input title="成本中心" v-if="!useCostCenter" readonly :value="costCenterName"></x-input>
+      <!-- <x-input
         title="所属部门"
         readonly
         :value="baseInfo.officeName"
         placeholder="请选择所属部门"
-      ></x-input>
+      ></x-input> -->
       <!-- 基本读取信息 END -->
       <sinSelector1
         sTitle="报销类型"
@@ -359,7 +354,8 @@ export default {
       },
       disDraft: false,
       disSubmit: false,
-      useCostCenter: true
+      useCostCenter: true,
+      costCenterName: ''
     };
   },
   computed: {
@@ -537,6 +533,7 @@ export default {
               customerSituation: rtnData.detail.customerSituation
             }
           );
+          this.costCenterName = rtnData.detail.costCenterName;
           if (rtnData.detail.travelExpenseTypeListName) {
             this.approvalForm.travelExpenseTypeListName = rtnData.detail.travelExpenseTypeListName.join(
               ', '
