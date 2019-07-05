@@ -1,8 +1,16 @@
 <template>
   <div v-if="isReady">
     <group title="基本信息" label-margin-right="1em">
-      <x-textarea title="今日工作" :autosize="true" placeholder="请输入" v-model.trim="applyData.todayWork" :max="1000">
-        <span slot="label" style="padding-right:10px;">今日工作<span class="required">*</span></span>
+      <x-textarea
+        title="今日工作"
+        :autosize="true"
+        placeholder="请输入"
+        v-model.trim="applyData.todayWork"
+        :max="1000"
+      >
+        <span slot="label" style="padding-right:10px;"
+          >今日工作<span class="required">*</span></span
+        >
       </x-textarea>
       <x-textarea
         title="运力池建设"
@@ -11,7 +19,9 @@
         v-model.trim="applyData.transportPoolBuild"
         :max="1000"
       >
-        <span slot="label" style="padding-right:10px;">运力池建设<span class="required">*</span></span>
+        <span slot="label" style="padding-right:10px;"
+          >运力池建设<span class="required">*</span></span
+        >
       </x-textarea>
       <x-textarea
         title="回访项目情况"
@@ -20,7 +30,9 @@
         v-model.trim="applyData.revisitProjectStatus"
         :max="1000"
       >
-        <span slot="label" style="padding-right:10px;">回访项目情况<span class="required">*</span></span>
+        <span slot="label" style="padding-right:10px;"
+          >回访项目情况<span class="required">*</span></span
+        >
       </x-textarea>
       <x-textarea
         title="需要协助问题"
@@ -29,7 +41,9 @@
         v-model.trim="applyData.needAssistProblem"
         :max="1000"
       >
-        <span slot="label" style="padding-right:10px;">需要协助问题<span class="required">*</span></span>
+        <span slot="label" style="padding-right:10px;"
+          >需要协助问题<span class="required">*</span></span
+        >
       </x-textarea>
       <x-textarea
         title="今日感想"
@@ -38,7 +52,9 @@
         v-model.trim="applyData.todayThought"
         :max="1000"
       >
-        <span slot="label" style="padding-right:10px;">今日感想<span class="required">*</span></span>
+        <span slot="label" style="padding-right:10px;"
+          >今日感想<span class="required">*</span></span
+        >
       </x-textarea>
       <x-textarea
         title="备注"
@@ -79,7 +95,13 @@
       <x-input title="节点具体地址" v-model="item.nodeAddress" readonly>
         <span slot="label">节点具体地址<span class="required">*</span></span>
       </x-input>
-      <x-input title="节点人数" :max="50" placeholder="请输入" type="number" v-model.trim="item.nodeEmpNum">
+      <x-input
+        title="节点人数"
+        :max="50"
+        placeholder="请输入"
+        type="number"
+        v-model.trim="item.nodeEmpNum"
+      >
         <span slot="label">节点人数<span class="required">*</span></span>
       </x-input>
       <x-input title="节点具体人员" :max="50" placeholder="请输入" v-model.trim="item.nodeEmpNames">
@@ -100,7 +122,9 @@
         v-model="item.anomalyDescription"
         :max="200"
       >
-        <span slot="label" style="padding-right:10px;">具体异常说明<span class="required">*</span></span>
+        <span slot="label" style="padding-right:10px;"
+          >具体异常说明<span class="required">*</span></span
+        >
       </x-textarea>
     </group>
     <div class="add-btn">
@@ -120,7 +144,6 @@
       ></multree>
       <multree
         sTitle="抄送对象"
-        :isRequired="true"
         :isPeople="true"
         sPlaceholder="请选择"
         :dataList="copyToPeoList"
@@ -138,14 +161,14 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
-import com from "@/assets/js/common";
-import sinSelector from "@/components/sinSelector";
-import mulSelectors from "@/components/mulSelectors";
-import proSelector from "@/components/proSelector";
-import multree from "@/components/multree.vue";
-import api from "@/assets/api/index.api";
-import Utils from "./utils";
+import Vue from 'vue';
+import com from '@/assets/js/common';
+import sinSelector from '@/components/sinSelector';
+import mulSelectors from '@/components/mulSelectors';
+import proSelector from '@/components/proSelector';
+import multree from '@/components/multree.vue';
+import api from '@/assets/api/index.api';
+import Utils from './utils';
 import {
   Tab,
   TabItem,
@@ -166,11 +189,11 @@ import {
   Confirm,
   FlexboxItem,
   TransferDomDirective as TransferDom
-} from "vux";
-import { resolve } from "path";
+} from 'vux';
+import { resolve } from 'path';
 
 export default {
-  name: "LogImpApply",
+  name: 'LogImpApply',
   directives: {
     TransferDom
   },
@@ -202,26 +225,26 @@ export default {
     return {
       isReady: false,
       applyData: {
-        needAssistProblem: "", //需要协助问题
-        revisitProjectStatus: "", //回访项目情况
-        remarks: "",
+        needAssistProblem: '', //需要协助问题
+        revisitProjectStatus: '', //回访项目情况
+        remarks: '',
         sendToUserList: [], //发给谁
         copyToList: [], //抄送给谁
-        todayThought: "", //今日感想
-        todayWork: "", //今日工作
-        transportPoolBuild: "", //运力池建设
+        todayThought: '', //今日感想
+        todayWork: '', //今日工作
+        transportPoolBuild: '', //运力池建设
         projectImplementStatusList: [
           {
-            anomalyDescription: "", //具体异常说明
-            hasAbnormalStatus: "", //是否有异常情况
-            implyDailyId: "", //实施日志表ID
-            nodeAddress: "", //节点具体地址
-            nodeEmpNames: "", //节点具体人员
+            anomalyDescription: '', //具体异常说明
+            hasAbnormalStatus: '', //是否有异常情况
+            implyDailyId: '', //实施日志表ID
+            nodeAddress: '', //节点具体地址
+            nodeEmpNames: '', //节点具体人员
             nodeEmpNum: undefined, //节点人数
-            nodeId: "", //节点ID
-            nodeName: "", //节点名称
-            projectId: "", //项目ID
-            projectName: "", //项目名称
+            nodeId: '', //节点ID
+            nodeName: '', //节点名称
+            projectId: '', //项目ID
+            projectName: '', //项目名称
             nodeList: []
           }
         ]
@@ -257,12 +280,12 @@ export default {
     initAutoSave() {
       var _this = this;
       this.getAutoSaveTime().then(getData => {
-        com.comGetStorage("autoSave").then(rtn => {
+        com.comGetStorage('autoSave').then(rtn => {
           if (rtn.LogImpApply !== undefined) _this.applyData = rtn.LogImpApply; //给表单赋值
           _this.isReady = true;
           _this.saveTimer = setInterval(() => {
             rtn.LogImpApply = _this.applyData;
-            com.comSetStorage("autoSave", rtn);
+            com.comSetStorage('autoSave', rtn);
           }, getData);
         });
       });
@@ -300,7 +323,7 @@ export default {
         });
     },
     getTreeList() {
-      com.covertHttp(api.orgAndUserInfo, { queryType: "2" }).then(rtn => {
+      com.covertHttp(api.orgAndUserInfo, { queryType: '2' }).then(rtn => {
         var list = com.addTreePeopel(rtn.data);
         var peopelList = com.hasChildren(list);
         this.copyToPeoList = com.clone(peopelList);
@@ -309,16 +332,16 @@ export default {
     },
     getAutoSaveTime() {
       return new Promise((resolve, reject) => {
-        com.comGetStorage("queryDict").then(data => {
+        com.comGetStorage('queryDict').then(data => {
           var getData = data.dict;
           let temp = 10000;
           for (var i = 0; i < getData.length; i++) {
-            if (getData[i].type == "auto_save") {
+            if (getData[i].type == 'auto_save') {
               temp = parseInt(getData[i].value);
               break;
             }
           }
-          if (typeof temp == "number") {
+          if (typeof temp == 'number') {
             resolve(temp);
           } else {
             resolve(10000);
@@ -327,7 +350,7 @@ export default {
       });
     },
     getDictionary() {
-      com.comGetStorage("queryDict").then(data => {
+      com.comGetStorage('queryDict').then(data => {
         var getData = data.dict;
         function selectDic(type) {
           let temp = [];
@@ -342,11 +365,11 @@ export default {
           }
           return temp;
         }
-        this.dictionary.abnormalStatus = selectDic("node_has_abnormal_status"); //异常情况
+        this.dictionary.abnormalStatus = selectDic('node_has_abnormal_status'); //异常情况
       });
     },
     getProList() {
-      com.comGetStorage("queryDictInfo").then(rtn => {
+      com.comGetStorage('queryDictInfo').then(rtn => {
         rtn.dict.forEach((item, index) => {
           this.projectList.push({
             ...item,
@@ -361,9 +384,9 @@ export default {
         if (el.key == this.applyData.projectImplementStatusList[index].projectId) {
           this.applyData.projectImplementStatusList[index].projectName = el.value;
           this.applyData.projectImplementStatusList[index].nodeList = [];
-          this.applyData.projectImplementStatusList[index].nodeAddress = "";
-          this.applyData.projectImplementStatusList[index].nodeName = "";
-          this.applyData.projectImplementStatusList[index].nodeId = "";
+          this.applyData.projectImplementStatusList[index].nodeAddress = '';
+          this.applyData.projectImplementStatusList[index].nodeName = '';
+          this.applyData.projectImplementStatusList[index].nodeId = '';
           com
             .covertHttp(api.queryProjectNodeList, {
               id: el.key
@@ -398,8 +421,8 @@ export default {
       if (!Utils.ImpApply(this)) return; //校验
       this.disSubmit = true;
       this.$vux.confirm.show({
-        title: "是否提交",
-        content: "确定执行操作？",
+        title: '是否提交',
+        content: '确定执行操作？',
         onCancel() {
           _this.disSubmit = false;
         },
@@ -428,23 +451,23 @@ export default {
     },
     delAutoSave() {
       clearInterval(this.saveTimer);
-      com.comGetStorage("autoSave").then(rtn => {
+      com.comGetStorage('autoSave').then(rtn => {
         delete rtn.LogImpApply;
-        com.comSetStorage("autoSave", rtn);
+        com.comSetStorage('autoSave', rtn);
       });
     },
     addItem() {
       this.applyData.projectImplementStatusList.push({
-        anomalyDescription: "",
-        hasAbnormalStatus: "",
-        implyDailyId: "",
-        nodeAddress: "",
-        nodeEmpNames: "",
+        anomalyDescription: '',
+        hasAbnormalStatus: '',
+        implyDailyId: '',
+        nodeAddress: '',
+        nodeEmpNames: '',
         nodeEmpNum: undefined,
-        nodeId: "",
-        nodeName: "",
-        projectId: "",
-        projectName: "",
+        nodeId: '',
+        nodeName: '',
+        projectId: '',
+        projectName: '',
         nodeList: []
       });
     },
@@ -455,8 +478,8 @@ export default {
       //     return;
       // }
       this.$vux.confirm.show({
-        title: "是否删除",
-        content: "确定执行操作？",
+        title: '是否删除',
+        content: '确定执行操作？',
         onCancel() {},
         onConfirm() {
           _this.applyData.projectImplementStatusList.splice(index, 1);
@@ -467,9 +490,9 @@ export default {
 };
 </script>
 <style lang="less">
-@import "../../assets/css/common/reset.fix.less";
-@import "../../assets/css/common/base.less";
-@import "../../assets/css/index.less";
+@import '../../assets/css/common/reset.fix.less';
+@import '../../assets/css/common/base.less';
+@import '../../assets/css/index.less';
 .fixbtn {
   width: 100%;
   position: fixed;
