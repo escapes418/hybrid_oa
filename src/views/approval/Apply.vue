@@ -24,10 +24,17 @@
         sTitle="成本中心"
         :isRequired="true"
         sPlaceholder="请选择"
+        v-if="useCostCenter"
         :dataList="costCenterList"
         :sendData="approvalForm.costCenterId"
         :selectedItem.sync="approvalForm.costCenterId"
       ></departTree>
+      <x-input
+        title="成本中心"
+        v-if="!useCostCenter"
+        readonly
+        :value="baseInfo.officeName"
+      ></x-input>
       <x-input
         title="所属部门"
         readonly
@@ -351,7 +358,8 @@ export default {
         oaExpenseType: []
       },
       disDraft: false,
-      disSubmit: false
+      disSubmit: false,
+      useCostCenter: true
     };
   },
   computed: {
@@ -499,7 +507,7 @@ export default {
     init() {
       com.comGetStorage('userInfo').then(res => {
         this.baseInfo = Object.assign({}, this.baseInfo, res);
-        this.approvalForm.costCenterId = this.baseInfo.officeId
+        this.approvalForm.costCenterId = this.baseInfo.officeId;
       });
       if (this.$route.params.id == 0) {
         // 新增
@@ -549,6 +557,14 @@ export default {
           // 动态参数赋值
           this.$store.dispatch('fullItemDatas', newItemDatas);
           this.getThemeList();
+          if (com.timeParse(rtnData.detail.applyTime) < 1562311800000) {
+            //2019-07-05 15:30
+            this.useCostCenter = false;
+          }
+          // if (com.timeParse(rtnData.detail.applyTime) < 1562601600000) {
+            //2019-07-09 00:00
+          //   this.useCostCenter = false;
+          // }
         });
       }
     },
