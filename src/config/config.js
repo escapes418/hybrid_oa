@@ -52,7 +52,6 @@ if (NODE_ENV == 'development') {
 } else if (process.env.NODE_ENV == 'test') {
   sdk.ability.getStorage({
     key: 'key',
-    data: { data: '1' },
     complete(status) {
       console.log('isapp');
     }
@@ -63,6 +62,12 @@ if (NODE_ENV == 'development') {
   script.src = './static/js/vconsole.min.js';
   document.getElementsByTagName('head')[0].appendChild(script);
 } else {
+  sdk.ability.getStorage({
+    key: 'key',
+    complete(status) {
+      console.log('isapp');
+    }
+  });
   envConfig = { ...config.prod };
 }
 
