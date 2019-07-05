@@ -218,6 +218,17 @@ const com = {
       // 混合开发
       return false;
     }
+  },
+  isApp: function(key = 'key', data = { data: 'data' }) {
+    return new Promise((resolve, reject) => {
+      sdk.ability.setStorage({
+        key: key,
+        data: data,
+        success(status) {
+          resolve();
+        }
+      });
+    });
   }
 };
 
