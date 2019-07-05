@@ -1,4 +1,3 @@
-// 配置文件
 import loginPhone from './loginPhone.js';
 import utils from '@/assets/api/utils';
 const NODE_ENV = process.env.NODE_ENV;
