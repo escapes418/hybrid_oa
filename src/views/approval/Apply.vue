@@ -559,7 +559,7 @@ export default {
             //2019-07-05 15:30
             this.useCostCenter = false;
           }
-          // if (com.timeParse(rtnData.detail.applyTime) < 1562601600000) {
+          // if (com.timeParse(rtnData.detail.applyTime) <= 1562601600000) {
           //2019-07-09 00:00
           //   this.useCostCenter = false;
           // }
