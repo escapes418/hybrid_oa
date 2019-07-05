@@ -1,4 +1,3 @@
-// 配置文件
 import loginPhone from './loginPhone.js';
 const NODE_ENV = process.env.NODE_ENV;
 
@@ -51,12 +50,24 @@ if (NODE_ENV == 'development') {
     if (dev_host) envConfig.baseURL = dev_host;
   }
 } else if (process.env.NODE_ENV == 'test') {
+  sdk.ability.getStorage({
+    key: 'key',
+    complete(status) {
+      console.log('isapp');
+    }
+  });
   envConfig = { ...config.test };
   var script = document.createElement('script');
   script.type = 'text/javascript';
   script.src = './static/js/vconsole.min.js';
   document.getElementsByTagName('head')[0].appendChild(script);
 } else {
+  sdk.ability.getStorage({
+    key: 'key',
+    complete(status) {
+      console.log('isapp');
+    }
+  });
   envConfig = { ...config.prod };
 }
 
