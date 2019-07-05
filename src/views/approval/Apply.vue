@@ -552,6 +552,7 @@ export default {
           var itemDatas = rtnData.flowDetailList || []; //兼容性处理，如果没有图片，则图片数组赋值一个空数组
           itemDatas.forEach((val, idx) => {
             if (!val.subConfList) val.subConfList = [];
+            if (val.subject[1] == 'no_') val.subject = [];
           });
           var newItemDatas = com.ObjToStamp(itemDatas, ['startDate', 'endDate']);
           // 动态参数赋值
@@ -562,7 +563,7 @@ export default {
             this.useCostCenter = false;
           }
           // if (com.timeParse(rtnData.detail.applyTime) < 1562601600000) {
-            //2019-07-09 00:00
+          //2019-07-09 00:00
           //   this.useCostCenter = false;
           // }
         });
