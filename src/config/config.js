@@ -37,8 +37,6 @@ if (NODE_ENV == 'development') {
    * debug_server：test 测试服务器
    * debug_server：prod 生产服务器
    */
-  // console.log(utils.isApp());
-  // console.log(111);
   let envkey = window.localStorage.getItem('debug_server') || 'dev';
   if (envkey != 'dev' && envkey != 'test' && envkey != 'prod') envkey = 'dev';
 
@@ -54,17 +52,15 @@ if (NODE_ENV == 'development') {
   }
 } else if (process.env.NODE_ENV == 'test') {
   utils.isApp().then(() => {
-    envConfig = { ...config.test };
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = './static/js/vconsole.min.js';
-    document.getElementsByTagName('head')[0].appendChild(script);
+    console.log('isApp');
   });
+  envConfig = { ...config.test };
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = './static/js/vconsole.min.js';
+  document.getElementsByTagName('head')[0].appendChild(script);
 } else {
-  // envConfig = { ...config.prod };
-  utils.isApp().then(() => {
-    envConfig = { ...config.prod };
-  });
+  envConfig = { ...config.prod };
 }
 
 export default envConfig;
