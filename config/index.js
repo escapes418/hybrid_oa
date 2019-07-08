@@ -22,7 +22,7 @@ module.exports = {
         // target: 'http://120.31.131.193:8104/OA',//测试环境193
         // target: 'https://webtest1.sijibao.com/OA',//测试环境 阿里
         // target: 'http://webtest.sijibao.com/OA',//测试环境 阿里
-        target: 'http://oa.sijibao.co/OA', //测试环境 新地址
+        target: 'http://web.sijibao.co/OA', //测试环境 新地址
 
         // target: 'https://oa.sijibao.com/OA',//正式环境
         changeOrigin: true,
