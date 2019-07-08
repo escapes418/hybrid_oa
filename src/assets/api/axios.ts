@@ -41,17 +41,21 @@ axios.interceptors.response.use(
     //store.dispatch('updateLoading', false); //关闭loading
     if (res.status === 200) {
       if (res.data.status == 0) {
+        if (process.env.NODE_ENV == 'test') {
+          //打印接口信息
+          console.log(res.config.url, res);
+        }
         return res.data;
       } else if (res.data.status == 1) {
         vueTips.$vux.toast.text(res.data.message || '网络异常');
-        return;
+        return res.data;
       } else if (res.data.status == 20) {
         vueTips.$vux.toast.text(res.data.message || '登录信息已失效，即将跳转至登录页面');
         setTimeout(function() {
           utils.logout();
           window.location.href = './#/login';
         }, 3000);
-        return;
+        return res.data;
       }
     } else {
       vueTips.$vux.toast.text('服务异常，请稍后重试！[status:!200]', 'center');

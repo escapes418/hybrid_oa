@@ -24,16 +24,18 @@
         sTitle="成本中心"
         :isRequired="true"
         sPlaceholder="请选择"
+        v-if="useCostCenter"
         :dataList="costCenterList"
         :sendData="approvalForm.costCenterId"
         :selectedItem.sync="approvalForm.costCenterId"
       ></departTree>
-      <x-input
+      <x-input title="成本中心" v-if="!useCostCenter" readonly :value="costCenterName"></x-input>
+      <!-- <x-input
         title="所属部门"
         readonly
         :value="baseInfo.officeName"
         placeholder="请选择所属部门"
-      ></x-input>
+      ></x-input> -->
       <!-- 基本读取信息 END -->
       <sinSelector1
         sTitle="报销类型"
@@ -351,7 +353,9 @@ export default {
         oaExpenseType: []
       },
       disDraft: false,
-      disSubmit: false
+      disSubmit: false,
+      useCostCenter: true,
+      costCenterName: ''
     };
   },
   computed: {
@@ -499,6 +503,7 @@ export default {
     init() {
       com.comGetStorage('userInfo').then(res => {
         this.baseInfo = Object.assign({}, this.baseInfo, res);
+        this.approvalForm.costCenterId = this.baseInfo.officeId;
       });
       if (this.$route.params.id == 0) {
         // 新增
@@ -514,6 +519,7 @@ export default {
             {
               id: rtnData.detail.id,
               procInsId: rtnData.detail.procInsId,
+              costCenterId: rtnData.detail.costCenterId,
               taskId: rtnData.detail.taskId || '',
 
               taxCity: rtnData.detail.taxCity,
@@ -527,6 +533,7 @@ export default {
               customerSituation: rtnData.detail.customerSituation
             }
           );
+          this.costCenterName = rtnData.detail.costCenterName;
           if (rtnData.detail.travelExpenseTypeListName) {
             this.approvalForm.travelExpenseTypeListName = rtnData.detail.travelExpenseTypeListName.join(
               ', '
@@ -542,11 +549,16 @@ export default {
           var itemDatas = rtnData.flowDetailList || []; //兼容性处理，如果没有图片，则图片数组赋值一个空数组
           itemDatas.forEach((val, idx) => {
             if (!val.subConfList) val.subConfList = [];
+            if (val.subject[1] == 'no_') val.subject = [];
           });
           var newItemDatas = com.ObjToStamp(itemDatas, ['startDate', 'endDate']);
           // 动态参数赋值
           this.$store.dispatch('fullItemDatas', newItemDatas);
           this.getThemeList();
+          if (com.timeParse(rtnData.detail.applyTime) < 1562601600000) {
+          //2019-07-09 00:00
+            this.useCostCenter = false;
+          }
         });
       }
     },
