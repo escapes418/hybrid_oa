@@ -11,7 +11,7 @@ const config = {
   },
   // 测试配置
   test: {
-    baseURL: 'http://web.sijibao.co/OA/wechat',
+    baseURL: 'http://oa.sijibao.co/OA/wechat',
     loginPhone: loginPhone,
     clientType: 2,
     env: 'test'
