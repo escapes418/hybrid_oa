@@ -555,14 +555,10 @@ export default {
           // 动态参数赋值
           this.$store.dispatch('fullItemDatas', newItemDatas);
           this.getThemeList();
-          if (com.timeParse(rtnData.detail.applyTime) < 1562311800000) {
-            //2019-07-05 15:30
+          if (com.timeParse(rtnData.detail.applyTime) < 1562601600000) {
+          //2019-07-09 00:00
             this.useCostCenter = false;
           }
-          // if (com.timeParse(rtnData.detail.applyTime) < 1562601600000) {
-          //2019-07-09 00:00
-          //   this.useCostCenter = false;
-          // }
         });
       }
     },
