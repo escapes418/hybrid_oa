@@ -50,7 +50,6 @@
       <icon type="info" is-msg class="prompt-icon"></icon>
       <div class="mt-10">暂无数据</div>
     </div>
-    <div @click="gotop">asdfasdfadssdfgsdfg</div>
   </div>
 </template>
 
