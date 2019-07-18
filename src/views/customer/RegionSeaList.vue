@@ -1,6 +1,6 @@
 <template>
   <div>
-    <bescoll class="">
+    <scrollPosition>
       <div>
         <group title="信息管理列表" style="padding-top: 0.1px;">
           <cell-box
@@ -56,7 +56,7 @@
           <div class="mt-10">暂无数据</div>
         </div>
       </div>
-    </bescoll>
+    </scrollPosition>
     <!-- <div class="fixed-btn">
           <x-button class="smallbtn" type="primary" :mini="true" @click.native="showSearchBox">筛选</x-button>
       </div> -->
@@ -91,7 +91,7 @@ import api from '@/assets/api/index.api';
 import com from '@/assets/js/common';
 import XHR from '@/assets/js/XHR';
 import sinSelector from '@/components/sinSelector';
-import bescoll from '@/components/bScroll';
+import scrollPosition from '@/components/scrollPosition';
 import {
   Tab,
   TabItem,
@@ -128,7 +128,7 @@ export default {
     Popup,
     Box,
     sinSelector,
-    bescoll
+    scrollPosition
   },
   data: function() {
     return {

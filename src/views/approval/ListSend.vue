@@ -115,21 +115,7 @@ export default {
       }
     }
   },
-  mounted() {
-    window.addEventListener('scroll', this.handleScroll);
-  },
   methods: {
-    handleScroll(e) {
-      var topTopTop =
-        document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-      console.log(topTopTop);
-    },
-    gotop() {
-      console.log('gotop');
-      document.documentElement.scrollTop = 229;
-      window.pageYOffset = 229;
-      document.body.scrollTop = 229;
-    },
     // 获取数据
     getMysendList(pageNo, type) {
       com

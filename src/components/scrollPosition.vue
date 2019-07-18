@@ -19,30 +19,31 @@ export default {
     window.addEventListener('scroll', this.handleScroll);
   },
   activated() {
-    console.log(this.movePosition, 'this.movePosition');
-    this.move2LastPosition();
+    this.goPosition();
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  deactivated() {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll);
   },
   watch: {},
   computed: {},
   methods: {
-    move2LastPosition() {
-      this.scroll.scrollTo(this.movePosition.x, this.movePosition.y);
+    handleScroll() {
+      this.lastPosition = document.documentElement.scrollTop || document.body.scrollTop;
+    },
+    goPosition() {
+      this.$nextTick(() => {
+        document.documentElement.scrollTop = this.lastPosition;
+        window.pageYOffset = this.lastPosition;
+        document.body.scrollTop = this.lastPosition;
+      });
     }
   }
 };
 </script>
 <style lang="less">
-// .scrolllist {
-//   .wrapper {
-//     width: 100%;
-//     position: fixed;
-//     top: 0px;
-//     bottom: 0;
-//     left: 0;
-//     z-index: 10;
-//     box-sizing: border-box;
-//     overflow: hidden;
-//   }
-// }
 </style>
 
