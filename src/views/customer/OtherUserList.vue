@@ -201,17 +201,15 @@ export default {
     },
     //我未审批
     getList(opts) {
-      var postData = {
-        conflictName: this.conflict == '_' ? '' : this.conflict,
-        custListPlace: 3,
-        pageNo: this.page,
-        pageSize: this.pageSize,
-        ...this.axiosOpts,
-        ...opts
-      };
+      var conflict = this.$route.params.search;
       com
         .covertHttp(api.custInfoList, {
-          ...postData
+          conflictName: conflict == '_' ? '' : conflict,
+          custListPlace: 3,
+          pageNo: this.page,
+          pageSize: this.pageSize,
+          ...this.axiosOpts,
+          ...opts
         })
         .then(rtn => {
           this.dataList = rtn.data.list;
@@ -221,17 +219,15 @@ export default {
         });
     },
     getActList(opts) {
-      var postData = {
-        conflictName: this.conflict == '_' ? '' : this.conflict,
-        custListPlace: 3,
-        pageNo: 1,
-        pageSize: this.actPageSize,
-        ...this.axiosOpts,
-        ...opts
-      };
+      var conflict = this.$route.params.search;
       com
         .covertHttp(api.custInfoList, {
-          ...postData
+          conflictName: conflict == '_' ? '' : conflict,
+          custListPlace: 3,
+          pageNo: 1,
+          pageSize: this.actPageSize,
+          ...this.axiosOpts,
+          ...opts
         })
         .then(rtn => {
           this.dataList = rtn.data.list;
@@ -262,19 +258,17 @@ export default {
       this.showSearch = !this.showSearch;
     },
     clickLoadMore(opts) {
+      var conflict = this.$route.params.search;
       this.page++;
       this.actPageSize = this.actPageSize + 10;
-      var postData = {
-        conflictName: this.conflict == '_' ? '' : this.conflict,
-        custListPlace: 3,
-        pageNo: this.page,
-        pageSize: this.pageSize,
-        ...this.axiosOpts,
-        ...opts
-      };
       com
         .covertHttp(api.custInfoList, {
-          ...postData
+          conflictName: conflict == '_' ? '' : conflict,
+          custListPlace: 3,
+          pageNo: this.page,
+          pageSize: this.pageSize,
+          ...this.axiosOpts,
+          ...opts
         })
         .then(rtn => {
           this.dataList.push(...rtn.data.list);
