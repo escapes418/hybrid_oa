@@ -63,7 +63,6 @@
       <!-- <mulSelectors sTitle='随行人员' :max="0" sPlaceholder='请选择' :dataList="peopelList" :sendData="approvalForm.entourageList" :selectedItem.sync="approvalForm.entourageList"></mulSelectors> -->
       <multree
         sTitle="随行人员"
-        :isRequired="true"
         :isPeople="true"
         sPlaceholder="请选择"
         :dataList="peopelList"
