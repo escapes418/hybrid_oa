@@ -15,7 +15,6 @@ export default {
   },
   created() {},
   mounted() {
-    var _this = this;
     window.addEventListener('scroll', this.handleScroll);
   },
   activated() {
