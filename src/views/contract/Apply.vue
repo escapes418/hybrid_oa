@@ -550,16 +550,9 @@ export default {
     imgUpload(idx, maxCount) {
       var _this = this;
       var maxNum = maxCount - this.contractAttachmentList[idx].upload.length;
-      console.log(maxNum, this.contractAttachmentList);
-      console.log(sdk.ability.uploadImages);
       sdk.ability.uploadImages({
-        // params: {
         maxNum: maxNum,
-        // },
         success: function(rtn) {
-          console.log(rtn, 'imgUploadsuccess');
-          // _this.contractAttachmentList[idx].upload[index].urlPrefix = rtn.data.pre;
-          // _this.contractAttachmentList[idx].upload[index].url = rtn.data.remoteFilePaths[0];
           rtn.data.remoteFilePaths.forEach((item, i) => {
             _this.contractAttachmentList[idx].upload.push({
               urlPrefix: rtn.data.pre,
@@ -567,36 +560,26 @@ export default {
             });
           });
         },
-        fail(data) {
-          console.log('imgUploadfail', data);
-        }
+        fail(data) {}
       });
     },
     delImg(idx, index) {
       // 图片删除
-      // this.contractAttachmentList[idx].upload[index].urlPrefix = '';
-      // this.contractAttachmentList[idx].upload[index].url = '';
       this.contractAttachmentList[idx].upload.splice(index, 1);
     },
     showImgFn(el, index) {
-      // console.log(el, index);
       var url = [];
       el.forEach((item, idx) => {
         url.push(item.urlPrefix + item.url);
       });
-      console.log(url, index);
       sdk.components.previewImages({
-        // 图片预览
-        // url: url,
-        // params: {
         url: url,
         index: index,
-        // },
         success: function(data) {
-          console.log(data, 'showImgFnsuccess');
+          // console.log(data, 'showImgFnsuccess');
         },
         fail(data) {
-          console.log(data);
+          // console.log(data);
         }
       });
     }

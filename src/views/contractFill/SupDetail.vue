@@ -557,21 +557,6 @@ export default {
         }
       });
     },
-    // showImgFn(url) {
-    //     if(url == "undefined" || url == "" || url == "null") {
-    //         this.$vux.toast.text('获取图片失败');
-    //         return false;
-    //     }
-    //     sdk.components.previewImage({ // 图片预览
-    //         url: url,
-    //         success:function(data) {
-    //             console.log(data);
-    //         },
-    //         fail(data) {
-    //             console.log(data)
-    //         }
-    //     })
-    // },
     showImgFn(el, index) {
       var url = [];
       el.forEach((item, idx) => {
@@ -580,19 +565,10 @@ export default {
       sdk.components.previewImages({
         url: url,
         index: index,
-        success: function(data) {
-          console.log(data, 'showImgFnsuccess');
-        },
-        fail(data) {
-          console.log(data);
-        }
+        success: function(data) {},
+        fail(data) {}
       });
     }
-    // clickSupp(id){
-    //     this.$router.push({
-    //         path: '/conFillDetail/' + id + "/myself/1"
-    //     });
-    // }
   }
 };
 </script>
