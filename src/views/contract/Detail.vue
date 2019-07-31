@@ -35,7 +35,7 @@
                         <div class="long-content">
                             <span class="detail-title long-title">备注</span>
                             <span class="long-detail">{{dataArr.detail.remarks}}</span>
-                        </div>                   
+                        </div>
                     </div>
                 </div>
             </cell-box>
@@ -47,7 +47,7 @@
                         <div class="long-content"  v-for="(el, idx) in item.contractPartyType" :key="idx">
                             <span class="detail-title long-title">{{el.columnLabel}}</span>
                             <span class="long-detail">{{el.value}}</span>
-                        </div>               
+                        </div>
                     </div>
                 </div>
             </cell-box>
@@ -97,7 +97,8 @@
             <div class="flex_box" v-if="el.upload.length!=0">
                 <div class="flex_item" v-for="(val,index) in el.upload" :key="index">
                     <div class="imgbox">
-                        <img :src="val.urlPrefix + val.url" v-if="val.url" @click="showImgFn(val.urlPrefix + val.url)">
+                        <!-- <img :src="val.urlPrefix + val.url" v-if="val.url" @click="showImgFn(val.urlPrefix + val.url)"> -->
+                        <img :src="val.urlPrefix + val.url" v-if="val.url" @click="showImgFn(el.upload, index)" />
                     </div>
                 </div>
             </div>
@@ -345,7 +346,7 @@ export default {
                         })
                     }
                 })
-            })    
+            })
         },
         getTemplate() {
             return new Promise((resolve, reject) => {
@@ -362,7 +363,7 @@ export default {
                     }
                     this.dynamicFormList = rtn.data.contractPartyList;
                     this.dynamicUpload = rtn.data.contractConfigAttachmentList;
-                    
+
                     rtn.data.contractConfigAttachmentList.forEach((element,index)=>{
                         var attachmentName = ""
                         if(element.attachmentType == "1"){
@@ -496,21 +497,43 @@ export default {
                 }
             })
         },
-        showImgFn(url) {
-            if(url == "undefined" || url == "" || url == "null") {
-                this.$vux.toast.text('获取图片失败');
-                return false;
+        // showImgFn(url) {
+        //     if(url == "undefined" || url == "" || url == "null") {
+        //         this.$vux.toast.text('获取图片失败');
+        //         return false;
+        //     }
+        //     sdk.components.previewImage({ // 图片预览
+        //         url: url,
+        //         success:function(data) {
+        //             console.log(data);
+        //         },
+        //         fail(data) {
+        //             console.log(data)
+        //         }
+        //     })
+        // },
+        showImgFn(el, index) {
+          console.log(el, index);
+          var url = [];
+          el.forEach((item, idx) => {
+            url.push(item.urlPrefix + item.url);
+          });
+          console.log(url, index);
+          sdk.components.previewImages({
+            // 图片预览
+            // url: url,
+            // params: {
+              url: url,
+              index: index,
+            // },
+            success: function(data) {
+              console.log(data, 'showImgFnsuccess');
+            },
+            fail(data) {
+              console.log(data);
             }
-            sdk.components.previewImage({ // 图片预览
-                url: url,
-                success:function(data) {
-                    console.log(data);
-                },
-                fail(data) {
-                    console.log(data)
-                }
-            })
-        },
+          });
+        }
     }
 }
 </script>
