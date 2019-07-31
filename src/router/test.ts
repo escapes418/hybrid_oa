@@ -2,13 +2,13 @@ import testTest from '@/views/test/test.vue';
 import testMarketApply from '@/views/test/MarketApply.vue';
 import testimpApply from '@/views/test/ImpApply.vue';
 import testMultiPicker from '@/views/test/testMultiPicker.vue';
-import xuanfu from '@/views/test/xuanfu.vue';
+// import xuanfu from '@/views/test/xuanfu.vue';
 import testBlank from '@/views/test/testBlank.vue';
 import testScrollList from '@/views/test/testScrollList.vue';
 import testScrollnoPullUp from '@/views/test/testScrollnoPullUp.vue';
 import testSdk from '@/views/test/testSdk.vue';
-import contractListSend from '@/views/test/ListSend.vue';
-import contractApply from '@/views/test/contractApply.vue';
+// import contractListSend from '@/views/test/ListSend.vue';
+// import contractApply from '@/views/test/contractApply.vue';
 
 export default [
   {
@@ -43,14 +43,14 @@ export default [
       docTitle: '测试'
     }
   },
-  {
-    path: '/test/xuanfu',
-    name: 'xuanfu',
-    component: xuanfu,
-    meta: {
-      docTitle: '悬浮球'
-    }
-  },
+  // {
+  //   path: '/test/xuanfu',
+  //   name: 'xuanfu',
+  //   component: xuanfu,
+  //   meta: {
+  //     docTitle: '悬浮球'
+  //   }
+  // },
   {
     path: '/test/testBlank',
     name: 'testBlank',
@@ -82,21 +82,21 @@ export default [
     meta: {
       docTitle: '测SDK'
     }
-  },
-  {
-    path: '/test/contractListSend',
-    name: 'contractListSend',
-    component: contractListSend,
-    meta: {
-      docTitle: '测SDK'
-    }
-  },
-  {
-    path: '/test/contractApply/:id',
-    name: 'contractApply',
-    component: contractApply,
-    meta: {
-      docTitle: '测上传图片'
-    }
   }
+  // {
+  //   path: '/test/contractListSend',
+  //   name: 'contractListSend',
+  //   component: contractListSend,
+  //   meta: {
+  //     docTitle: '测SDK'
+  //   }
+  // },
+  // {
+  //   path: '/test/contractApply/:id',
+  //   name: 'contractApply',
+  //   component: contractApply,
+  //   meta: {
+  //     docTitle: '测上传图片'
+  //   }
+  // }
 ];
