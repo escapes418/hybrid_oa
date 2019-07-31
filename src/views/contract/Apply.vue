@@ -116,11 +116,12 @@
       v-for="(el, idx) in contractAttachmentList"
       :key="idx + 10"
     >
+      <!-- <div>{{ contractAttachmentList }}</div> -->
       <cell
         :title="el.attachmentName"
-        :inline-desc="el.message + '(至少' + el.mustCount + '张)'"
+        :inline-desc="el.message + '(至少' + el.mustCount + '张、最多' + el.maxCount + '张)'"
       ></cell>
-      <div class="flex_box" v-if="el.upload.length != 0">
+      <div class="flex_box">
         <div class="flex_item" v-for="(val, index) in el.upload" :key="index">
           <div class="imgbox">
             <img
@@ -132,9 +133,19 @@
             <img
               :src="val.urlPrefix + val.url"
               v-if="val.url"
-              @click="showImgFn(val.urlPrefix + val.url)"
+              @click="showImgFn(el.upload, index)"
             />
-            <img src="../../assets/img/add.png" v-else @click="imgUpload(idx, index)" />
+            <!-- <img
+              :src="val.urlPrefix + val.url"
+              v-if="val.url"
+              @click="showImgFn(val.urlPrefix + val.url)"
+            /> -->
+            <!-- <img src="../../assets/img/add.png" v-else @click="imgUpload(idx, index)" /> -->
+          </div>
+        </div>
+        <div class="flex_item" v-if="el.maxCount - el.upload.length >= 1">
+          <div class="imgbox">
+            <img src="../../assets/img/add.png" @click="imgUpload(idx, el.maxCount)" />
           </div>
         </div>
       </div>
@@ -425,15 +436,15 @@ export default {
             rtn.data.contractConfigAttachmentList.forEach((element, idx) => {
               var attachmentName = '';
               var upload = [];
-              for (let i = 0; i < parseInt(element.maxCount); i++) {
-                //上传图片信息
-                upload.push({
-                  // urlPrefix: "https://wyyt-test.oss-cn-huhehaote.aliyuncs.com",
-                  // url: "/wyyt-image/2018/10/23/5603967938455541178.jpg",
-                  urlPrefix: '',
-                  url: ''
-                });
-              }
+              // for (let i = 0; i < parseInt(element.maxCount); i++) {
+              //   //上传图片信息
+              //   upload.push({
+              //     urlPrefix: 'https://wyyt-test.oss-cn-huhehaote.aliyuncs.com',
+              //     url: '/wyyt-image/2018/10/23/5603967938455541178.jpg'
+              //     // urlPrefix: '',
+              //     // url: ''
+              //   });
+              // }
 
               if (element.attachmentType == '1') {
                 //合同标题
@@ -536,12 +547,25 @@ export default {
           this.disSubmit = false;
         });
     },
-    imgUpload(idx, index) {
+    imgUpload(idx, maxCount) {
       var _this = this;
-      sdk.ability.chooseImage({
+      var maxNum = maxCount - this.contractAttachmentList[idx].upload.length;
+      console.log(maxNum, this.contractAttachmentList);
+      console.log(sdk.ability.uploadImages);
+      sdk.ability.uploadImages({
+        // params: {
+        maxNum: maxNum,
+        // },
         success: function(rtn) {
-          _this.contractAttachmentList[idx].upload[index].urlPrefix = rtn.data.pre;
-          _this.contractAttachmentList[idx].upload[index].url = rtn.data.remoteFilePaths[0];
+          console.log(rtn, 'imgUploadsuccess');
+          // _this.contractAttachmentList[idx].upload[index].urlPrefix = rtn.data.pre;
+          // _this.contractAttachmentList[idx].upload[index].url = rtn.data.remoteFilePaths[0];
+          rtn.data.remoteFilePaths.forEach((item, i) => {
+            _this.contractAttachmentList[idx].upload.push({
+              urlPrefix: rtn.data.pre,
+              url: item
+            });
+          });
         },
         fail(data) {
           console.log('imgUploadfail', data);
@@ -550,15 +574,26 @@ export default {
     },
     delImg(idx, index) {
       // 图片删除
-      this.contractAttachmentList[idx].upload[index].urlPrefix = '';
-      this.contractAttachmentList[idx].upload[index].url = '';
+      // this.contractAttachmentList[idx].upload[index].urlPrefix = '';
+      // this.contractAttachmentList[idx].upload[index].url = '';
+      this.contractAttachmentList[idx].upload.splice(index, 1);
     },
-    showImgFn(url) {
-      sdk.components.previewImage({
+    showImgFn(el, index) {
+      // console.log(el, index);
+      var url = [];
+      el.forEach((item, idx) => {
+        url.push(item.urlPrefix + item.url);
+      });
+      console.log(url, index);
+      sdk.components.previewImages({
         // 图片预览
+        // url: url,
+        // params: {
         url: url,
+        index: index,
+        // },
         success: function(data) {
-          console.log(data);
+          console.log(data, 'showImgFnsuccess');
         },
         fail(data) {
           console.log(data);
