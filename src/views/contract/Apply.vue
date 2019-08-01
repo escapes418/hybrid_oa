@@ -311,21 +311,34 @@ export default {
       });
     },
     assignUpload(getD) {
-      var upIndex = 0;
+      // var upIndex = 0;
+      // console.log(getD.contractAttachmentList);
+      // console.log(this.contractAttachmentList,"this.contractAttachmentList");
+      // getD.contractAttachmentList.forEach((element, index) => {
+      //   for (let idx in this.contractAttachmentList) {
+      //     if (
+      //       element.fileType == this.upType &&
+      //       this.contractAttachmentList[idx].attachmentType == this.upType
+      //     ) {
+      //       // console.log(this.contractAttachmentList[idx].upload);
+      //       this.contractAttachmentList[idx].upload[upIndex].url = element.contractAttachmentUrl;
+      //       this.contractAttachmentList[idx].upload[upIndex].urlPrefix = element.urlPrefix;
+      //       upIndex++;
+      //     }
+      //   }
+      // });
+      // this.upType++;
+      // if (this.upType <= 3) this.assignUpload(getD);
       getD.contractAttachmentList.forEach((element, index) => {
-        for (let idx in this.contractAttachmentList) {
-          if (
-            element.fileType == this.upType &&
-            this.contractAttachmentList[idx].attachmentType == this.upType
-          ) {
-            this.contractAttachmentList[idx].upload[upIndex].url = element.contractAttachmentUrl;
-            this.contractAttachmentList[idx].upload[upIndex].urlPrefix = element.urlPrefix;
-            upIndex++;
+        this.contractAttachmentList.forEach((ele, idx) => {
+          if (ele.attachmentType == element.fileType) {
+            ele.upload.push({
+              url: element.contractAttachmentUrl,
+              urlPrefix: element.urlPrefix
+            });
           }
-        }
+        });
       });
-      this.upType++;
-      if (this.upType <= 3) this.assignUpload(getD);
     },
     getDetail() {
       return new Promise((resolve, reject) => {
