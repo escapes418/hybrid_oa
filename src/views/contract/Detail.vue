@@ -497,40 +497,17 @@ export default {
                 }
             })
         },
-        // showImgFn(url) {
-        //     if(url == "undefined" || url == "" || url == "null") {
-        //         this.$vux.toast.text('获取图片失败');
-        //         return false;
-        //     }
-        //     sdk.components.previewImage({ // 图片预览
-        //         url: url,
-        //         success:function(data) {
-        //             console.log(data);
-        //         },
-        //         fail(data) {
-        //             console.log(data)
-        //         }
-        //     })
-        // },
         showImgFn(el, index) {
-          console.log(el, index);
           var url = [];
           el.forEach((item, idx) => {
             url.push(item.urlPrefix + item.url);
           });
-          console.log(url, index);
           sdk.components.previewImages({
-            // 图片预览
-            // url: url,
-            // params: {
-              url: url,
-              index: index,
-            // },
+            url: url,
+            index: index,
             success: function(data) {
-              console.log(data, 'showImgFnsuccess');
             },
             fail(data) {
-              console.log(data);
             }
           });
         }
