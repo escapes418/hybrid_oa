@@ -103,7 +103,7 @@
                 </div>
             </div>
         </group>
-        <group title="审批流程" v-if="dataArr.detail.expenseStatus != 4">
+        <group title="审批流程" v-if="dataArr.detail.contractFlowStatus != 4">
             <timeline class="font-gray adjustTimeline">
                 <timeline-item v-for="(el,index) in dataArr.flowLoglist" :key="index">
                     <div :class="['ml-10',index==dataArr.flowLoglist.length-1?'font-green':'font-g333']">
@@ -156,7 +156,7 @@
             </template>
             <!-- done 我已审批进入 -->
             <template v-if="type === 'done'">
-                <flexbox v-if="dataArr.detail.expenseStatus == 2">
+                <flexbox v-if="dataArr.detail.contractFlowStatus == 2">
                     <flexbox-item>
                         <x-button type="default" :disabled="disCancel" @click.native="cancel">撤销</x-button>
                     </flexbox-item>
