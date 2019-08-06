@@ -119,6 +119,7 @@ var sdk = {
       var id = Math.floor(Math.random() * 100000000).toString();
       var params = {};
       params.maxNum = options.maxNum || 1;
+      params.maxNum = params.maxNum > 9 ? 9 : params.maxNum;
       sdk.newsCenter[id] = {
         id: id,
         success: options.success || '',
