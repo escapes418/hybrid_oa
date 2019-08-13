@@ -208,15 +208,15 @@ const com = {
     return com.covertHttp(url, params);
   },
   covertHttp: function(url: string, params?: any, showLoading = true) {
-    var s = JSON.stringify(params);
-    if (/[\ud800-\udbff][\udc00-\udfff]/g.test(s)) {
-      vueTips.$vux.toast.text('请勿填写特殊字符');
-      return new Promise((resolve, reject) => {
-        resolve({
-          status: 1
-        });
-      });
-    }
+    // var s = JSON.stringify(params);//屏蔽特殊字符
+    // if (/[\ud800-\udbff][\udc00-\udfff]/g.test(s)) {
+    //   vueTips.$vux.toast.text('请勿填写特殊字符');
+    //   return new Promise((resolve, reject) => {
+    //     resolve({
+    //       status: 1
+    //     });
+    //   });
+    // }
     return axios.post(url, params);
     // if (process.env.NODE_ENV == 'development') {
     //   // 开发
