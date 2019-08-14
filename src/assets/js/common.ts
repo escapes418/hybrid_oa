@@ -2,6 +2,9 @@ import Vue from 'vue';
 import XHR from '@/assets/js/XHR';
 import axios from '@/assets/api/axios';
 import { HasChildren } from './interface';
+import { ToastPlugin } from 'vux';
+Vue.use(ToastPlugin);
+var vueTips: any = new Vue();
 // import sdk from "../../../static/js/sdk.js";
 // import deepCopy from '@/assets/js/deepCopy.js';
 /***********vue 过滤器拓展************/
@@ -205,7 +208,15 @@ const com = {
     return com.covertHttp(url, params);
   },
   covertHttp: function(url: string, params?: any, showLoading = true) {
-    // console.log(url, 'url');
+    // var s = JSON.stringify(params);//屏蔽特殊字符
+    // if (/[\ud800-\udbff][\udc00-\udfff]/g.test(s)) {
+    //   vueTips.$vux.toast.text('请勿填写特殊字符');
+    //   return new Promise((resolve, reject) => {
+    //     resolve({
+    //       status: 1
+    //     });
+    //   });
+    // }
     return axios.post(url, params);
     // if (process.env.NODE_ENV == 'development') {
     //   // 开发

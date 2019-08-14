@@ -35,7 +35,7 @@
                         <div class="long-content">
                             <span class="detail-title long-title">备注</span>
                             <span class="long-detail">{{dataArr.detail.remarks}}</span>
-                        </div>                   
+                        </div>
                     </div>
                 </div>
             </cell-box>
@@ -47,7 +47,7 @@
                         <div class="long-content"  v-for="(el, idx) in item.contractPartyType" :key="idx">
                             <span class="detail-title long-title">{{el.columnLabel}}</span>
                             <span class="long-detail">{{el.value}}</span>
-                        </div>               
+                        </div>
                     </div>
                 </div>
             </cell-box>
@@ -97,12 +97,13 @@
             <div class="flex_box" v-if="el.upload.length!=0">
                 <div class="flex_item" v-for="(val,index) in el.upload" :key="index">
                     <div class="imgbox">
-                        <img :src="val.urlPrefix + val.url" v-if="val.url" @click="showImgFn(val.urlPrefix + val.url)">
+                        <!-- <img :src="val.urlPrefix + val.url" v-if="val.url" @click="showImgFn(val.urlPrefix + val.url)"> -->
+                        <img :src="val.urlPrefix + val.url" v-if="val.url" @click="showImgFn(el.upload, index)" />
                     </div>
                 </div>
             </div>
         </group>
-        <group title="审批流程" v-if="dataArr.detail.expenseStatus != 4">
+        <group title="审批流程" v-if="dataArr.detail.contractFlowStatus != 4">
             <timeline class="font-gray adjustTimeline">
                 <timeline-item v-for="(el,index) in dataArr.flowLoglist" :key="index">
                     <div :class="['ml-10',index==dataArr.flowLoglist.length-1?'font-green':'font-g333']">
@@ -155,7 +156,7 @@
             </template>
             <!-- done 我已审批进入 -->
             <template v-if="type === 'done'">
-                <flexbox v-if="dataArr.detail.expenseStatus == 2">
+                <flexbox v-if="dataArr.detail.contractFlowStatus == 2">
                     <flexbox-item>
                         <x-button type="default" :disabled="disCancel" @click.native="cancel">撤销</x-button>
                     </flexbox-item>
@@ -345,7 +346,7 @@ export default {
                         })
                     }
                 })
-            })    
+            })
         },
         getTemplate() {
             return new Promise((resolve, reject) => {
@@ -362,7 +363,7 @@ export default {
                     }
                     this.dynamicFormList = rtn.data.contractPartyList;
                     this.dynamicUpload = rtn.data.contractConfigAttachmentList;
-                    
+
                     rtn.data.contractConfigAttachmentList.forEach((element,index)=>{
                         var attachmentName = ""
                         if(element.attachmentType == "1"){
@@ -496,21 +497,20 @@ export default {
                 }
             })
         },
-        showImgFn(url) {
-            if(url == "undefined" || url == "" || url == "null") {
-                this.$vux.toast.text('获取图片失败');
-                return false;
+        showImgFn(el, index) {
+          var url = [];
+          el.forEach((item, idx) => {
+            url.push(item.urlPrefix + item.url);
+          });
+          sdk.components.previewImages({
+            url: url,
+            index: index,
+            success: function(data) {
+            },
+            fail(data) {
             }
-            sdk.components.previewImage({ // 图片预览
-                url: url,
-                success:function(data) {
-                    console.log(data);
-                },
-                fail(data) {
-                    console.log(data)
-                }
-            })
-        },
+          });
+        }
     }
 }
 </script>

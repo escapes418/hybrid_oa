@@ -22,7 +22,7 @@ var api = {
   saveExpenseInfo: baseUrl + '/flow/saveExpenseInfo',
   startWorkFlow: baseUrl + '/flow/startWorkFlow',
   // repealApply: baseUrl + '/flow/repealApply',
-  areaInfo: baseUrl + '/flow/areaInfo',
+  areaInfo: baseUrl + '/commonInfo/queryAreaInfo',
   repealTask: baseUrl + '/flow/repealTask',
   queryDemandInfo: baseUrl + '/demand/queryDemandInfo',
   demandImplemetApply: baseUrl + '/demand/demandImplemetApply',
