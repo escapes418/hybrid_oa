@@ -26,6 +26,7 @@ import contract from '@/router/contract';
 import contractFill from '@/router/contractFill';
 import coop from '@/router/coop';
 import project from '@/router/project';
+import projectApproval from '@/router/projectApproval';
 import calcu from '@/router/calcu';
 import test from '@/router/test';
 
@@ -117,6 +118,7 @@ var router = new Router({
     ...contractFill,
     ...coop,
     ...project,
+    ...projectApproval,
     ...calcu,
     ...test
   ]
