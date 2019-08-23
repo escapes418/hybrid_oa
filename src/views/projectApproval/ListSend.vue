@@ -30,7 +30,7 @@
             </div>
             <div class="long-content">
               <span class="disc-title long-title">当前状态</span>
-              <span class="long-text font-orange">{{ el.projectApprovalStatus }}</span>
+              <span class="long-text font-orange">{{ el.projectApprovalStatusName }}</span>
             </div>
             <div class="long-content">
               <span class="disc-title long-title">备注</span>
