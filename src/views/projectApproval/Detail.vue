@@ -211,9 +211,9 @@
                         <x-button type="primary" @click.native="editApply">编辑</x-button>
                     </flexbox-item>
                     <!-- 已完结和已删除的不能删除 -->
-                    <!-- <flexbox-item v-if="(dataArr.detail.contractFlowStatus != 1) && (dataArr.detail.contractFlowStatus != 0)">
+                    <flexbox-item v-if="(dataArr.detail.projectApprovalStatus != 1) && (dataArr.detail.projectApprovalStatus != 0)">
                         <x-button type="default" :disabled="disDel" @click.native="del">删除</x-button>
-                    </flexbox-item> -->
+                    </flexbox-item>
                     <!-- 审批中可以撤销 -->
                     <flexbox-item v-if="dataArr.detail.projectApprovalStatus == 2&&!ISEDIT">
                         <x-button type="default" :disabled="disCancel" @click.native="cancel">撤销</x-button>
