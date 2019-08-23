@@ -110,6 +110,13 @@
           <img slot="icon" src="../../assets/img/coop.png" />
         </grid-item>
         <grid-item
+          :label="'项目立项'"
+          @on-item-click="gotoProjectApproval"
+          v-if="permission['projectApproval'] == 1"
+        >
+          <img slot="icon" src="../../assets/img/btn-01.png" />
+        </grid-item>
+        <grid-item
           :label="'项目管理'"
           @on-item-click="gotoProject"
           v-if="permission['inforManage-projectList'] == 1"
@@ -263,7 +270,8 @@ export default {
         listSend: 0, //我的申请
         listRecived: 0, //待我审批
         'oa-coopList': 0, //协作
-        'inforManage-projectList': 0 //项目管理
+        'inforManage-projectList': 0, //项目管理
+        projectApproval: 0
       },
       listTools: {
         'tool-colcu': 0 //计算器
@@ -495,6 +503,9 @@ export default {
     },
     gotoProject() {
       this.$router.push({ path: '/project/apply' });
+    },
+    gotoProjectApproval() {
+      this.$router.push({ path: '/projectApproval/apply/1/apply' });
     },
     gotoCalcu() {
       this.$router.push({ path: '/calcu/form' });
