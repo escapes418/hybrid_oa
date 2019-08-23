@@ -287,6 +287,28 @@ export default {
           this.count = parseInt(rtnData.total) || 0;
           this.pageTotal = Math.ceil(this.count / this.pageSize);
           this.oldCustStage = this.DetailList[0].custStage;
+          if (this.oldCustStage == 'A' || this.oldCustStage == 'B' || this.oldCustStage == 'C') {
+            this.dictionary.custStage = [
+              {
+                type: 'cust_stage',
+                name: 'A重点客户',
+                value: 'A重点客户',
+                key: 'A'
+              },
+              {
+                type: 'cust_stage',
+                name: 'B上线客户',
+                value: 'B上线客户',
+                key: 'B'
+              },
+              {
+                type: 'cust_stage',
+                name: 'C签约客户',
+                value: 'C签约客户',
+                key: 'C'
+              }
+            ];
+          }
           // console.log(this.oldCustStage);
         });
       }
