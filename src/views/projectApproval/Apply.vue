@@ -619,6 +619,7 @@ export default {
       });
     },
     handleApply(postData) {
+      var _this = this;
       com
         .covertHttp(api.projectApprovalApply, {
           ...postData
