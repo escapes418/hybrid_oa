@@ -106,6 +106,7 @@ var api = {
   querySubInfolistForSecond: baseUrl + '/commonInfo/querySubInfolistForSecond', // 报销科目字典(平行结构)
   findMessagePage: baseUrl + '/commonInfo/findMessagePage', //app公共信息管理服务-消息查询
   queryCustInfos: baseUrl + '/commonInfo/queryCustInfos',
+  queryMyCustInfos: baseUrl + '/commonInfo/queryMyCustInfos',
   queryCompanyName: baseUrl + '/commonInfo/queryCompanyName', //企业名称-不带分页查询
   findRedCount: baseUrl + '/commonInfo/findRedCount', // 消息红点
 
@@ -173,6 +174,13 @@ var api = {
 
   saveProjectInfo: baseUrl + '/projectInfo/saveProjectInfo', //项目管理-保存项目信息
   saveUserNew: baseUrl + '/lucklyPerson/saveUserNew', //账号绑定
-  queryUserIsBindForNew: baseUrl + '/lucklyPerson/queryUserIsBindForNew' //账号绑定
+  queryUserIsBindForNew: baseUrl + '/lucklyPerson/queryUserIsBindForNew', //账号绑定
+
+  projectApprovalApply: baseUrl + '/projectApprovalFlow/projectApprovalApply', //APP端立项-申请
+  projectflowdetail: baseUrl + '/projectApprovalFlow/flowdetail', //APP端立项-查询立项流程详情
+  projectcompleteTask: baseUrl + '/projectApprovalFlow/completeTask', //APP端立项审批-同意/驳回
+  projectrepealApply: baseUrl + '/projectApprovalFlow/repealApply', //APP端立项-删除
+  projectrepealTask: baseUrl + '/projectApprovalFlow/repealTask', //APP端立项-流程收回
+  queryMyProjectApprovalFlowList: baseUrl + '/projectApprovalFlow/queryMyProjectApprovalFlowList' //APP端立项-流程收回
 };
 export default api;
