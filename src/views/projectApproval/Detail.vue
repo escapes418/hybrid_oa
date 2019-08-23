@@ -370,15 +370,9 @@ export default {
             let result = this.dataArr.detail.modify == "modify" ? true : false;
             return result;
         },
-        // ...mapState({
-        //     assignStaff: state => state.assignStaff
-        // }),
-        // ...mapGetters(["assignedStaff"])
     },
     created() {
-        // this.$store.dispatch('clearAssignStaff')
         this.init();
-        // this.getAppointList()
     },
     methods: {
         init() {
@@ -400,16 +394,6 @@ export default {
                         }
                         this.dataArr = rtn.data;
                         this.dataArr.detail = rtn.data.projectApprovalFlowResp;
-                        // if(this.ISASSIGN){
-                        //     if(rtn.data.resourcesHandleFlowResponse.resourcesAssignResponseList){
-                        //         this.getAssignList(rtn.data.resourcesHandleFlowResponse.resourcesAssignResponseList)
-                        //     }else{
-                        //         this.addItem()
-                        //     }
-                        //     // this.assignStaff = this.getAssignList(rtn.data.resourcesHandleFlowResponse.resourcesAssignResponseList)
-                        //     console.log(this.assignStaff)
-                        //     if(this.assignStaff.length == 0) this.addItem()
-                        // }
                         this.isReady = true;
                     })
                 } else {
@@ -521,19 +505,6 @@ export default {
             }
             return {flag,afterFilterEmptyArr}
         },
-        // getAssignList(data){
-        //     data.forEach((item,idx)=>{
-        //         if(item.sourceAssign == this.baseInfo.userId){
-        //             this.$store.dispatch("addAssignStaff", {
-        //                 personelNum:item.personelNum,
-        //                 remarks:item.remarks,
-        //                 targetAssign:item.targetAssign,
-        //                 targetAssignName:item.targetAssignName,
-        //             });
-
-        //         }
-        //     })
-        // },
         editApply() {// 编辑
             var _this = this;
             this.$vux.confirm.show({
@@ -549,13 +520,6 @@ export default {
                 }
             })
         },
-        // apply() { // 提交申请
-        //     com.covertHttp(api.startWorkFlow,{
-        //         expenseFlowId: this.$route.params.id
-        //     }).then(res => {
-        //         this.$router.go(-1);
-        //     })
-        // },
         del() { // 删除
             var _this = this;
             this.disDel = true;
@@ -609,22 +573,6 @@ export default {
                 }
             })
         },
-        // getAppointList(){
-        //     com.covertHttp(api.queryHandleEmployeeList).then(res => {
-        //         var getData = res.data || [] ,_this = this;
-        //         getData.forEach(function (item, index) {
-        //             _this.assignDataList.push({
-        //                 ...item,
-        //                 value: item.name,
-        //                 key: item.id,
-        //             })
-        //         })
-        //     });
-        // },
-        // addItem() {
-        //     var obj = com.clone(this.assignList);
-        //     this.$store.dispatch("addAssignStaff", obj);
-        // },
     }
 }
 </script>

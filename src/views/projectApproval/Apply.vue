@@ -377,7 +377,7 @@ export default {
         // applyTime: 0,//申请时间
         callTruck: '0', //叫车：1是，2否
         carrierGoods: [], //承运货物:1煤炭2钢铁3商砼4其他
-        companyHolderCode: '200000289283', //企业holderCode
+        companyHolderCode: '', //企业holderCode
         companyName: '', //企业名称
         custId: '', //客户id
         // finishTaskTime: 0,//审批结束时间
@@ -510,13 +510,6 @@ export default {
                 remarks: item.remarks
               });
             });
-            // rtn.data.forEach(function(item, index) {
-            //   this.custList.push({
-            //     ...item,
-            //     value: item.custName,
-            //     key: item.custId
-            //   });
-            // });
           });
       } else if (this.$route.params.type == 'edit') {
         // 编辑
@@ -581,7 +574,6 @@ export default {
       });
     },
     addItem() {
-      console.log(11111);
       var arr = com.clone(this.linkMan);
       arr.push({
         linkmanName: '', //联系人姓名
@@ -589,18 +581,6 @@ export default {
         linkmanPost: '', //联系人职位
         remarks: ''
       });
-      // this.$set(
-      //   this.applyData.projectApprovalLinkman,
-      //   this.applyData.projectApprovalLinkman.length,
-      //   {
-      //     linkmanName: '', //联系人姓名
-      //     linkmanPhone: '', //联系人电话
-      //     linkmanPost: '', //联系人职位
-      //     remarks: ''
-      //   }
-      // );
-      // this.$set(this.applyData, 'projectApprovalLinkman', arr);
-      // console.log(this.applyData.projectApprovalLinkman);
       this.linkMan = arr;
     },
     delItem(index) {
@@ -682,9 +662,6 @@ export default {
               'ProjectApprovalListSend'
             ]);
           } else {
-            // this.$vux.toast.text(
-            //     rtn.message || "提交失败，请注意是否填写有误"
-            // );
           }
           this.disDraft = false;
         });
