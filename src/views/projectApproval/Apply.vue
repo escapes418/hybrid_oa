@@ -13,7 +13,7 @@
         sTitle="客户名称"
         v-else
         :isRequired="true"
-        sPlaceholder="请选择"
+        sPlaceholder="请选择客户名称"
         :dataList="custList"
         :sendData="applyData.custId"
         :selectedItem.sync="applyData.custId"
@@ -26,7 +26,7 @@
       <RemoteSearch
         sTitle="企业名称"
         :isRequired="true"
-        sPlaceholder="请选择"
+        sPlaceholder="请选择客户名称"
         :rOption="holderOption"
         :sLabel="applyData.companyName"
         :sendData="applyData.companyHolderCode"
@@ -37,7 +37,7 @@
         sTitle="承运货物"
         :max="0"
         :isRequired="true"
-        sPlaceholder="请选择"
+        sPlaceholder="请选择承运货物"
         :dataList="dictionary.carrierGoods"
         :sendData="applyData.carrierGoods"
         :selectedItem.sync="applyData.carrierGoods"
@@ -45,7 +45,7 @@
       <sinSelector
         sTitle="项目等级"
         :isRequired="true"
-        sPlaceholder="请选择"
+        sPlaceholder="请选择项目等级"
         :dataList="dictionary.projectLevel"
         :sendData="applyData.projectLevel"
         :selectedItem.sync="applyData.projectLevel"
@@ -53,7 +53,7 @@
       <sinSelector
         sTitle="项目类型"
         :isRequired="true"
-        sPlaceholder="请选择"
+        sPlaceholder="请选择项目类型"
         :dataList="dictionary.projectType"
         :sendData="applyData.projectType"
         :selectedItem.sync="applyData.projectType"
@@ -62,7 +62,7 @@
         title="计划月运费"
         v-model.trim="applyData.transExpensesPlan"
         :max="16"
-        placeholder="请输入"
+        placeholder="请输入计划月运费(万元/月)"
       >
         <span slot="label">计划月运费<span class="required">*</span></span>
       </x-input>
@@ -71,7 +71,7 @@
         class="data-time"
         v-model="applyData.onlinePlanTime"
         title="计划上线时间"
-        placeholder="请选择"
+        placeholder="请选择计划上线时间"
       >
         <span slot="title">计划上线时间<span class="required">*</span></span>
       </datetime>
@@ -79,7 +79,7 @@
         sTitle="实施负责人"
         :isRequired="true"
         :isPeople="true"
-        sPlaceholder="请选择"
+        sPlaceholder="请选择实施负责人"
         :dataList="impleLeaderList"
         :sendData="applyData.implyLeaderId"
         :selectedItem.sync="applyData.implyLeaderId"
@@ -87,7 +87,7 @@
       <x-textarea
         title="备注"
         v-model.trim="applyData.remarks"
-        placeholder="请输入"
+        placeholder="请输入备注"
         :max="200"
         :rows="3"
       ></x-textarea>
@@ -97,7 +97,7 @@
       <sinSelector
         sTitle="开票方式"
         :isRequired="true"
-        sPlaceholder="请选择"
+        sPlaceholder="请选择开票方式"
         :dataList="dictionary.invoiceMode"
         :sendData="applyData.invoiceMode"
         :selectedItem.sync="applyData.invoiceMode"
@@ -105,7 +105,7 @@
       <x-input
         title="月开票频次"
         v-model.number="applyData.invoicingFrequency"
-        placeholder="请输入"
+        placeholder="请输入计划月开票频次(次/月)"
         :max="16"
       >
         <span slot="label">月开票频次<span class="required">*</span></span>
@@ -113,7 +113,7 @@
       <sinSelector
         sTitle="托管"
         :isRequired="true"
-        sPlaceholder="请选择"
+        sPlaceholder="请选择是否托管"
         :dataList="dictionary.yesNo"
         :sendData="applyData.projectTrusteeshipt"
         :selectedItem.sync="applyData.projectTrusteeshipt"
@@ -121,7 +121,7 @@
       <sinSelector
         sTitle="托管渠道"
         :isRequired="true"
-        sPlaceholder="请选择"
+        sPlaceholder="请选择托管渠道"
         :dataList="dictionary.trusteeshiptChannel"
         :sendData="applyData.trusteeshiptChannel"
         :selectedItem.sync="applyData.trusteeshiptChannel"
@@ -132,7 +132,7 @@
       <sinSelector
         sTitle="自营"
         :isRequired="true"
-        sPlaceholder="请选择"
+        sPlaceholder="请选择自营"
         :dataList="dictionary.yesNo"
         :sendData="applyData.selfMarketing"
         :selectedItem.sync="applyData.selfMarketing"
@@ -140,7 +140,7 @@
       <sinSelector
         sTitle="经纪人"
         :isRequired="true"
-        sPlaceholder="请选择"
+        sPlaceholder="请选择经纪人"
         :dataList="dictionary.yesNo"
         :sendData="applyData.projectAgent"
         :selectedItem.sync="applyData.projectAgent"
@@ -148,7 +148,7 @@
       <sinSelector
         sTitle="车队长"
         :isRequired="true"
-        sPlaceholder="请选择"
+        sPlaceholder="请选择车队长"
         :dataList="dictionary.yesNo"
         :sendData="applyData.truckLeader"
         :selectedItem.sync="applyData.truckLeader"
@@ -156,7 +156,7 @@
       <sinSelector
         sTitle="油气"
         :isRequired="true"
-        sPlaceholder="请选择"
+        sPlaceholder="请选择油气"
         :dataList="dictionary.oilGas"
         :sendData="applyData.oilGas"
         :selectedItem.sync="applyData.oilGas"
@@ -164,7 +164,7 @@
       <sinSelector
         sTitle="叫车"
         :isRequired="true"
-        sPlaceholder="请选择"
+        sPlaceholder="请选择叫车"
         :dataList="dictionary.yesNo"
         :sendData="applyData.callTruck"
         :selectedItem.sync="applyData.callTruck"
@@ -172,7 +172,7 @@
       <sinSelector
         sTitle="贸易"
         :isRequired="true"
-        sPlaceholder="请选择"
+        sPlaceholder="请选择贸易"
         :dataList="dictionary.yesNo"
         :sendData="applyData.projectTrade"
         :selectedItem.sync="applyData.projectTrade"
@@ -180,7 +180,7 @@
       <sinSelector
         sTitle="账期"
         :isRequired="true"
-        sPlaceholder="请选择"
+        sPlaceholder="请选择账期"
         :dataList="dictionary.yesNo"
         :sendData="applyData.accountPeriod"
         :selectedItem.sync="applyData.accountPeriod"
@@ -188,7 +188,7 @@
       <sinSelector
         sTitle="网商"
         :isRequired="true"
-        sPlaceholder="请选择"
+        sPlaceholder="请选择网商"
         :dataList="dictionary.yesNo"
         :sendData="applyData.networkBusiness"
         :selectedItem.sync="applyData.networkBusiness"
@@ -196,7 +196,7 @@
       <sinSelector
         sTitle="托盘"
         :isRequired="true"
-        sPlaceholder="请选择"
+        sPlaceholder="请选择托盘"
         :dataList="dictionary.yesNo"
         :sendData="applyData.projectTray"
         :selectedItem.sync="applyData.projectTray"
@@ -204,19 +204,19 @@
       <sinSelector
         sTitle="返点"
         :isRequired="true"
-        sPlaceholder="请选择"
+        sPlaceholder="请选择返点"
         :dataList="dictionary.yesNo"
         :sendData="applyData.returnPoint"
         :selectedItem.sync="applyData.returnPoint"
       ></sinSelector>
       <x-input
-        title="返点比例（%）"
+        title="返点比例(%)"
         v-if="applyData.returnPoint == '1'"
         v-model.number="applyData.returnPointProportion"
-        placeholder="请输入"
+        placeholder="请输入返点比例"
         :max="16"
       >
-        <span slot="label">返点比例（%）<span class="required">*</span></span>
+        <span slot="label">返点比例(%)<span class="required">*</span></span>
       </x-input>
     </group>
     <group
@@ -230,18 +230,28 @@
           <span class="fr font-orange" @click="delItem(index)">删除</span>
         </div>
       </box>
-      <x-input title="联系人" placeholder="请输入" v-model.trim="item.linkmanName" :max="16">
+      <x-input
+        title="联系人"
+        placeholder="请输入联系人姓名"
+        v-model.trim="item.linkmanName"
+        :max="16"
+      >
         <span slot="label">联系人<span class="required">*</span></span>
       </x-input>
-      <x-input title="联系方式" placeholder="请输入" v-model.trim="item.linkmanPhone" :max="16">
+      <x-input
+        title="联系方式"
+        placeholder="请输入联系人电话"
+        v-model.trim="item.linkmanPhone"
+        :max="16"
+      >
         <span slot="label">联系方式<span class="required">*</span></span>
       </x-input>
-      <x-input title="职位" placeholder="请输入" v-model.trim="item.linkmanPost" :max="32">
+      <x-input title="职位" placeholder="请输入职位" v-model.trim="item.linkmanPost" :max="32">
         <span slot="label">职位<span class="required">*</span></span>
       </x-input>
       <x-textarea
         title="备注"
-        placeholder="请输入"
+        placeholder="请输入备注"
         v-model.trim="item.remarks"
         :autosize="true"
         :max="200"
