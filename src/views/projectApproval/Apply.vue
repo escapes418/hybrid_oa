@@ -65,7 +65,7 @@
       ></sinSelector>
       <x-input
         title="计划月运费"
-        v-model.trim="applyData.transExpensesPlan"
+        v-model.number="applyData.transExpensesPlan"
         :max="16"
         placeholder="请输入计划月运费(万元/月)"
       >
@@ -82,7 +82,6 @@
       </datetime>
       <departTree
         sTitle="实施负责人"
-        :isRequired="true"
         :isPeople="true"
         sPlaceholder="请选择实施负责人"
         :dataList="impleLeaderList"

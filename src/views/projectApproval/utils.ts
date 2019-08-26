@@ -54,7 +54,7 @@ export default {
       return (flag = false);
     }
     if (_this.applyData.projectTrusteeshipt == '') {
-      _this.$vux.toast.text('请选择托管');
+      _this.$vux.toast.text('请选择是否托管');
       return (flag = false);
     }
     if (_this.applyData.trusteeshiptChannel == '') {
