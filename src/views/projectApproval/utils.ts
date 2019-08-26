@@ -63,15 +63,15 @@ export default {
     }
     //-----------------------------
     if (_this.applyData.selfMarketing == '') {
-      _this.$vux.toast.text('请选择自营');
+      _this.$vux.toast.text('请选择是否自营');
       return (flag = false);
     }
     if (_this.applyData.projectAgent == '') {
-      _this.$vux.toast.text('请选择经纪人');
+      _this.$vux.toast.text('请选择是否经纪人');
       return (flag = false);
     }
     if (_this.applyData.truckLeader == '') {
-      _this.$vux.toast.text('请选择车队长');
+      _this.$vux.toast.text('请选择是否车队长');
       return (flag = false);
     }
     if (_this.applyData.oilGas == '') {
@@ -79,27 +79,27 @@ export default {
       return (flag = false);
     }
     if (_this.applyData.callTruck == '') {
-      _this.$vux.toast.text('请选择叫车');
+      _this.$vux.toast.text('请选择是否叫车');
       return (flag = false);
     }
     if (_this.applyData.projectTrade == '') {
-      _this.$vux.toast.text('请选择贸易');
+      _this.$vux.toast.text('请选择是否贸易');
       return (flag = false);
     }
     if (_this.applyData.accountPeriod == '') {
-      _this.$vux.toast.text('请选择账期');
+      _this.$vux.toast.text('请选择是否账期');
       return (flag = false);
     }
     if (_this.applyData.networkBusiness == '') {
-      _this.$vux.toast.text('请选择网商');
+      _this.$vux.toast.text('请选择是否网商');
       return (flag = false);
     }
     if (_this.applyData.projectTray == '') {
-      _this.$vux.toast.text('请选择托盘');
+      _this.$vux.toast.text('请选择是否托盘');
       return (flag = false);
     }
     if (_this.applyData.returnPoint == '') {
-      _this.$vux.toast.text('请选择返点');
+      _this.$vux.toast.text('请选择是否返点');
       return (flag = false);
     }
     if (_this.applyData.returnPoint == '1' && _this.applyData.returnPointProportion == '') {
