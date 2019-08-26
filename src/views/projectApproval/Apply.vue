@@ -19,7 +19,12 @@
         :selectedItem.sync="applyData.custId"
         @on-change="changeCust"
       ></sinSelector>
-      <x-input title="项目名称" v-model.trim="applyData.projectName" :max="64" placeholder="请输入">
+      <x-input
+        title="项目名称"
+        v-model.trim="applyData.projectName"
+        :max="64"
+        placeholder="请输入项目名称"
+      >
         <span slot="label">项目名称<span class="required">*</span></span>
       </x-input>
       <!-- <sinSelector sTitle='企业名称' :isRequired="true" sPlaceholder='请选择' :dataList="dictionary.handleType" :sendData="applyData.companyHolderCode" :selectedItem.sync="applyData.companyHolderCode"></sinSelector> -->
