@@ -28,6 +28,7 @@
         :isRequired="true"
         sPlaceholder="请选择"
         :rOption="holderOption"
+        :sLabel="applyData.companyName"
         :sendData="applyData.companyHolderCode"
         :selectedItem.sync="applyData.companyHolderCode"
         @on-change="changeCompany"
