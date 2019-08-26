@@ -352,7 +352,7 @@ export default {
             (this.oldCustStage == 'D' ||
               this.oldCustStage == 'E' ||
               this.oldCustStage == 'F' ||
-              this.oldCustStage == 'D') &&
+              this.oldCustStage == 'G') &&
             (this.applyData.custStage == 'A' ||
               this.applyData.custStage == 'B' ||
               this.applyData.custStage == 'C')
