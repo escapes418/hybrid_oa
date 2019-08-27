@@ -28,8 +28,15 @@ export default {
       _this.$vux.toast.text('请选择项目类型');
       return (flag = false);
     }
-    if (_this.applyData.transExpensesPlan == '') {
-      _this.$vux.toast.text('请输入计划月运费');
+    // if (_this.applyData.transExpensesPlan == '') {
+    //   _this.$vux.toast.text('请输入计划月运费');
+    //   return (flag = false);
+    // }
+    if (
+      typeof _this.applyData.transExpensesPlan != 'number' ||
+      _this.applyData.transExpensesPlan == ''
+    ) {
+      _this.$vux.toast.text('计划月运费填写有误');
       return (flag = false);
     }
     if (_this.applyData.transExpensesPlan < 0) {
@@ -45,11 +52,14 @@ export default {
       _this.$vux.toast.text('请选择开票方式');
       return (flag = false);
     }
-    if (_this.applyData.invoicingFrequency === '') {
-      _this.$vux.toast.text('请输入月开票频次');
-      return (flag = false);
-    }
-    if (!/(^[1-9]\d*$)/.test(_this.applyData.invoicingFrequency)) {
+    // if (_this.applyData.invoicingFrequency === '') {
+    //   _this.$vux.toast.text('请输入月开票频次');
+    //   return (flag = false);
+    // }
+    if (
+      _this.applyData.invoicingFrequency === '' ||
+      !/(^[1-9]\d*$)/.test(_this.applyData.invoicingFrequency)
+    ) {
       _this.$vux.toast.text('月开票频次填写有误');
       return (flag = false);
     }
@@ -102,8 +112,11 @@ export default {
       _this.$vux.toast.text('请选择是否返点');
       return (flag = false);
     }
-    if (_this.applyData.returnPoint == '1' && _this.applyData.returnPointProportion == '') {
-      _this.$vux.toast.text('请输入返点比例');
+    if (
+      typeof _this.applyData.transExpensesPlan != 'number' ||
+      (_this.applyData.returnPoint == '1' && _this.applyData.returnPointProportion == '')
+    ) {
+      _this.$vux.toast.text('返点比例填写有误');
       return (flag = false);
     }
 
