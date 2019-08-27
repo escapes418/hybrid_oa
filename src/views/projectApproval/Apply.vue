@@ -110,7 +110,7 @@
         title="月开票频次"
         v-model.number="applyData.invoicingFrequency"
         placeholder="请输入计划月开票频次(次/月)"
-        :max="15"
+        :max="5"
       >
         <span slot="label">月开票频次<span class="required">*</span></span>
       </x-input>
@@ -219,7 +219,7 @@
         v-if="applyData.returnPoint == '1'"
         v-model.number="applyData.returnPointProportion"
         placeholder="请输入返点比例"
-        :max="15"
+        :max="8"
       >
         <span slot="label">返点比例(%)<span class="required">*</span></span>
       </x-input>
@@ -247,7 +247,7 @@
         title="联系方式"
         placeholder="请输入联系人电话"
         v-model.number="item.linkmanPhone"
-        :max="15"
+        :max="13"
       >
         <span slot="label">联系方式<span class="required">*</span></span>
       </x-input>
