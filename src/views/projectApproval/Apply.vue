@@ -31,7 +31,7 @@
       <RemoteSearch
         sTitle="企业名称"
         :isRequired="true"
-        sPlaceholder="请选择客户名称"
+        sPlaceholder="请选择企业名称"
         :rOption="holderOption"
         :sLabel="applyData.companyName"
         :sendData="applyData.companyHolderCode"
@@ -125,6 +125,7 @@
       <sinSelector
         sTitle="托管渠道"
         :isRequired="true"
+        v-if="applyData.projectTrusteeshipt == 1"
         sPlaceholder="请选择托管渠道"
         :dataList="dictionary.trusteeshiptChannel"
         :sendData="applyData.trusteeshiptChannel"
