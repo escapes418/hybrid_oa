@@ -12,6 +12,10 @@ export default {
       _this.$vux.toast.text('请输入项目名称');
       return (flag = false);
     }
+    if (!/^[0-9\u4E00-\u9FA5（）()]+$/.test(_this.applyData.projectName)) {
+      _this.$vux.toast.text('项目名称只允许输入中文，数字，中英文小括号');
+      return (flag = false);
+    }
     if (_this.applyData.companyHolderCode == '') {
       _this.$vux.toast.text('请选择企业名称');
       return (flag = false);
@@ -67,7 +71,7 @@ export default {
       _this.$vux.toast.text('请选择是否托管');
       return (flag = false);
     }
-    if (_this.applyData.trusteeshiptChannel == '') {
+    if (_this.applyData.projectTrusteeshipt == '1' && _this.applyData.trusteeshiptChannel == '') {
       _this.$vux.toast.text('请选择托管渠道');
       return (flag = false);
     }
@@ -129,15 +133,23 @@ export default {
     for (let i in _this.linkMan) {
       // if (!_this.$refs.dynamic[i].validDynamic()) return (flag = false);
       if (_this.linkMan[i].linkmanName == '') {
-        _this.$vux.toast.text('请输入联系人');
+        _this.$vux.toast.text('请输入联系人姓名');
+        return (flag = false);
+      }
+      if (!/^[0-9\u4E00-\u9FA5（）()]+$/.test(_this.linkMan[i].linkmanName)) {
+        _this.$vux.toast.text('姓名只允许输入中文，数字，中英文小括号');
         return (flag = false);
       }
       if (_this.linkMan[i].linkmanPhone == '') {
-        _this.$vux.toast.text('请输入联系方式');
+        _this.$vux.toast.text('请输入电话');
         return (flag = false);
       }
       if (_this.linkMan[i].linkmanPost == '') {
         _this.$vux.toast.text('请输入职位');
+        return (flag = false);
+      }
+      if (!/^[0-9\u4E00-\u9FA5（）()]+$/.test(_this.linkMan[i].linkmanPost)) {
+        _this.$vux.toast.text('职位只允许输入中文，数字，中英文小括号');
         return (flag = false);
       }
     }
