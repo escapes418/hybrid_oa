@@ -66,8 +66,7 @@
       <x-input
         title="计划月运费"
         v-model.number="applyData.transExpensesPlan"
-        :max="16"
-        type="number"
+        :max="15"
         placeholder="请输入计划月运费(万元/月)"
       >
         <span slot="label">计划月运费<span class="required">*</span></span>
@@ -110,9 +109,8 @@
       <x-input
         title="月开票频次"
         v-model.number="applyData.invoicingFrequency"
-        type="number"
         placeholder="请输入计划月开票频次(次/月)"
-        :max="16"
+        :max="15"
       >
         <span slot="label">月开票频次<span class="required">*</span></span>
       </x-input>
@@ -219,9 +217,8 @@
         title="返点比例(%)"
         v-if="applyData.returnPoint == '1'"
         v-model.number="applyData.returnPointProportion"
-        type="number"
         placeholder="请输入返点比例"
-        :max="16"
+        :max="15"
       >
         <span slot="label">返点比例(%)<span class="required">*</span></span>
       </x-input>
@@ -249,8 +246,7 @@
         title="联系方式"
         placeholder="请输入联系人电话"
         v-model.number="item.linkmanPhone"
-        type="number"
-        :max="16"
+        :max="15"
       >
         <span slot="label">联系方式<span class="required">*</span></span>
       </x-input>
