@@ -247,7 +247,7 @@
         title="联系方式"
         placeholder="请输入联系人电话"
         v-model.number="item.linkmanPhone"
-        :max="13"
+        :max="11"
       >
         <span slot="label">联系方式<span class="required">*</span></span>
       </x-input>
