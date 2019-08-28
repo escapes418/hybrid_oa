@@ -172,17 +172,22 @@
                 </div>
             </cell-box>
         </group>
-        <group title='审批意见' v-if="type=='todo'&&(!ISEDIT&&ISME || !ISME)" label-margin-right="1em">
-            <x-textarea v-model="comment" placeholder="请输入审批意见" :max="600" :rows="3"></x-textarea>
-        </group>
-        <!-- <div v-if="ISASSIGN">
-            <group title='审批意见' label-margin-right="1em" v-for="(item,idx) in assignStaff" :key='idx'>
-                <AssignItem :index="idx" :item="item" :memberList="assignDataList"></AssignItem>
-            </group>
-        </div> -->
-        <!-- <div class="add-btn" v-if="ISASSIGN">
-            <span class="pointer" @click="addItem">添加指派人员</span>
-        </div> -->
+        <div v-transfer-dom>
+            <x-dialog v-model="remarkForm.isRemarks" hide-on-blur @on-hide="cancelRemark">
+                <div class="weui-dialog__hd">
+                    <strong class="weui-dialog__title">审批意见</strong>
+                </div>
+                <group class="xdialog-group-textarea">
+                    <x-textarea v-model="remarkForm.remarks" placeholder="请输入审批意见" :max="600" :rows="3"></x-textarea>
+                </group>
+                <div>
+                    <div class="weui-dialog__ft">
+                        <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default" @click="cancelRemark">取消</a>
+                        <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary" @click="confirmRemark">确定</a>
+                    </div>
+                </div>
+            </x-dialog>
+        </div>
         <group title="审批流程" v-if="dataArr.detail.projectApprovalStatus != 4">
             <timeline class="font-gray adjustTimeline">
                 <timeline-item v-for="(el,index) in dataArr.flowLoglist" :key="index">
@@ -243,41 +248,6 @@
                 </flexbox>
             </template>
         </box>
-        <!-- <box gap="10px 10px">
-            <template v-if="type === 'myself'&&ISME">
-                <flexbox>
-                    <flexbox-item v-if="ISEDIT">
-                        <x-button type="primary" @click.native="editApply">编辑</x-button>
-                    </flexbox-item>
-                    <flexbox-item v-if="ISDEL">
-                        <x-button type="default" :disabled="disDel" @click.native="del">删除</x-button>
-                    </flexbox-item>
-                    <flexbox-item v-if="ISCANCEL&&!ISEDIT">
-                        <x-button type="default" :disabled="disCancel" @click.native="cancel">撤销</x-button>
-                    </flexbox-item>
-                </flexbox>
-            </template>
-            <template v-if="type === 'todo'">
-                <flexbox v-if="dataArr.detail.projectApprovalStatus == 2">
-                    <flexbox-item  v-if="!ISEDIT&&ISME || !ISME">
-                        <x-button type="primary" :disabled="disAgree" @click.native="agreeApply">同意</x-button>
-                    </flexbox-item>
-                    <flexbox-item  v-if="ISBACK">
-                        <x-button type="warn" :disabled="disRefuse" @click.native="refuseApply">拒绝</x-button>
-                    </flexbox-item>
-                    <flexbox-item v-if="ISME&&ISEDIT">
-                        <x-button type="primary" @click.native="editApply">编辑</x-button>
-                    </flexbox-item>
-                </flexbox>
-            </template>
-            <template v-if="type === 'done'">
-                <flexbox v-if="dataArr.detail.projectApprovalStatus == 2">
-                    <flexbox-item v-if="ISCANCEL">
-                        <x-button type="default" :disabled="disCancel" @click.native="cancel">撤销</x-button>
-                    </flexbox-item>
-                </flexbox>
-            </template>
-        </box> -->
     </div>
 </template>
 <script>
@@ -287,7 +257,6 @@ import api from '@/assets/api/index.api'
 import XHR from '@/assets/js/XHR';
 import { mapState, mapGetters } from 'vuex'
 import sinSelector from "@/components/sinSelector";
-import AssignItem from '@/components/AssignItem'
 import { Box, Confirm, Group, XButton, Timeline, Selector, TimelineItem, Cell,ConfirmPlugin, CellBox, XTextarea, XInput, XDialog, Flexbox, FlexboxItem, TransferDomDirective as TransferDom } from 'vux';
 Vue.use(ConfirmPlugin)
 export default {
@@ -311,14 +280,12 @@ export default {
         Flexbox,
         FlexboxItem,
         sinSelector,
-        AssignItem,
     },
     data() {
         return {
             isReady: false,
             assignDataList:[],
             type: '',
-            comment:"",
             remarkForm: {
                 isRemarks: false,
                 remarks: '',
@@ -409,67 +376,45 @@ export default {
             }
         },
         refuseApply() {// 拒绝
-            if (!this.comment) {
-                this.$vux.toast.text('请输入审批意见');
-                return;
-            }
-            var _this = this;
+            this.remarkForm.isRemarks = true;
+            this.remarkForm.remarks = '';
+            this.remarkForm.type = 'no';
             this.disRefuse = true;
-            this.$vux.confirm.show({
-            // 组件除show外的属性
-                title:'确定驳回？',
-                onCancel () {
-                    _this.disRefuse = false;
-                },
-                onConfirm () {
-                    com.covertHttp(api.projectcompleteTask,{
-                        projectApprovalFlowId: _this.$route.params.id,
-                        comment: _this.comment,
-                        flag: "no",
-                        procInsId: _this.dataArr.detail.procInsId || "",
-                        }).then(rtn => {
-                        if (rtn.status == 0) {
-                            _this.$router.go(-1);
-                            com.delKeepAlive(_this,["TaskOption","UserIndex","ProjectApprovalListRecived","ProjectApprovalListSend"])
-                            _this.disRefuse = false;
-                        } else {
-                            // _this.$vux.toast.text(rtn.message || '服务器异常');
-                            _this.disRefuse = false;
-                            return;
-                        }
-                    })
-                }
-            })
         },
         agreeApply() {// 同意
-            var _this = this;
+            this.remarkForm.isRemarks = true;
+            this.remarkForm.remarks = '';
+            this.remarkForm.type = 'yes';
             this.disAgree = true;
-            this.$vux.confirm.show({
-                title:'是否同意？',
-                onCancel () {
-                    _this.disAgree = true;
-                },
-                onConfirm () {
-                    // var AssignData = _this.validAssign();
-                    // if(!AssignData.flag) return
-                    com.covertHttp(api.projectcompleteTask,{
-                        projectApprovalFlowId: _this.$route.params.id,
-                        procInsId: _this.dataArr.detail.procInsId || "",//同意或拒绝操作 从详情中取实例id
-                        // assignList: AssignData.afterFilterEmptyArr,
-                        flag: "yes",
-                        comment: _this.comment,
-                        }).then(rtn => {
-                        if (rtn.status == 0) {
-                            _this.$router.go(-1);
-                            com.delKeepAlive(_this,["TaskOption","UserIndex","ProjectApprovalListRecived","ProjectApprovalListSend"])
-                            _this.disAgree = true;
-                        } else {
-                            // _this.$vux.toast.text(rtn.message || '服务器异常');
-                            _this.disAgree = true;
-                            return;
-                        }
-                    })
+        },
+        cancelRemark(){
+            this.remarkForm.isRemarks = false;
+            this.disRefuse = false;
+            this.disAgree = false;
+        },
+        confirmRemark() {
+            var _this =  this;
+            if (this.remarkForm.type === 'no') {
+                if (!this.remarkForm.remarks) {
+                    this.$vux.toast.text('请输入审批意见');
+                    return;
                 }
+            }
+            com.covertHttp(api.projectcompleteTask,{
+                flag: _this.remarkForm.type,
+                comment: _this.remarkForm.remarks,
+                procInsId: _this.dataArr.detail.procInsId || "",//同意或拒绝操作 从详情中取实例id
+                projectApprovalFlowId: _this.$route.params.id
+            }).then(rtn => {
+                if (rtn.status == 0) {
+                    _this.$router.go(-1);
+                    com.delKeepAlive(_this,["TaskOption","UserIndex","ProjectApprovalListRecived","ProjectApprovalListSend"])
+                    _this.disRefuse = false;
+                    _this.disAgree = false;
+                }
+                _this.disRefuse = false;
+                _this.disAgree = false;
+
             })
         },
         validAssign(){
@@ -506,19 +451,21 @@ export default {
             return {flag,afterFilterEmptyArr}
         },
         editApply() {// 编辑
-            var _this = this;
-            this.$vux.confirm.show({
-            // 组件除show外的属性
-                title:'确认编辑？',
-                onCancel () {
-                },
-                onConfirm () {
-                    _this.$router.push({
-                        path: '/projectApproval/apply/' + _this.$route.params.id+'/edit'
-                    });
-                    // com.delKeepAlive(_this,["ResHandleApply"])
-                }
-            })
+          this.$router.push({path: '/projectApproval/apply/' + _this.$route.params.id+'/edit' });
+            // var _this = this;
+
+            // this.$vux.confirm.show({
+            // // 组件除show外的属性
+            //     title:'确认编辑？',
+            //     onCancel () {
+            //     },
+            //     onConfirm () {
+            //         _this.$router.push({
+            //             path: '/projectApproval/apply/' + _this.$route.params.id+'/edit'
+            //         });
+            //         // com.delKeepAlive(_this,["ResHandleApply"])
+            //     }
+            // })
         },
         del() { // 删除
             var _this = this;
