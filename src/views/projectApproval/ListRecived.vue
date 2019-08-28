@@ -79,10 +79,10 @@
                 <span class="disc-title long-title">申请时间</span>
                 <span class="long-text">{{ el.taskCreateTime }}</span>
               </div>
-              <div class="long-content">
+              <!-- <div class="long-content">
                 <span class="disc-title long-title">费用总额</span>
                 <span class="long-text">{{ el.total | thousands(2) }}</span>
-              </div>
+              </div> -->
               <!-- <div class="long-content">
                                 <span class="disc-title long-title">当前状态</span>
                                 <span class="long-text font-red">{{el.statusDesc}}</span>
