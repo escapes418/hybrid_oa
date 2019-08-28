@@ -451,7 +451,7 @@ export default {
             return {flag,afterFilterEmptyArr}
         },
         editApply() {// 编辑
-          this.$router.push({path: '/projectApproval/apply/' + _this.$route.params.id+'/edit' });
+          this.$router.push({path: '/projectApproval/apply/' + this.$route.params.id+'/edit' });
             // var _this = this;
 
             // this.$vux.confirm.show({
