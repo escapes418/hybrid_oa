@@ -36,17 +36,14 @@ export default {
     //   _this.$vux.toast.text('请输入计划月运费');
     //   return (flag = false);
     // }
-    if (
-      typeof _this.applyData.transExpensesPlan != 'number' ||
-      _this.applyData.transExpensesPlan == ''
-    ) {
+    if (!/^([0-9]{1,15})(\.[0-9]{1,2})?$/.test(_this.applyData.transExpensesPlan)) {
       _this.$vux.toast.text('计划月运费填写有误');
       return (flag = false);
     }
-    if (_this.applyData.transExpensesPlan < 0) {
-      _this.$vux.toast.text('计划月运费填写有误');
-      return (flag = false);
-    }
+    // if (_this.applyData.transExpensesPlan < 0) {
+    //   _this.$vux.toast.text('计划月运费填写有误');
+    //   return (flag = false);
+    // }
     if (_this.applyData.onlinePlanTime == '') {
       _this.$vux.toast.text('请选择计划上线时间');
       return (flag = false);
@@ -62,7 +59,7 @@ export default {
     // }
     if (
       _this.applyData.invoicingFrequency === '' ||
-      !/(^[1-9]\d*$)/.test(_this.applyData.invoicingFrequency)
+      !/^[1-9]\d{0,5}$/.test(_this.applyData.invoicingFrequency)
     ) {
       _this.$vux.toast.text('月开票频次填写有误');
       return (flag = false);
@@ -117,10 +114,10 @@ export default {
       return (flag = false);
     }
     if (
-      typeof _this.applyData.transExpensesPlan != 'number' ||
-      (_this.applyData.returnPoint == '1' && _this.applyData.returnPointProportion == '')
+      _this.applyData.returnPoint == '1' &&
+      !/^([0-9]{1,5})(\.[0-9]{1,2})?$/.test(_this.applyData.returnPointProportion)
     ) {
-      _this.$vux.toast.text('返点比例填写有误');
+      _this.$vux.toast.text('请正确填写返点比例，仅支持最长5位的正数和小数点后两位');
       return (flag = false);
     }
 
