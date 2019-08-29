@@ -47,6 +47,7 @@ axios.interceptors.response.use(
         }
         return res.data;
       } else if (res.data.status == 1) {
+        console.warn(res.config.url, res);
         vueTips.$vux.toast.text(res.data.message || '网络异常');
         return res.data;
       } else if (res.data.status == 20) {
