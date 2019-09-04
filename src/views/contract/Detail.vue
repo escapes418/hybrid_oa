@@ -28,7 +28,7 @@
                             <span class="detail-title long-title">主合同编号</span>
                             <span class="long-detail">{{dataArr.detail.associationMainCode}}</span>
                         </div>
-                        <div class="long-content">
+                        <div class="long-content" v-if="dataArr.detail.associationMainId == ''">
                             <span class="detail-title long-title">关联项目</span>
                             <span class="long-detail">{{projectName}}</span>
                         </div>
