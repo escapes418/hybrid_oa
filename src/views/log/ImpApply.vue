@@ -81,6 +81,7 @@
         :isRequired="true"
         @on-change="changePro(index)"
         :sendData="item.projectId"
+        :sLabel="item.projectName"
         :selectedItem.sync="item.projectId"
       ></proSelector>
       <sinSelector
@@ -407,6 +408,7 @@ export default {
             });
         }
       });
+      console.log(this.applyData.projectImplementStatusList);
     },
     changeNode(index) {
       this.applyData.projectImplementStatusList[index].nodeList.forEach((el, idx) => {

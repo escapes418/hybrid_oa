@@ -46,7 +46,7 @@ export default {
   valid(_this) {
     // 整体校验
     var flag = true;
-    if (_this.applyData.custId == '') {
+    if (_this.applyData.custInfoId == '') {
       _this.$vux.toast.text('请选择客户名称');
       return (flag = false);
     }
@@ -58,7 +58,7 @@ export default {
       _this.$vux.toast.text('项目名称只允许输入中文，数字，中英文小括号');
       return (flag = false);
     }
-    if (_this.applyData.companyHolderCode == '') {
+    if (_this.applyData.holderCode == '') {
       _this.$vux.toast.text('请选择企业名称');
       return (flag = false);
     }
@@ -74,15 +74,15 @@ export default {
       _this.$vux.toast.text('请选择项目类型');
       return (flag = false);
     }
-    // if (_this.applyData.transExpensesPlan == '') {
+    // if (_this.applyData.transExpenssPlan == '') {
     //   _this.$vux.toast.text('请输入计划月运费');
     //   return (flag = false);
     // }
-    if (!/^([0-9]{1,15})(\.[0-9]{1,2})?$/.test(_this.applyData.transExpensesPlan)) {
+    if (!/^([0-9]{1,15})(\.[0-9]{1,2})?$/.test(_this.applyData.transExpenssPlan)) {
       _this.$vux.toast.text('计划月运费填写有误');
       return (flag = false);
     }
-    // if (_this.applyData.transExpensesPlan < 0) {
+    // if (_this.applyData.transExpenssPlan < 0) {
     //   _this.$vux.toast.text('计划月运费填写有误');
     //   return (flag = false);
     // }
@@ -95,7 +95,7 @@ export default {
       return (flag = false);
     }
     //------------------------------------------
-    if (_this.applyData.invoiceMode == '') {
+    if (_this.applyData.generalRequire.invoiceMode == '') {
       _this.$vux.toast.text('请选择开票方式');
       return (flag = false);
     }
@@ -110,95 +110,91 @@ export default {
       _this.$vux.toast.text('月开票频次填写有误');
       return (flag = false);
     }
-    if (_this.applyData.projectTrusteeshipt == '') {
+    if (_this.applyData.generalRequire.projectTrusteeshipt == '') {
       _this.$vux.toast.text('请选择是否托管');
       return (flag = false);
     }
-    if (_this.applyData.projectTrusteeshipt == '1' && _this.applyData.trusteeshiptChannel == '') {
+    if (
+      _this.applyData.generalRequire.projectTrusteeshipt == '1' &&
+      _this.applyData.generalRequire.trusteeshiptChannel == ''
+    ) {
       _this.$vux.toast.text('请选择托管渠道');
       return (flag = false);
     }
     //-----------------------------
-    if (_this.applyData.selfMarketing == '') {
+    if (_this.applyData.specialRequire.selfMarketing == '') {
       _this.$vux.toast.text('请选择是否自营');
       return (flag = false);
     }
-    if (_this.applyData.projectAgent == '') {
+    if (_this.applyData.specialRequire.projectAgent == '') {
       _this.$vux.toast.text('请选择是否经纪人');
       return (flag = false);
     }
-    if (_this.applyData.truckLeader == '') {
+    if (_this.applyData.specialRequire.truckLeader == '') {
       _this.$vux.toast.text('请选择是否车队长');
       return (flag = false);
     }
-    if (_this.applyData.oilGas == '') {
+    if (_this.applyData.specialRequire.oilGas == '') {
       _this.$vux.toast.text('请选择油气');
       return (flag = false);
     }
-    if (_this.applyData.callTruck == '') {
+    if (_this.applyData.specialRequire.callTruck == '') {
       _this.$vux.toast.text('请选择是否叫车');
       return (flag = false);
     }
-    if (_this.applyData.projectTrade == '') {
+    if (_this.applyData.specialRequire.projectTrade == '') {
       _this.$vux.toast.text('请选择是否贸易');
       return (flag = false);
     }
-    if (_this.applyData.accountPeriod == '') {
+    if (_this.applyData.specialRequire.accountPeriod == '') {
       _this.$vux.toast.text('请选择是否账期');
       return (flag = false);
     }
-    if (_this.applyData.networkBusiness == '') {
+    if (_this.applyData.specialRequire.networkBusiness == '') {
       _this.$vux.toast.text('请选择是否网商');
       return (flag = false);
     }
-    if (_this.applyData.projectTray == '') {
+    if (_this.applyData.specialRequire.projectTray == '') {
       _this.$vux.toast.text('请选择是否托盘');
       return (flag = false);
     }
-    if (_this.applyData.returnPoint == '') {
+    if (_this.applyData.specialRequire.returnPoint == '') {
       _this.$vux.toast.text('请选择是否返点');
       return (flag = false);
     }
     if (
-      _this.applyData.returnPoint == '1' &&
-      !/^([0-9]{1,5})(\.[0-9]{1,2})?$/.test(_this.applyData.returnPointProportion)
+      _this.applyData.specialRequire.returnPoint == '1' &&
+      !/^([0-9]{1,5})(\.[0-9]{1,2})?$/.test(_this.applyData.specialRequire.returnPointProportion)
     ) {
       _this.$vux.toast.text('请正确填写返点比例，仅支持最长5位的正数和小数点后两位');
       return (flag = false);
     }
-    // if (_this.applyData.projectNodeReqs.length > 0) {
-    //   _this.applyData.projectNodeReqs.forEach(item => {
-    //     if (!item.nodeName && !item.nodeAddress) {
-    //       _this.$vux.toast.text('请填写地点节点或选择节点地址');
-    //       return (flag = false);
-    //     }
-    //   });
-    // }
-    //--------------------------------------------------
-    // if(!this.valiUpload(_this)) return (flag = false);
     return flag;
   },
   vailLinkMan(_this) {
     var flag = true;
-    for (let i in _this.linkMan) {
-      // if (!_this.$refs.dynamic[i].validDynamic()) return (flag = false);
-      if (_this.linkMan[i].linkmanName == '') {
+    for (let i in _this.mainProjectContacts) {
+      if (_this.mainProjectContacts[i].linkmanName == '') {
         _this.$vux.toast.text('请输入联系人姓名');
         return (flag = false);
       }
-      if (!/^[0-9\u4E00-\u9FA5（）()]+$/.test(_this.linkMan[i].linkmanName)) {
+      if (!/^[0-9\u4E00-\u9FA5（）()]+$/.test(_this.mainProjectContacts[i].linkmanName)) {
         _this.$vux.toast.text('姓名只允许输入中文，数字，中英文小括号');
         return (flag = false);
       }
-      if (_this.linkMan[i].linkmanPhone == '') {
+      if (_this.mainProjectContacts[i].linkmanPhone == '') {
         _this.$vux.toast.text('请输入电话');
         return (flag = false);
       }
-      if (_this.linkMan[i].linkmanPost == '') {
+      if (!/^1[3456789][0-9]{9}$/.test(_this.mainProjectContacts[i].linkmanPhone)) {
+        _this.$vux.toast.text('电话填写有误');
+        return (flag = false);
+      }
+      if (_this.mainProjectContacts[i].linkmanPost == '') {
         _this.$vux.toast.text('请输入职位');
         return (flag = false);
       }
-      if (!/^[0-9\u4E00-\u9FA5（）()]+$/.test(_this.linkMan[i].linkmanPost)) {
+      if (!/^[0-9\u4E00-\u9FA5（）()]+$/.test(_this.mainProjectContacts[i].linkmanPost)) {
         _this.$vux.toast.text('职位只允许输入中文，数字，中英文小括号');
         return (flag = false);
       }

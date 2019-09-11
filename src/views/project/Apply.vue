@@ -7,8 +7,8 @@
         :isRequired="true"
         sPlaceholder="请选择客户名称"
         :rOption="custOptin"
-        :sendData="applyData.custId"
-        :selectedItem.sync="applyData.custId"
+        :sendData="applyData.custInfoId"
+        :selectedItem.sync="applyData.custInfoId"
       ></RemoteSearch>
       <!-- <sinSelector
         sTitle="客户名称"
@@ -34,8 +34,8 @@
         sPlaceholder="请选择企业名称"
         :rOption="holderOption"
         :sLabel="applyData.companyName"
-        :sendData="applyData.companyHolderCode"
-        :selectedItem.sync="applyData.companyHolderCode"
+        :sendData="applyData.holderCode"
+        :selectedItem.sync="applyData.holderCode"
         @on-change="changeCompany"
       ></RemoteSearch>
       <mulSelectors
@@ -65,7 +65,7 @@
       ></sinSelector>
       <x-input
         title="计划月运费"
-        v-model.number="applyData.transExpensesPlan"
+        v-model.number="applyData.transExpenssPlan"
         :max="15"
         placeholder="请输入计划月运费(万元/月)"
       >
@@ -94,8 +94,8 @@
         :isPeople="true"
         sPlaceholder="请选择实施负责人"
         :dataList="impleLeaderList"
-        :sendData="applyData.implyLeaderId"
-        :selectedItem.sync="applyData.implyLeaderId"
+        :sendData="applyData.impleLeaderId"
+        :selectedItem.sync="applyData.impleLeaderId"
       ></departTree>
 
       <departTree
@@ -137,8 +137,8 @@
         :isRequired="true"
         sPlaceholder="请选择开票方式"
         :dataList="dictionary.invoiceMode"
-        :sendData="applyData.invoiceMode"
-        :selectedItem.sync="applyData.invoiceMode"
+        :sendData="applyData.generalRequire.invoiceMode"
+        :selectedItem.sync="applyData.generalRequire.invoiceMode"
       ></sinSelector>
       <x-input
         title="月开票频次"
@@ -153,17 +153,17 @@
         :isRequired="true"
         sPlaceholder="请选择是否托管"
         :dataList="dictionary.yesNo"
-        :sendData="applyData.projectTrusteeshipt"
-        :selectedItem.sync="applyData.projectTrusteeshipt"
+        :sendData="applyData.generalRequire.projectTrusteeshipt"
+        :selectedItem.sync="applyData.generalRequire.projectTrusteeshipt"
       ></sinSelector>
       <sinSelector
         sTitle="托管渠道"
         :isRequired="true"
-        v-if="applyData.projectTrusteeshipt == 1"
+        v-if="applyData.generalRequire.projectTrusteeshipt == 1"
         sPlaceholder="请选择托管渠道"
         :dataList="dictionary.trusteeshiptChannel"
-        :sendData="applyData.trusteeshiptChannel"
-        :selectedItem.sync="applyData.trusteeshiptChannel"
+        :sendData="applyData.generalRequire.trusteeshiptChannel"
+        :selectedItem.sync="applyData.generalRequire.trusteeshiptChannel"
       ></sinSelector>
       <!-- <sinSelector sTitle='项目类型' :isRequired="true" sPlaceholder='请选择' @on-change="changeType" :dataList="dictionary.handleType" :sendData="applyData.projectType" :selectedItem.sync="applyData.projectType"></sinSelector> -->
     </group>
@@ -173,85 +173,85 @@
         :isRequired="true"
         sPlaceholder="请选择自营"
         :dataList="dictionary.yesNo"
-        :sendData="applyData.selfMarketing"
-        :selectedItem.sync="applyData.selfMarketing"
+        :sendData="applyData.specialRequire.selfMarketing"
+        :selectedItem.sync="applyData.specialRequire.selfMarketing"
       ></sinSelector>
       <sinSelector
         sTitle="经纪人"
         :isRequired="true"
         sPlaceholder="请选择经纪人"
         :dataList="dictionary.yesNo"
-        :sendData="applyData.projectAgent"
-        :selectedItem.sync="applyData.projectAgent"
+        :sendData="applyData.specialRequire.projectAgent"
+        :selectedItem.sync="applyData.specialRequire.projectAgent"
       ></sinSelector>
       <sinSelector
         sTitle="车队长"
         :isRequired="true"
         sPlaceholder="请选择车队长"
         :dataList="dictionary.yesNo"
-        :sendData="applyData.truckLeader"
-        :selectedItem.sync="applyData.truckLeader"
+        :sendData="applyData.specialRequire.truckLeader"
+        :selectedItem.sync="applyData.specialRequire.truckLeader"
       ></sinSelector>
       <sinSelector
         sTitle="油气"
         :isRequired="true"
         sPlaceholder="请选择油气"
         :dataList="dictionary.oilGas"
-        :sendData="applyData.oilGas"
-        :selectedItem.sync="applyData.oilGas"
+        :sendData="applyData.specialRequire.oilGas"
+        :selectedItem.sync="applyData.specialRequire.oilGas"
       ></sinSelector>
       <sinSelector
         sTitle="叫车"
         :isRequired="true"
         sPlaceholder="请选择叫车"
         :dataList="dictionary.yesNo"
-        :sendData="applyData.callTruck"
-        :selectedItem.sync="applyData.callTruck"
+        :sendData="applyData.specialRequire.callTruck"
+        :selectedItem.sync="applyData.specialRequire.callTruck"
       ></sinSelector>
       <sinSelector
         sTitle="贸易"
         :isRequired="true"
         sPlaceholder="请选择贸易"
         :dataList="dictionary.yesNo"
-        :sendData="applyData.projectTrade"
-        :selectedItem.sync="applyData.projectTrade"
+        :sendData="applyData.specialRequire.projectTrade"
+        :selectedItem.sync="applyData.specialRequire.projectTrade"
       ></sinSelector>
       <sinSelector
         sTitle="账期"
         :isRequired="true"
         sPlaceholder="请选择账期"
         :dataList="dictionary.yesNo"
-        :sendData="applyData.accountPeriod"
-        :selectedItem.sync="applyData.accountPeriod"
+        :sendData="applyData.specialRequire.accountPeriod"
+        :selectedItem.sync="applyData.specialRequire.accountPeriod"
       ></sinSelector>
       <sinSelector
         sTitle="网商"
         :isRequired="true"
         sPlaceholder="请选择网商"
         :dataList="dictionary.yesNo"
-        :sendData="applyData.networkBusiness"
-        :selectedItem.sync="applyData.networkBusiness"
+        :sendData="applyData.specialRequire.networkBusiness"
+        :selectedItem.sync="applyData.specialRequire.networkBusiness"
       ></sinSelector>
       <sinSelector
         sTitle="托盘"
         :isRequired="true"
         sPlaceholder="请选择托盘"
         :dataList="dictionary.yesNo"
-        :sendData="applyData.projectTray"
-        :selectedItem.sync="applyData.projectTray"
+        :sendData="applyData.specialRequire.projectTray"
+        :selectedItem.sync="applyData.specialRequire.projectTray"
       ></sinSelector>
       <sinSelector
         sTitle="返点"
         :isRequired="true"
         sPlaceholder="请选择返点"
         :dataList="dictionary.yesNo"
-        :sendData="applyData.returnPoint"
-        :selectedItem.sync="applyData.returnPoint"
+        :sendData="applyData.specialRequire.returnPoint"
+        :selectedItem.sync="applyData.specialRequire.returnPoint"
       ></sinSelector>
       <x-input
         title="返点比例(%)"
-        v-if="applyData.returnPoint == '1'"
-        v-model.number="applyData.returnPointProportion"
+        v-if="applyData.specialRequire.returnPoint == '1'"
+        v-model.number="applyData.specialRequire.returnPointProportion"
         placeholder="请输入返点比例"
         :max="8"
       >
@@ -261,7 +261,7 @@
     <group
       title="联系人信息"
       label-margin-right="1em"
-      v-for="(item, index) in linkMan"
+      v-for="(item, index) in mainProjectContacts"
       :key="index"
     >
       <box gap="10px 15px">
@@ -280,8 +280,8 @@
       <x-input
         title="联系方式"
         placeholder="请输入联系人电话"
-        v-model.number="item.linkmanPhone"
-        :max="11"
+        v-model="item.linkmanPhone"
+        :max="13"
       >
         <span slot="label">联系方式<span class="required">*</span></span>
       </x-input>
@@ -329,7 +329,7 @@
     <div class="add-btn" style="margin-bottom:15px">
       <span class="pointer" @click="addNodeItem">新增节点</span>
     </div>
-    <box gap="1keypx 10px">
+    <box gap="10px 10px">
       <flexbox>
         <flexbox-item>
           <x-button type="primary" class="mt-15" :disabled="disSubmit" @click.native="submit"
@@ -444,7 +444,7 @@ export default {
         key: 'holderCode',
         value: 'companyName'
       },
-      linkMan: [
+      mainProjectContacts: [
         {
           linkmanName: '', //联系人姓名
           linkmanPhone: '', //联系人电话
@@ -458,29 +458,19 @@ export default {
         vipCustomerId: '',
         accountLeaderId: '',
         remarks: '',
-        accountPeriod: '0', //账期：1是，2否
-        // applyPerCode: "",//申请人编号
-        // applyPerName: "",//申请人名称
-        // applyTime: 0,//申请时间
-        callTruck: '0', //叫车：1是，2否
         carrierGoods: [], //承运货物:1煤炭2钢铁3商砼4其他
-        companyHolderCode: '', //企业holderCode
+        holderCode: '', //企业holderCode
         companyName: '', //企业名称
-        custId: '', //客户id
-        // finishTaskTime: 0,//审批结束时间
-        implyLeaderId: '', //实施负责人ID
-        invoiceMode: '', //开票方式：1一票，2两票
+        custInfoId: '', //客户id
+        impleLeaderId: '', //实施负责人ID
+        // invoiceMode: '', //开票方式：1一票，2两票
         invoicingFrequency: '', //月开票频次（次/月）
-        networkBusiness: '0', //网商：1是，2否
-        // officeId: "",//所属部门ID
-        // officeName: "",//所属部门名称
-        oilGas: '1', //油气：1不做油气，2带油,3带气,4带油和气
         onlinePlanTime: '', //计划上线时间
         procCode: '', //流程编号
         procInsId: '', // 流程实例ID
         procName: '', // 流程编号
-        projectAgent: '0', //项目经纪人：1是，2否
-        projectApprovalLinkman: [
+
+        mainProjectContacts: [
           {
             // commonId: "",//主键 id
             // linkmanMail: "",//联系人邮箱
@@ -491,19 +481,31 @@ export default {
             remarks: ''
           }
         ],
+        generalRequire: {
+          invoiceMode: '',
+          projectTrusteeshipt: '',
+          trusteeshiptChannel: '1'
+        },
+        specialRequire: {
+          accountPeriod: '0', //账期：1是，2否
+          callTruck: '0', //叫车：1是，2否
+          networkBusiness: '0', //网商：1是，2否
+          oilGas: '1', //油气：1不做油气，2带油,3带气,4带油和气
+          projectAgent: '0', //项目经纪人：1是，2否
+          projectTrade: '0', //贸易：1是，2否 ,
+          projectTray: '0', //项目托盘：1是，2否 ,
+          returnPoint: '0', //返点：1是，2否 ,
+          returnPointProportion: '', //返点比例（%）
+          selfMarketing: '0', //自营：1是，2否 ,
+          truckLeader: '0' //车队长：1是，2否
+        },
         // projectApprovalStatus: "",//项目批准状态
         projectLevel: '', //项目等级abcd
         projectName: '', //项目名称
-        projectTrade: '0', //贸易：1是，2否 ,
-        projectTray: '0', //项目托盘：1是，2否 ,
-        projectTrusteeshipt: '', //项目托管：1是，2否 ,
-        projectType: '1', //项目类型0公司项目1市场项目 ,
-        returnPoint: '0', //返点：1是，2否 ,
-        returnPointProportion: '', //返点比例（%）
-        selfMarketing: '0', //自营：1是，2否 ,
-        transExpensesPlan: '', //计划月运费(万元)
-        truckLeader: '0', //车队长：1是，2否
-        trusteeshiptChannel: '1', //托管渠道：1华夏，2兴业
+        // projectTrusteeshipt: '', //项目托管：1是，2否 ,
+        projectType: '', //项目类型0公司项目1市场项目 ,
+        transExpenssPlan: '', //计划月运费(万元)
+        // trusteeshiptChannel: '1', //托管渠道：1华夏，2兴业
         projectNodeReqs: [
           {
             lat: '',
@@ -539,7 +541,7 @@ export default {
     this.init();
     this.getDictionary();
     this.getTreeList();
-    this.getcustList();
+    // this.getcustList();
     // com.addKeepAlive(this) //添加keep-alive
   },
   watch: {},
@@ -622,7 +624,7 @@ export default {
       //     this.applyData.onlinePlanTime = com.timeFormat(
       //       rtnData.projectApprovalFlowResp.onlinePlanTime
       //     );
-      //     this.linkMan = rtnData.projectApprovalFlowResp.projectApprovalLinkman || [
+      //     this.linkMan = rtnData.projectApprovalFlowResp.mainProjectContacts || [
       //       {
       //         linkmanName: '', //联系人姓名
       //         linkmanPhone: '', //联系人电话
@@ -674,14 +676,14 @@ export default {
     //   });
     // },
     addItem() {
-      var arr = com.clone(this.linkMan);
+      var arr = com.clone(this.mainProjectContacts);
       arr.push({
         linkmanName: '', //联系人姓名
         linkmanPhone: '', //联系人电话
         linkmanPost: '', //联系人职位
         remarks: ''
       });
-      this.linkMan = arr;
+      this.mainProjectContacts = arr;
     },
     delItem(index) {
       var _this = this;
@@ -689,8 +691,8 @@ export default {
         title: '是否删除？',
         onCancel() {},
         onConfirm() {
-          if (_this.linkMan.length > 1) {
-            _this.linkMan.splice(index, 1);
+          if (_this.mainProjectContacts.length > 1) {
+            _this.mainProjectContacts.splice(index, 1);
           } else {
             _this.$vux.toast.text('无法继续删除');
           }
@@ -699,12 +701,15 @@ export default {
     },
     submit() {
       var _this = this;
+      this.mainProjectContacts.forEach((item, index) => {
+        item.linkmanPhone = com.onlyNum(item.linkmanPhone);
+      });
       if (!Utils.valid(this)) return; //校验
       if (!Utils.vailLinkMan(this)) return; //校验
       if (!Utils.validNode(this)) return; //校验
       var postData = {
         ...this.applyData,
-        projectApprovalLinkman: this.linkMan,
+        mainProjectContacts: this.mainProjectContacts,
         onlinePlanTime: com.timeParse(this.applyData.onlinePlanTime)
       };
       this.disSubmit = true;
@@ -789,7 +794,11 @@ export default {
         content: '确定执行操作？',
         onCancel() {},
         onConfirm() {
-          _this.applyData.projectNodeReqs.splice(index, 1);
+          if (_this.applyData.projectNodeReqs.length > 1) {
+            _this.applyData.projectNodeReqs.splice(index, 1);
+          } else {
+            _this.$vux.toast.text('无法继续删除');
+          }
         }
       });
     },

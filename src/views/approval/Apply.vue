@@ -61,6 +61,7 @@
         v-if="approvalForm.applyType == 1"
         sPlaceholder="请选择"
         :sendData="approvalForm.projectId"
+        :sLabel="approvalForm.projectLabel"
         :selectedItem.sync="approvalForm.projectId"
       ></proSelector>
       <x-input
@@ -324,7 +325,7 @@ export default {
         subConfList: [],
 
         personNum: 1,
-        dayNum: 1,
+        // dayNum: 1,
         billNum: '',
         expenseAmt: '',
         remarks: ''
@@ -503,7 +504,7 @@ export default {
     init() {
       com.comGetStorage('userInfo').then(res => {
         this.baseInfo = Object.assign({}, this.baseInfo, res);
-        if(this.baseInfo.useable == "1") this.approvalForm.costCenterId = this.baseInfo.officeId;
+        if (this.baseInfo.useable == '1') this.approvalForm.costCenterId = this.baseInfo.officeId;
       });
       if (this.$route.params.id == 0) {
         // 新增
@@ -521,7 +522,7 @@ export default {
               procInsId: rtnData.detail.procInsId,
               costCenterId: rtnData.detail.costCenterId,
               taskId: rtnData.detail.taskId || '',
-
+              projectLabel: rtnData.detail.projectLabel || '',
               taxCity: rtnData.detail.taxCity,
               remarks: rtnData.detail.remarks,
 
@@ -556,7 +557,7 @@ export default {
           this.$store.dispatch('fullItemDatas', newItemDatas);
           this.getThemeList();
           if (com.timeParse(rtnData.detail.applyTime) < 1562601600000) {
-          //2019-07-09 00:00
+            //2019-07-09 00:00
             this.useCostCenter = false;
           }
         });
