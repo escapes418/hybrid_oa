@@ -9,7 +9,7 @@
                 <span slot="label">关联主题<span class="required">*</span></span>
             </x-input>
             <x-input title="项目名称" v-if="applyData.handleType == '2'" :value="applyData.projectName" readonly></x-input>
-            <proSelector sTitle='关联项目' :isRequired="true" v-if="applyData.handleType == '1'" sPlaceholder='请选择'  @on-change="changProject" :sendData="applyData.projectId" :selectedItem.sync="applyData.projectId"></proSelector>
+            <proSelector sTitle='关联项目' :isRequired="true" v-if="applyData.handleType == '1'" sPlaceholder='请选择'  @on-change="changProject" :sendData="applyData.projectId" :selectedItem.sync="applyData.projectId" :sLabel="applyData.projectName"></proSelector>
             <x-input title="项目负责人" :value="applyData.projectPersonel" readonly></x-input>
             <datetime title="期望抵达时间" v-if="applyData.handleType == '1'" format="YYYY-MM-DD HH" class="data-time" v-model="applyData.expectDate" placeholder="请选择时间" :display-format="expectDateType"></datetime>
             <x-input title="期望抵达时间" v-else v-model="expectDate" readonly></x-input>
@@ -23,10 +23,10 @@
             <sinSelector sTitle='资源类型' :isRequired="true" v-if="applyData.handleType == '1'" sPlaceholder='请选择' :dataList="dictionary.resourcesType" :sendData="applyData.resourcesType" :selectedItem.sync="applyData.resourcesType"></sinSelector>
             <x-input title="满足数量" v-if="applyData.handleType == '1'" :value="assignedStaff" readonly></x-input>
             <x-input title="满足数量" v-else :value="demandPersonelNum" readonly></x-input>
-            <x-textarea title="备注" v-model="applyData.remarks" placeholder="请输入备注" :max="200" :rows="3"></x-textarea>       
+            <x-textarea title="备注" v-model="applyData.remarks" placeholder="请输入备注" :max="200" :rows="3"></x-textarea>
         </group>
         <group title='联系人信息' label-margin-right="1em" v-for="(item, index) in assignStaff" :key="index">
-            <AssignItem :index="index" :item="item" :memberList="assignDataList"></AssignItem>    
+            <AssignItem :index="index" :item="item" :memberList="assignDataList"></AssignItem>
         </group>
         <div class="add-btn">
             <span class="pointer" @click="addItem">添加指派人员</span>
@@ -168,34 +168,34 @@ export default {
             assignDataList:[],
             expectDate:"",
             assignList:{
-                personelNum: "",//满足人数 
+                personelNum: "",//满足人数
                 remarks: "",//备注
                 targetAssign: "",//被指派者人员ID
             },
             demandPersonelNum:"",
             applyData: {
-                amountSum: "",//预算金额 
-                applyPerCode: "",//申请人编号 
+                amountSum: "",//预算金额
+                applyPerCode: "",//申请人编号
                 applyPerName: "",//申请人名称
                 projectName:"",//项目名称
                 projectPersonel: "",//项目负责人
                 applyTime: com.timeFormat(new Date().getTime()), // 申请时间
                 assignList: [//指派人员
                     {
-                        personelNum: "",//满足人数 
+                        personelNum: "",//满足人数
                         remarks: "",//备注
                         targetAssign: ""//被指派者人员ID
                     }
                 ],
-                expectDate: com.timeFormatHour(new Date().getTime()),//期望抵达日期 
-                handleType: "2",// 办理类型(主动发起/被动发起) 
+                expectDate: com.timeFormatHour(new Date().getTime()),//期望抵达日期
+                handleType: "2",// 办理类型(主动发起/被动发起)
                 id: "",
-                personelNum: 0,//满足人数 
+                personelNum: 0,//满足人数
                 procCode: "",//流程编号
                 procInsId: "",//流程实例ID
-                procName: "",//流程名称 
+                procName: "",//流程名称
                 projectId: "",// 项目ID
-                relationTheme: "",//关联主题 
+                relationTheme: "",//关联主题
                 remarks: "",//备注
                 resourcesType: "",//资源类型
                 timeLong: ""//预计时长
@@ -241,14 +241,14 @@ export default {
     },
     watch: {
     },
-    mounted() {  
+    mounted() {
     },
     methods: {
         getDictionary() {
             // com.covertHttp(api.queryDict).then(res => {
             //     var getData = res.data;
-            com.comGetStorage('queryDict').then(data => { 
-                var getData = data.dict   
+            com.comGetStorage('queryDict').then(data => {
+                var getData = data.dict
                 getData.forEach((item, index) => {
                     getData[index] = {
                         ...item,
@@ -313,10 +313,10 @@ export default {
                         this.demandPersonelNum = rData.personelNum;
                         this.expectDate = com.formatFullDateTime(rData.expectDate)
                         this.applyData.expectDate = com.timeFormatHour(new Date().getTime())
-                    } 
+                    }
                     if(rData.handleType == 1){
                         this.applyData.expectDate = com.timeFormatHour(rData.expectDate)
-                    } 
+                    }
                     // if(rData.resourcesAssignResponseList) this.$store.dispatch("fillAssignStaff", rData.resourcesAssignResponseList);
                     if(rData.resourcesAssignResponseList){
                         this.getAssignList(rData.resourcesAssignResponseList)
@@ -324,7 +324,7 @@ export default {
                         this.addItem()
                     }
                     if(this.assignStaff.length == 0) this.addItem()
-                    
+
                 });
             }
         },
@@ -485,7 +485,7 @@ export default {
                             value: item.label,
                             key: item.value
                         });
-                    }); 
+                    });
                 });
         },
         changProject(){
@@ -504,7 +504,7 @@ export default {
                         targetAssign:item.targetAssign,
                         targetAssignName:item.targetAssignName,
                     });
-                    
+
                 }
             })
         },
@@ -546,7 +546,7 @@ export default {
         expectDateType(val){
             return val + ":00:00"
         },
-        
+
     }
 };
 </script>

@@ -141,6 +141,10 @@ export default {
         _this.$vux.toast.text('请输入电话');
         return (flag = false);
       }
+      if (!/^1[3456789][0-9]{9}$/.test(_this.linkMan[i].linkmanPhone)) {
+        _this.$vux.toast.text('电话填写有误');
+        return (flag = false);
+      }
       if (_this.linkMan[i].linkmanPost == '') {
         _this.$vux.toast.text('请输入职位');
         return (flag = false);

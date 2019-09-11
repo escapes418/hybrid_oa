@@ -10,7 +10,12 @@
         placeholder="请选择时间"
         readonly
       ></datetime>
-      <x-input title="所属部门" :value="baseInfo.officeName" placeholder="请选择所属部门" readonly></x-input>
+      <x-input
+        title="所属部门"
+        :value="baseInfo.officeName"
+        placeholder="请选择所属部门"
+        readonly
+      ></x-input>
       <relatedType
         sTitle="关联类型"
         :isRequired="true"
@@ -41,9 +46,16 @@
           :sendData="approvalForm.projectId"
           :selectedItem.sync="approvalForm.projectId"
           @on-change="projectSlted(approvalForm.projectId)"
+          :sLabel="approvalForm.projectName"
         ></proSelector>
       </div>
-      <x-input title="项目名称" v-if="approvalForm.relType == 1" :value="procName" placeholder="" readonly></x-input>
+      <x-input
+        title="项目名称"
+        v-if="approvalForm.relType == 1"
+        :value="procName"
+        placeholder=""
+        readonly
+      ></x-input>
       <x-input
         title="项目负责人"
         v-if="approvalForm.relType == 1 || approvalForm.relType == 2"
@@ -77,7 +89,12 @@
         :rows="3"
       ></x-textarea>
     </group>
-    <group title="出差明细" label-margin-right="1em" v-for="(item, index) in itemDatas" :key="index">
+    <group
+      title="出差明细"
+      label-margin-right="1em"
+      v-for="(item, index) in itemDatas"
+      :key="index"
+    >
       <recItem ref="recItem" :itemData="item" :index="index"></recItem>
     </group>
     <div class="add-btn">
@@ -90,16 +107,25 @@
     <box gap="10px 10px">
       <flexbox>
         <flexbox-item>
-          <x-button type="primary" class="mt-15" :disabled="disSubmit" @click.native="submit">提交申请</x-button>
+          <x-button type="primary" class="mt-15" :disabled="disSubmit" @click.native="submit"
+            >提交申请</x-button
+          >
         </flexbox-item>
         <flexbox-item v-if="paramsId == 0">
-          <x-button type="default" class="mt-15" :disabled="disDraft" @click.native="draft">存为草稿</x-button>
+          <x-button type="default" class="mt-15" :disabled="disDraft" @click.native="draft"
+            >存为草稿</x-button
+          >
         </flexbox-item>
       </flexbox>
     </box>
     <div v-transfer-dom>
-      <confirm v-model="isSubmit" title="提交出差申请" @on-cancel="isSubmit = false" @on-confirm="submit(true)">
-        <p style="text-align:center;">{{ "确定执行操作?" }}</p>
+      <confirm
+        v-model="isSubmit"
+        title="提交出差申请"
+        @on-cancel="isSubmit = false"
+        @on-confirm="submit(true)"
+      >
+        <p style="text-align:center;">{{ '确定执行操作?' }}</p>
       </confirm>
     </div>
     <!-- 关联主题 -->
@@ -107,7 +133,11 @@
       <popup v-model="openTheme" height="100%">
         <div class="popup1">
           <group v-if="relatedThemeJSON.length != 0">
-            <cell-box v-for="(el, index) in relatedThemeJSON" :key="index" @click.native="themeConfirm(index)">
+            <cell-box
+              v-for="(el, index) in relatedThemeJSON"
+              :key="index"
+              @click.native="themeConfirm(index)"
+            >
               <div class="w-100">
                 <div class="disc-text">
                   <div class="long-content">
@@ -150,16 +180,16 @@
   </div>
 </template>
 <script>
-import api from "@/assets/api/index.api";
-import com from "@/assets/js/common";
-import recItem from "@/components/recItem";
-import sinSelector from "@/components/sinSelector";
-import proSelector from "@/components/proSelector";
-import mulSelectors from "@/components/mulSelectors";
-import multree from "@/components/multree.vue";
-import XHR from "@/assets/js/XHR";
-import Utils from "./utils";
-import { mapState, mapGetters } from "vuex";
+import api from '@/assets/api/index.api';
+import com from '@/assets/js/common';
+import recItem from '@/components/recItem';
+import sinSelector from '@/components/sinSelector';
+import proSelector from '@/components/proSelector';
+import mulSelectors from '@/components/mulSelectors';
+import multree from '@/components/multree.vue';
+import XHR from '@/assets/js/XHR';
+import Utils from './utils';
+import { mapState, mapGetters } from 'vuex';
 import {
   Picker,
   Box,
@@ -182,9 +212,9 @@ import {
   Flexbox,
   FlexboxItem,
   TransferDomDirective as TransferDom
-} from "vux";
+} from 'vux';
 export default {
-  name: "TripForm",
+  name: 'TripForm',
   directives: {
     TransferDom
   },
@@ -222,45 +252,45 @@ export default {
     return {
       isSubmit: false,
       openTheme: false,
-      relationTheme: "",
+      relationTheme: '',
       baseInfo: {}, // 本地取申请人信息
       paramsId: this.$route.params.id,
       approvalForm: {
-        id: "",
-        procCode: "",
-        procInsId: "",
+        id: '',
+        procCode: '',
+        procInsId: '',
 
         relType: 2, //关联类型(1:关联主题 2：关联项目)
 
-        projectId: "", // 关联项目id
-        relationTheme: "", // 关联主题id
-        remarks: "",
+        projectId: '', // 关联项目id
+        relationTheme: '', // 关联主题id
+        remarks: '',
         entourageList: [],
         travelExpenseTypeList: []
       },
       initData: {
         startDate: com.timeFormat(new Date().getTime()),
-        startPoint: ["420000", "420100"],
+        startPoint: ['420000', '420100'],
         endDate: com.timeFormat(new Date().getTime() + 86400000),
-        endPoint: ["420000", "420100"],
+        endPoint: ['420000', '420100'],
 
         subject: [],
 
         personNum: 1,
-        dayNum: 1,
-        expenseAmt: "",
-        remarks: ""
+        // dayNum: 1,
+        expenseAmt: '',
+        remarks: ''
       },
-      procName: "",
+      procName: '',
       relatedTypeJSON: [
-        { key: "2", value: "关联项目" },
-        { key: "1", value: "关联主题" },
-        { key: "3", value: "不关联" }
+        { key: '2', value: '关联项目' },
+        { key: '1', value: '关联主题' },
+        { key: '3', value: '不关联' }
       ],
       relatedThemeJSON: [], // 关联主题JSON
       relatedProjectJSON: [], // 关联项目JSON
-      projectLeaderName: "",
-      relationThemeName: "",
+      projectLeaderName: '',
+      relationThemeName: '',
       projectName: false,
       theme: {
         pageNo: 1, //当前页数,
@@ -282,7 +312,7 @@ export default {
       addressData: state => state.addressData,
       subjectData: state => state.subjectList
     }),
-    ...mapGetters(["preExpenseAmt"]),
+    ...mapGetters(['preExpenseAmt']),
     loadThemeMore() {
       if (this.theme.pageNo >= this.theme.pageTotal) {
         return false;
@@ -292,11 +322,11 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("delallItemDatas", {}); // 清空所有数组
+    this.$store.dispatch('delallItemDatas', {}); // 清空所有数组
     this.init();
     this.getThemeList();
-    if (this.addressData.length == 0) this.$store.dispatch("getAddressList");
-    if (this.subjectData.length == 0) this.$store.dispatch("getSubjectList");
+    if (this.addressData.length == 0) this.$store.dispatch('getAddressList');
+    if (this.subjectData.length == 0) this.$store.dispatch('getSubjectList');
     // this.getPeopelList();
     this.getTreeList();
     this.getDictionary();
@@ -338,14 +368,14 @@ export default {
       });
     },
     getTreeList() {
-      com.covertHttp(api.orgAndUserInfo, { queryType: "2" }).then(rtn => {
+      com.covertHttp(api.orgAndUserInfo, { queryType: '2' }).then(rtn => {
         var list = com.addTreePeopel(rtn.data);
         var peopelList = com.hasChildren(list);
         this.peopelList = com.clone(peopelList);
       });
     },
     getDictionary() {
-      com.comGetStorage("queryDict").then(data => {
+      com.comGetStorage('queryDict').then(data => {
         var getData = data.dict;
         function selectDic(type) {
           let temp = [];
@@ -360,7 +390,7 @@ export default {
           }
           return temp;
         }
-        this.dictionary.travelExpenseType = selectDic("travel_expense_type"); //异常情况
+        this.dictionary.travelExpenseType = selectDic('travel_expense_type'); //异常情况
       });
     },
     clickLoadMore() {
@@ -377,7 +407,12 @@ export default {
         });
     },
     projectSlted(val) {
-      this.projectLeaderName = Utils.getJSONValueByCompare("key", "projectLeaderName", val, this.relatedProjectJSON);
+      this.projectLeaderName = Utils.getJSONValueByCompare(
+        'key',
+        'projectLeaderName',
+        val,
+        this.relatedProjectJSON
+      );
     },
     // 回调：选择关联类型
     typeSlted(val) {
@@ -403,24 +438,26 @@ export default {
           this.procName = rtnData.travelFlowresponse.projectName;
           this.projectLeaderName = rtnData.travelFlowresponse.projectPersonel;
           this.approvalForm.relationTheme = rtnData.travelFlowresponse.relationTheme;
-          this.approvalForm.projectId = rtnData.travelFlowresponse.projectId || "";
-          this.projectLeaderName = rtnData.travelFlowresponse.projectPersonel || "";
+          this.approvalForm.projectId = rtnData.travelFlowresponse.projectId || '';
+          this.projectLeaderName = rtnData.travelFlowresponse.projectPersonel || '';
           this.approvalForm.entourageList = rtnData.travelFlowresponse.entourageList || [];
-          this.approvalForm.travelExpenseTypeList = rtnData.travelFlowresponse.travelExpenseTypeList || [];
+          this.approvalForm.travelExpenseTypeList =
+            rtnData.travelFlowresponse.travelExpenseTypeList || [];
           this.approvalForm.procInsId = rtnData.travelFlowresponse.procInsId;
+          this.approvalForm.projectName = rtnData.travelFlowresponse.projectName || [];
           var items = rtnData.budgetDetailList || []; //兼容性处理，如果没有图片，则图片数组赋值一个空数组
           items.forEach((val, idx) => {
             val.subConfList = val.subConfList || [];
           });
-          var newItemDatas = com.ObjToStamp(items, ["startDate", "endDate"]);
+          var newItemDatas = com.ObjToStamp(items, ['startDate', 'endDate']);
           // 动态参数赋值
-          this.$store.dispatch("fullItemDatas", newItemDatas);
+          this.$store.dispatch('fullItemDatas', newItemDatas);
         });
       }
     },
     addItem() {
       var obj = Object.assign({}, this.initData);
-      this.$store.dispatch("addItemDatas", obj);
+      this.$store.dispatch('addItemDatas', obj);
     },
     getDetail() {
       return new Promise((resolve, reject) => {
@@ -438,8 +475,8 @@ export default {
       if (!this.valid()) return; //校验
       this.disSubmit = true;
       this.$vux.confirm.show({
-        title: "提交出差申请",
-        content: "确定执行操作？",
+        title: '提交出差申请',
+        content: '确定执行操作？',
         onCancel() {
           _this.disSubmit = false;
         },
@@ -452,7 +489,7 @@ export default {
       if (!this.valid()) return;
       var postData = {
         ...this.approvalForm,
-        demandBudgetList: com.changeItemtimestamp(this.itemDatas, ["startDate", "endDate"])
+        demandBudgetList: com.changeItemtimestamp(this.itemDatas, ['startDate', 'endDate'])
       };
       com
         .covertHttp(api.travelApply, {
@@ -460,8 +497,8 @@ export default {
         })
         .then(rtn => {
           if (rtn.status == 0) {
-            this.$router.push({ path: "/userIndex" });
-            com.delKeepAlive(this, ["TaskOption", "UserIndex", "TripListRecived", "TripListSend"]);
+            this.$router.push({ path: '/userIndex' });
+            com.delKeepAlive(this, ['TaskOption', 'UserIndex', 'TripListRecived', 'TripListSend']);
           } else {
             // this.$vux.toast.text(
             //     rtn.message || "提交失败，请注意是否填写有误"
@@ -475,9 +512,9 @@ export default {
       this.disDraft = true;
       var postData = {
         ...this.approvalForm,
-        demandBudgetList: com.changeItemtimestamp(this.itemDatas, ["startDate", "endDate"])
+        demandBudgetList: com.changeItemtimestamp(this.itemDatas, ['startDate', 'endDate'])
       };
-      var id = this.$route.params.id == 0 ? "" : this.$route.params.id;
+      var id = this.$route.params.id == 0 ? '' : this.$route.params.id;
       com
         .covertHttp(api.saveTravelFlowInfo, {
           ...postData,
@@ -485,9 +522,9 @@ export default {
         })
         .then(rtn => {
           if (rtn.status == 0) {
-            this.$vux.toast.text(rtn.message || "申请发起成功");
-            this.$router.push({ path: "/userIndex" });
-            com.delKeepAlive(this, ["TaskOption", "UserIndex", "TripListRecived", "TripListSend"]);
+            this.$vux.toast.text(rtn.message || '申请发起成功');
+            this.$router.push({ path: '/userIndex' });
+            com.delKeepAlive(this, ['TaskOption', 'UserIndex', 'TripListRecived', 'TripListSend']);
           } else {
             // this.$vux.toast.text(
             //     rtn.message || "提交失败，请注意是否填写有误"
@@ -500,24 +537,27 @@ export default {
       // 整体校验
       var flag = true;
       var _this = this;
-      if (this.approvalForm.relType == "") {
-        this.$vux.toast.text("请选择关联类型");
+      if (this.approvalForm.relType == '') {
+        this.$vux.toast.text('请选择关联类型');
         return (flag = false);
       }
       if (this.approvalForm.relType == 1) {
-        if (this.approvalForm.relationTheme == "") {
-          this.$vux.toast.text("请关联主题");
+        if (this.approvalForm.relationTheme == '') {
+          this.$vux.toast.text('请关联主题');
           return (flag = false);
         }
       }
       if (this.approvalForm.relType == 2) {
-        if (this.approvalForm.projectId == "") {
-          this.$vux.toast.text("请关联项目");
+        if (this.approvalForm.projectId == '') {
+          this.$vux.toast.text('请关联项目');
           return (flag = false);
         }
       }
-      if (!this.approvalForm.travelExpenseTypeList || this.approvalForm.travelExpenseTypeList.length == 0) {
-        this.$vux.toast.text("请选择报销分类");
+      if (
+        !this.approvalForm.travelExpenseTypeList ||
+        this.approvalForm.travelExpenseTypeList.length == 0
+      ) {
+        this.$vux.toast.text('请选择报销分类');
         return (flag = false);
       }
       for (var i in _this.itemDatas) {
@@ -529,11 +569,11 @@ export default {
       return flag;
     },
     changeType() {
-      this.approvalForm.relationTheme = "";
-      this.approvalForm.projectId = "";
-      this.projectLeaderName = "";
-      this.relationThemeName = "";
-      this.procName = "";
+      this.approvalForm.relationTheme = '';
+      this.approvalForm.projectId = '';
+      this.projectLeaderName = '';
+      this.relationThemeName = '';
+      this.procName = '';
     },
     themeConfirm(idx) {
       this.relationThemeName = this.relatedThemeJSON[idx].procName;
@@ -546,6 +586,6 @@ export default {
 };
 </script>
 <style lang="less">
-@import "../../assets/css/trip.less";
+@import '../../assets/css/trip.less';
 </style>
 
