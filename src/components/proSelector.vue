@@ -162,7 +162,7 @@ export default {
     confirm() {
       this.sValue = '';
       var el = {};
-      this.projectList.forEach((item, index) => {
+      this.ArrBox.forEach((item, index) => {
         if (item.key == this.selectedItem[0]) {
           this.sValue = item.value;
           el = item;
