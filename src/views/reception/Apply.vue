@@ -294,15 +294,16 @@ export default {
   //     }
   // },
   methods: {
-    changeName() {
+    changeName(el) {
       if (!this.approvalForm.projectId) {
         this.approvalForm.projectPersonel = '';
       }
-      this.projectNameOpt.forEach((item, index) => {
-        if (item.value == this.approvalForm.projectId) {
-          this.approvalForm.projectPersonel = item.projectLeaderName;
-        }
-      });
+      // this.projectNameOpt.forEach((item, index) => {
+      //   if (item.value == this.approvalForm.projectId) {
+      //     this.approvalForm.projectPersonel = item.projectLeaderName;
+      //   }
+      // });
+      this.approvalForm.projectPersonel = el.projectLeaderName;
     },
     getReceptionistList() {
       var _this = this;

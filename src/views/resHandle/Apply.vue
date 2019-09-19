@@ -488,12 +488,14 @@ export default {
                     });
                 });
         },
-        changProject(){
-            this.projectNameOpt.forEach((item,index)=>{
-                if(item.key == this.applyData.projectId){
-                    this.applyData.projectPersonel = item.projectLeaderName
-                }
-            })
+        changProject(el){
+          // console.log(el);
+          this.applyData.projectPersonel = el.projectLeaderName
+            // this.projectNameOpt.forEach((item,index)=>{
+            //     if(item.key == this.applyData.projectId){
+            //         this.applyData.projectPersonel = item.projectLeaderName
+            //     }
+            // })
         },
         getAssignList(data){
             data.forEach((item,idx)=>{

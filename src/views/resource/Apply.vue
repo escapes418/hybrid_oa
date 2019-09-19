@@ -174,15 +174,16 @@ export default {
     // com.addKeepAlive(this) //添加keep-alive
   },
   methods: {
-    changeName() {
+    changeName(el) {
       if (!this.applyData.projectId) {
         this.applyData.projectPersonel = '';
       }
-      this.projectNameOpt.forEach((item, index) => {
-        if (item.key == this.applyData.projectId) {
-          this.applyData.projectPersonel = item.projectLeaderName;
-        }
-      });
+      // this.projectNameOpt.forEach((item, index) => {
+      //   if (item.key == this.applyData.projectId) {
+      //     this.applyData.projectPersonel = item.projectLeaderName;
+      //   }
+      // });
+      this.applyData.projectPersonel = el.projectLeaderName;
     },
     expectDate(val) {
       return val + ':00:00';

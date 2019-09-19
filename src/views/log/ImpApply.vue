@@ -79,8 +79,9 @@
         sTitle="项目名称"
         sPlaceholder="请选择"
         :isRequired="true"
-        @on-change="changePro(index)"
+        @on-change="changePro"
         :sendData="item.projectId"
+        :itemIndex="index"
         :sLabel="item.projectName"
         :selectedItem.sync="item.projectId"
       ></proSelector>
@@ -380,35 +381,58 @@ export default {
         });
       });
     },
-    changePro(index) {
-      this.projectList.forEach((el, idx) => {
-        if (el.key == this.applyData.projectImplementStatusList[index].projectId) {
-          this.applyData.projectImplementStatusList[index].projectName = el.value;
-          this.applyData.projectImplementStatusList[index].nodeList = [];
-          this.applyData.projectImplementStatusList[index].nodeAddress = '';
-          this.applyData.projectImplementStatusList[index].nodeName = '';
-          this.applyData.projectImplementStatusList[index].nodeId = '';
-          com
-            .covertHttp(api.queryProjectNodeList, {
-              id: el.key
-            })
-            .then(rtn => {
-              if (rtn.status == 0) {
-                var data = rtn.data || [];
-                data.forEach((e, i) => {
-                  this.applyData.projectImplementStatusList[index].nodeList.push({
-                    ...e,
-                    value: e.nodeName,
-                    key: e.nodeId
-                  });
-                });
-              } else {
-                // this.$vux.toast.text(rtn.message || '服务器异常');
-              }
+    changePro(el) {
+      // console.log(el);
+      // return;
+      // this.projectList.forEach((el, idx) => {
+      //   if (el.key == this.applyData.projectImplementStatusList[index].projectId) {
+      //     this.applyData.projectImplementStatusList[index].projectName = el.value;
+      //     this.applyData.projectImplementStatusList[index].nodeList = [];
+      //     this.applyData.projectImplementStatusList[index].nodeAddress = '';
+      //     this.applyData.projectImplementStatusList[index].nodeName = '';
+      //     this.applyData.projectImplementStatusList[index].nodeId = '';
+      //     com.covertHttp(api.queryProjectNodeList, {
+      //         id: el.key
+      //       })
+      //       .then(rtn => {
+      //         if (rtn.status == 0) {
+      //           var data = rtn.data || [];
+      //           data.forEach((e, i) => {
+      //             this.applyData.projectImplementStatusList[index].nodeList.push({
+      //               ...e,
+      //               value: e.nodeName,
+      //               key: e.nodeId
+      //             });
+      //           });
+      //         } else {
+      //           // this.$vux.toast.text(rtn.message || '服务器异常');
+      //         }
+      //       });
+      //   }
+      // });
+      this.applyData.projectImplementStatusList[el.itemIndex].projectName = el.value;
+      this.applyData.projectImplementStatusList[el.itemIndex].nodeList = [];
+      this.applyData.projectImplementStatusList[el.itemIndex].nodeAddress = '';
+      this.applyData.projectImplementStatusList[el.itemIndex].nodeName = '';
+      this.applyData.projectImplementStatusList[el.itemIndex].nodeId = '';
+      com
+        .covertHttp(api.queryProjectNodeList, {
+          id: el.key
+        })
+        .then(rtn => {
+          if (rtn.status == 0) {
+            var data = rtn.data || [];
+            data.forEach((e, i) => {
+              this.applyData.projectImplementStatusList[el.itemIndex].nodeList.push({
+                ...e,
+                value: e.nodeName,
+                key: e.nodeId
+              });
             });
-        }
-      });
-      console.log(this.applyData.projectImplementStatusList);
+          } else {
+            // this.$vux.toast.text(rtn.message || '服务器异常');
+          }
+        });
     },
     changeNode(index) {
       this.applyData.projectImplementStatusList[index].nodeList.forEach((el, idx) => {
