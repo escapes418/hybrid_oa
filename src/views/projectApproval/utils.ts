@@ -133,8 +133,8 @@ export default {
         _this.$vux.toast.text('请输入联系人姓名');
         return (flag = false);
       }
-      if (!/^[0-9\u4E00-\u9FA5（）()]+$/.test(_this.linkMan[i].linkmanName)) {
-        _this.$vux.toast.text('姓名只允许输入中文，数字，中英文小括号');
+      if (!/^[a-zA-Z0-9\u4E00-\u9FA5（）()]+$/.test(_this.linkMan[i].linkmanName)) {
+        _this.$vux.toast.text('联系人只允许输入中文，大小写英文字母，数字，中英文小括号');
         return (flag = false);
       }
       if (_this.linkMan[i].linkmanPhone == '') {
@@ -149,8 +149,8 @@ export default {
         _this.$vux.toast.text('请输入职位');
         return (flag = false);
       }
-      if (!/^[0-9\u4E00-\u9FA5（）()]+$/.test(_this.linkMan[i].linkmanPost)) {
-        _this.$vux.toast.text('职位只允许输入中文，数字，中英文小括号');
+      if (!/^[a-zA-Z0-9\u4E00-\u9FA5（）()]+$/.test(_this.linkMan[i].linkmanPost)) {
+        _this.$vux.toast.text('职位只允许输入中文，大小写英文字母，数字，中英文小括号');
         return (flag = false);
       }
     }
