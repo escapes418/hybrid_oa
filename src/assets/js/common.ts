@@ -551,32 +551,10 @@ const com = {
       if (process.argv[0] == 'H5') {
         // H5 命令行参数
       } else {
-        // 混合开发
-        // com.getStorage('sjboacert').then((res: Ajax.AjaxResponse) => {
-        //   if (res.status == 0) {
-        //     // 获取本地数据成功
-        //     sdk.ability.login(res);
-        //   } else {
-        //     sdk.ability.logout();
-        //     com.delAllKeepAlive(_this);
-        //     _this.$router.push({ path: '/login' });
-        //   }
-        // });
         var res = JSON.parse(window.localStorage.getItem('sjboacert'));
         sdk.ability.login(res.phone);
       }
     } else {
-      // 正式
-      // com.getStorage('sjboacert').then((res: Ajax.AjaxResponse) => {
-      //   if (res.status == 0) {
-      //     // 获取本地数据成功
-      //     sdk.ability.login(res);
-      //   } else {
-      //     sdk.ability.logout();
-      //     com.delAllKeepAlive(_this);
-      //     _this.$router.push({ path: '/login' });
-      //   }
-      // });
       var res = JSON.parse(window.localStorage.getItem('sjboacert'));
       sdk.ability.login(res.phone);
     }
@@ -588,6 +566,20 @@ const com = {
     } else {
       // 混合开发
       return false;
+    }
+  },
+  onlyNum: function(d) {
+    if (d == '') {
+      return '';
+    } else {
+      var data = com.clone(d);
+      var numArr = data.match(/\d+/g);
+      if (numArr == null) {
+        return '';
+      } else {
+        var num = numArr.join('');
+        return num;
+      }
     }
   }
   // autoSaveTimer:false,

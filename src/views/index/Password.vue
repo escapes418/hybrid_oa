@@ -129,7 +129,7 @@ export default {
         }
         this.modify();
       } else if (this.type == 'forget') {
-        if (!/^1[0-9]{10}$/.test(this.psd.phone)) {
+        if (!/^1[3456789][0-9]{9}$/.test(this.psd.phone)) {
           this.$vux.toast.text('请输入正确的手机号！');
           return false;
         }
@@ -149,13 +149,14 @@ export default {
     },
     login() {
       return new Promise((resolve, reject) => {
-        com.covertHttp(api.login, {
-          loginName: this.phone,
-          passWord: this.psd
-        })
-        .then(rtn => {
-          resolve(rtn.data);
-        });
+        com
+          .covertHttp(api.login, {
+            loginName: this.phone,
+            passWord: this.psd
+          })
+          .then(rtn => {
+            resolve(rtn.data);
+          });
         // XHR.http(api.login, {
         //   loginName: this.phone,
         //   passWord: this.psd

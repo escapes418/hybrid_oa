@@ -246,8 +246,8 @@
       <x-input
         title="联系方式"
         placeholder="请输入联系人电话"
-        v-model.number="item.linkmanPhone"
-        :max="11"
+        v-model="item.linkmanPhone"
+        :max="13"
       >
         <span slot="label">联系方式<span class="required">*</span></span>
       </x-input>
@@ -615,6 +615,9 @@ export default {
     },
     submit() {
       var _this = this;
+      this.linkMan.forEach((item,index)=>{
+        item.linkmanPhone = com.onlyNum(item.linkmanPhone)
+      })
       if (!Utils.valid(this)) return; //校验
       if (!Utils.vailLinkMan(this)) return; //校验
       var postData = {
