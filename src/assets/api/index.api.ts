@@ -12,6 +12,7 @@ var api = {
   getLoginInfo: baseUrl + '/notify/getLoginInfo', //APP用户服务-修改密码
   getSubjects: baseUrl + '/flow/subInfo',
   editApproval: baseUrl + '/flow/expenseApply',
+  queryExpenseHistoryDetailList: baseUrl + '/flow/queryExpenseHistoryDetailList', //APP端报销-查询历史报销记录按科目检索的明细列表
   getMysendList: baseUrl + '/flow/queryMyExpenseList',
   getNoApprList: baseUrl + '/flow/todo', //获取待办列表
   getAlrApprList: baseUrl + '/flow/historic', //获取已办列表
@@ -21,6 +22,8 @@ var api = {
   queryDictInfo: baseUrl + '/flow/queryDictInfo',
   saveExpenseInfo: baseUrl + '/flow/saveExpenseInfo',
   startWorkFlow: baseUrl + '/flow/startWorkFlow',
+  queryExpenseHistory: baseUrl + '/flow/queryExpenseHistory', //APP端报销-查询某人过去6个月历史报销记录
+
   // repealApply: baseUrl + '/flow/repealApply',
   areaInfo: baseUrl + '/commonInfo/queryAreaInfo',
   repealTask: baseUrl + '/flow/repealTask',

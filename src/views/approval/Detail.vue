@@ -1,6 +1,11 @@
 <template>
     <div v-if="isReady" class="approval_detail">
-        <group title='报销申请'>
+        <group  title=''>
+          <group-title slot="title">报销申请
+            <div style="float:right;color:#399df7;" @click="goHistoryDetail">历史报销记录
+              <x-icon type="ios-arrow-right" size="14" style="fill:#399df7;margin-left:-5px;margin-top:-2px;vertical-align:middle"></x-icon>
+            </div>
+          </group-title>
             <cell-box>
                 <div class="w-100">
                     <div class="detail-text">
@@ -64,7 +69,7 @@
                 </div>
             </cell-box>
         </group>
-        <group v-for="(el,idx) in dataArr.flowDetailList" :key="idx" title='报销明细' label-margin-right="1em" >
+        <!-- <group v-for="(el,idx) in dataArr.flowDetailList" :key="idx" title='报销明细' label-margin-right="1em" >
             <cell-box>
                 <div class="w-100">
                     <div class="detail-text">
@@ -117,8 +122,8 @@
                     </div>
                 </div>
             </cell-box>
-        </group>
-        <group title="预览汇总" v-if="dataArr.flowDetailList.length != 0">
+        </group> -->
+        <!-- <group title="费用总计" v-if="dataArr.flowDetailList.length != 0">
             <cell-box>
                 <div class="w-100">
                     <div class="detail-text">
@@ -138,9 +143,43 @@
                 </div>
 
             </cell-box>
-            <!-- <div class="detail-btn" @click="shwoAmtList=true">
-                <span class="pointer">查看科目费用</span>
-            </div> -->
+        </group> -->
+        <group title="费用总计" v-if="dataArr.flowDetailList.length != 0">
+          <div class="selectbox">
+                <div class="stitle">总额</div>
+                <div class="svalue">￥{{dataArr.detail.expenseTotal|thousands(2)}}</div>
+          </div>
+          <div class="selectbox">
+                <div class="stitle">票据数量</div>
+                <div class="svalue">{{dataArr.detail.billNum}}</div>
+          </div>
+          <div class="selectbox">
+                <div class="stitle">大写金额</div>
+                <div class="svalue">{{dataArr.detail.expenseTotal|bigMoney}}</div>
+          </div>
+        </group>
+        <!-- <group title="费用总计" v-if="dataArr.flowDetailList.length != 0">
+            <cell-box>
+                <div class="w-100">
+                    <div class="detail-text" v-for="(el,index) in amtList" :key="index">
+                        <div class="long-content">
+                            <span class="detail-title long-title">{{el.label}}</span>
+                            <span class="long-detail">￥{{el.amt}}</span>
+                        </div>
+                    </div>
+                </div>
+            </cell-box>
+        </group> -->
+        <group title="" v-if="dataArr.flowDetailList.length != 0">
+          <group-title slot="title">科目费用
+            <div style="float:right;color:#399df7;" @click="goDetailItem">查看科目明细
+              <x-icon type="ios-arrow-right" size="14" style="fill:#399df7;margin-left:-5px;margin-top:-2px;vertical-align:middle"></x-icon>
+            </div>
+          </group-title>
+          <div class="selectbox" v-for="(el,index) in amtList" :key="index">
+                <div class="stitle">{{el.label}}<span class="sign" v-if="el.isExceed == 1">异常</span></div>
+                <div class="svalue">￥{{el.amt|thousands(2)}}</div>
+          </div>
         </group>
         <group title="审批流程" v-if="dataArr.detail.expenseStatus != 4">
             <timeline class="font-gray adjustTimeline">
@@ -161,29 +200,20 @@
                 </timeline-item>
             </timeline>
         </group>
-        <box gap="10px 10px">
-            <!-- myself 我发起的进入 -->
+        <!-- <box gap="10px 10px">
             <template v-if="type === 'myself'">
-                <!-- 审批草稿 -->
                 <flexbox>
-                    <!-- <flexbox-item v-if="dataArr.detail.expenseStatus == 4">
-                        <x-button type="primary" @click.native="apply">提交</x-button>
-                    </flexbox-item> -->
-                    <!-- 审批草稿和审批被拒绝 -->
                     <flexbox-item v-if="dataArr.detail.isDeit == 1">
                         <x-button type="primary" @click.native="editApply">编辑</x-button>
                     </flexbox-item>
-                    <!-- 已完结和已删除的不能删除 -->
                     <flexbox-item v-if="(dataArr.detail.expenseStatus != 1) && (dataArr.detail.expenseStatus != 0)">
                         <x-button type="default" :disabled="disDel" @click.native="del">删除</x-button>
                     </flexbox-item>
-                    <!-- 审批中可以撤销 -->
                     <flexbox-item v-if="dataArr.detail.expenseStatus == 2&&!ISEDIT">
                         <x-button type="default" :disabled="disCancel" @click.native="cancel">撤销</x-button>
                     </flexbox-item>
                 </flexbox>
             </template>
-            <!-- todo 待我审批进入 -->
             <template v-if="type === 'todo'">
                 <flexbox v-if="dataArr.detail.expenseStatus == 2">
                     <flexbox-item  v-if="dataArr.detail.isDeit != 1">
@@ -197,7 +227,6 @@
                     </flexbox-item>
                 </flexbox>
             </template>
-            <!-- done 我已审批进入 -->
             <template v-if="type === 'done'">
                 <flexbox v-if="dataArr.detail.expenseStatus == 2">
                     <flexbox-item>
@@ -205,8 +234,30 @@
                     </flexbox-item>
                 </flexbox>
             </template>
+        </box> -->
+        <div style="height:49px" v-if="dataArr.detail.expenseStatus != '0'"></div>
+        <box class="fixbtn" v-if="dataArr.detail.expenseStatus != '0'">
+          <div>
+            <span class="sumtitle">总额:</span>
+            <span class="sumcontent">￥{{dataArr.detail.expenseTotal|thousands(2)}}</span>
+          </div>
+          <div>
+            <div v-if="type === 'myself'">
+              <x-button class="bottombtn" mini type="primary" v-if="dataArr.detail.isDeit == 1"  @click.native="editApply">编辑</x-button>
+              <x-button class="bottombtn" mini type="default" v-if="(dataArr.detail.expenseStatus != 1) && (dataArr.detail.expenseStatus != 0)" :disabled="disDel" @click.native="del">删除</x-button>
+              <x-button class="bottombtn" mini type="default" v-if="dataArr.detail.expenseStatus == 2&&!ISEDIT" :disabled="disCancel" @click.native="cancel">撤销</x-button>
+            </div>
+            <div v-if="type === 'todo'&& dataArr.detail.expenseStatus == 2">
+              <x-button class="bottombtn" mini type="primary" v-if="dataArr.detail.isDeit != 1" :disabled="disAgree" @click.native="agreeApply">同意</x-button>
+              <x-button class="bottombtn" mini type="warn" v-if="dataArr.detail.isDeit != 1" :disabled="disRefuse" @click.native="refuseApply">拒绝</x-button>
+              <x-button class="bottombtn" mini type="primary"  v-if="dataArr.detail.isDeit == 1" @click.native="editApply">编辑</x-button>
+            </div>
+            <div v-if="type === 'done'&&dataArr.detail.expenseStatus == 2">
+              <x-button class="bottombtn" mini type="default" :disabled="disCancel" @click.native="cancel">撤销</x-button>
+            </div>
+          </div>
         </box>
-        <div style="height:54px" v-if="dataArr.detail.expenseStatus != '0'"></div>
+        <!-- <div style="height:54px" v-if="dataArr.detail.expenseStatus != '0'"></div>
         <box class="fixbtn" v-if="dataArr.detail.expenseStatus != '0'">
             <flexbox>
                 <flexbox-item>
@@ -214,6 +265,13 @@
                 </flexbox-item>
             </flexbox>
         </box>
+
+        <box class="fixbtn" v-if="dataArr.detail.expenseStatus != '0'">
+            <div style="float:right">
+              <x-button mini type="primary">primary</x-button>
+              <x-button mini type="warn">Delete</x-button>
+            </div>
+        </box> -->
         <div v-transfer-dom>
             <x-dialog v-model="remarkForm.isRemarks" hide-on-blur @on-hide="cancelRemark">
                 <div class="weui-dialog__hd">
@@ -244,7 +302,7 @@ import Vue from 'vue'
 import com from '@/assets/js/common'
 import api from '@/assets/api/index.api'
 import XHR from '@/assets/js/XHR';
-import { Box, Confirm, Group, XButton,CellFormPreview, Timeline,Popup, Selector, TimelineItem, Cell,ConfirmPlugin, CellBox, XTextarea, XInput, XDialog, Flexbox, FlexboxItem, TransferDomDirective as TransferDom } from 'vux';
+import { Box, Confirm, Group,GroupTitle, XButton,CellFormPreview, Timeline,Popup, Selector, TimelineItem, Cell,ConfirmPlugin, CellBox, XTextarea, XInput, XDialog, Flexbox, FlexboxItem, TransferDomDirective as TransferDom } from 'vux';
 Vue.use(ConfirmPlugin)
 export default {
     name: "ApprovalDetail",
@@ -255,6 +313,7 @@ export default {
         Box,
         Confirm,
         Group,
+        GroupTitle,
         Selector,
         CellFormPreview,
         XButton,
@@ -343,6 +402,7 @@ export default {
                         if(this.dataArr.flowDetailList.length != 0){
                             rtn.data.amtList.forEach((item,index)=>{
                                 this.amtList.push({
+                                    ...item,
                                     label:item.secondSubName?`${item.firstSubName}/${item.secondSubName}`:item.firstSubName,
                                     value:`￥${item.amt}`,
                                 })
@@ -489,6 +549,16 @@ export default {
                 }
             })
         },
+        goHistoryDetail(){
+          this.$router.push({
+                path: '/approval/historySum/'});
+        },
+        goDetailItem(){
+          console.log('/ApprovalDetail/item/' + this.$route.params.id +'/aaa/'+this.$route.params.taskId);
+          this.$router.push({
+                path: '/approvalDetail/item/' + this.$route.params.id +'/item/'+this.$route.params.taskId
+            });
+        }
     }
 }
 </script>
@@ -513,6 +583,51 @@ export default {
         box-sizing: border-box;
         z-index: 499;
         background: #f0f0f2;
+        display: flex;
+        align-items:center;
+        justify-content:space-between;
+    }
+    .bottombtn{
+      margin-top:0 !important;
+      // margin-right:10px;
+    }
+    .sumtitle{
+      font-size: 14px;
+      color: #999999;
+    }
+    .sumcontent{
+      font-size: 17px;
+      color: #333333;
+    }
+    .selectbox{
+        display: flex;
+        height: 24px;
+        padding: 10px 15px;
+        font-size: 17px;
+        .stitle{
+            height: 24px;
+            position: relative;
+            padding-right:2px;
+            .sign{
+                font-size: 10px;
+                border: 1px red solid;
+                padding: 2px;
+                position: absolute;
+                right: -35px;
+                color: red;
+            }
+        }
+        .svalue{
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            height: 24px;
+            width: 100%;
+            text-align: right;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space:nowrap;
+        }
     }
 }
 .xdialog-group-textarea{

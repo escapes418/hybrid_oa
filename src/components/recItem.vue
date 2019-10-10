@@ -72,7 +72,7 @@
         v-model="itemData.remarks"
         title="备注"
         placeholder="请输入备注"
-        :max="1000"
+        :max="300"
         :rows="3"
       ></x-textarea>
     </group>

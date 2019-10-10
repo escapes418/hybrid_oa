@@ -13,6 +13,10 @@
                             <span class="long-detail font-orange">{{dataArr.detail.custName}}</span>
                         </div>
                         <div class="long-content">
+                            <span class="detail-title long-title">主客户名称</span>
+                            <span class="long-detail">{{dataArr.detail.mainCustName}}</span>
+                        </div>
+                        <div class="long-content">
                             <span class="detail-title long-title">客户简称</span>
                             <span class="long-detail">{{dataArr.detail.custAbbreviation}}</span>
                         </div>
@@ -163,6 +167,10 @@
                             <span class="long-detail">{{el.custMaintenanceMan}}</span>
                         </div>
                         <div class="long-content">
+                            <span class="detail-title long-title">维护人部门</span>
+                            <span class="long-detail">{{el.maintainerDeptName}}</span>
+                        </div>
+                        <div class="long-content">
                             <span class="detail-title long-title">客户级别</span>
                             <span class="long-detail">{{el.custStageName}}</span>
                         </div>
@@ -173,6 +181,10 @@
                         <div class="long-content">
                             <span class="detail-title long-title">拜访类型</span>
                             <span class="long-detail">{{el.visitTypeName}}</span>
+                        </div>
+                        <div class="long-content">
+                            <span class="detail-title long-title">问题归类</span>
+                            <span class="long-detail">{{el.issuesClassification}}</span>
                         </div>
                         <div class="long-content">
                             <span class="detail-title long-title">维护内容</span>
@@ -350,8 +362,8 @@ export default {
             }
         },
         getDictionary() {
-            com.comGetStorage('queryDict').then(data => { 
-                var getData = data.dict 
+            com.comGetStorage('queryDict').then(data => {
+                var getData = data.dict
                 getData.forEach((item,index)=>{
                     if(item.type == "cust_max_count"){
                         this.custMaxCount = item.name

@@ -20,6 +20,10 @@
                   <span class="long-text font-orange">{{ el.custName }}</span>
                 </div>
                 <div class="long-content">
+                  <span class="disc-title long-title">主客户名称</span>
+                  <span class="long-text">{{ el.mainCustName }}</span>
+                </div>
+                <div class="long-content">
                   <span class="disc-title long-title">所属区域</span>
                   <span class="long-text">{{ el.officeName }}</span>
                 </div>
