@@ -127,12 +127,12 @@
       ></x-textarea>
     </group>
     <group
-      title="报销明细"
+      :title="'报销明细' + (index + 1)"
       label-margin-right="1em"
       v-for="(item, index) in itemDatas"
       :key="index"
     >
-      <ReimItem ref="reimItem" :index="index" :itemData="item"></ReimItem>
+      <ReimItem ref="reimItem" :index="index" :itemData="item" :items="itemDatas"></ReimItem>
     </group>
     <div class="add-btn">
       <span class="pointer" @click="addItem">新增报销明细</span>
