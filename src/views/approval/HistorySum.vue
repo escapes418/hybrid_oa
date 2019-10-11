@@ -163,13 +163,10 @@ export default {
             this.oneMonthChartColors[item.year] = 'rgb(82, 187, 110)';
             this.threeMonthChartColors[item.year] = 'rgb(82, 187, 110)';
             this.harlfYearChartColors[item.year] = 'rgb(82, 187, 110)';
-            if (index > 0) this.oneMonthChartColors[item.year] = 'rgb(192, 224, 201)';
-            if (index > 2) this.threeMonthChartColors[item.year] = 'rgb(192, 224, 201)';
+            if (index < 5) this.oneMonthChartColors[item.year] = 'rgb(192, 224, 201)';
+            if (index < 3) this.threeMonthChartColors[item.year] = 'rgb(192, 224, 201)';
           });
           this.chartColors = this.oneMonthChartColors;
-          // console.log(this.oneMonthChartColors, 'oneMonthChartColors');
-          // console.log(this.threeMonthChartColors, 'threeMonthChartColors');
-          // console.log(this.harlfYearChartColors, 'harlfYearChartColors');
           this.histogram();
         });
     },
@@ -196,34 +193,17 @@ export default {
           items[0].value = '¥ ' + items[0].value;
         }
       });
-      // this.chart.guide().text({
-      //   position: ['min', 'max'],
-      //   content: '单位（元）',
-      //   style: {
-      //     textBaseline: 'middle',
-      //     textAlign: 'start'
-      //   }
-      //   // offsetY: -23
-      // });
-      // this.chart.axis("year", config:{
-      //   "year":"年",
-      //   "sales":"金额"
 
-      // })
       this.chart
         .interval()
         .position('year*sales')
         .color('year', function(val) {
-          console.log(val);
           return _this.chartColors[val];
         });
       this.chart.render();
     },
 
     goDetailItem() {
-      console.log(
-        '/ApprovalDetail/item/' + this.$route.params.id + '/aaa/' + this.$route.params.taskId
-      );
       this.$router.push({
         path: '/ApprovalDetail/item/' + this.$route.params.id + '/item/' + this.$route.params.taskId
       });
@@ -233,13 +213,7 @@ export default {
       this.chart.render();
     },
     goHisItem(el) {
-      console.log(el);
       if (el.firstSubCode == '') return;
-      console.log(
-        `/approval/historyItem/${el.firstSubCode}/${
-          el.secondSubCode == '' ? 0 : el.secondSubCode
-        }/${el.time}/${el.userLoginName}`
-      );
       this.$router.push({
         path: `/approval/historyItem/${el.firstSubCode}/${
           el.secondSubCode == '' ? '0' : el.secondSubCode
