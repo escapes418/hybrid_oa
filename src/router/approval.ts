@@ -56,7 +56,7 @@ export default [
     }
   },
   {
-    path: '/approval/historySum',
+    path: '/approval/historySum/:userName',
     name: 'ApprovalHistorySum',
     component: ApprovalHistorySum,
     meta: {

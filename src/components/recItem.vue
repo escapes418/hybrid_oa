@@ -1,7 +1,7 @@
 <template>
   <div class="approval">
     <group label-margin-right="1em">
-      <box gap="10px 15px">
+      <box gap="10px 15px" v-if="items.length > 1">
         <div style="height:26px">
           <span></span>
           <span class="fr font-orange" @click="showDelDialog = true">删除</span>
@@ -126,7 +126,8 @@ export default {
   },
   props: {
     index: Number,
-    itemData: Object
+    itemData: Object,
+    items: Array
   },
   components: {
     Group,

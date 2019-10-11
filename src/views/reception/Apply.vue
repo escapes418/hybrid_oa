@@ -76,12 +76,12 @@
       ></x-textarea>
     </group>
     <group
-      title="接待明细"
+      :title="'接待明细' + (index + 1)"
       label-margin-right="1em"
       v-for="(item, index) in itemDatas"
       :key="index"
     >
-      <recItem ref="recItem" :index="index" :itemData="item"></recItem>
+      <recItem ref="recItem" :index="index" :itemData="item" :items="itemDatas"></recItem>
     </group>
     <div class="add-btn">
       <span class="pointer" @click="addItem">新增接待明细</span>

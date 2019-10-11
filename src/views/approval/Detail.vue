@@ -551,7 +551,7 @@ export default {
         },
         goHistoryDetail(){
           this.$router.push({
-                path: '/approval/historySum/'});
+                path: '/approval/historySum/'+this.dataArr.detail.applyPerCode});
         },
         goDetailItem(){
           console.log('/ApprovalDetail/item/' + this.$route.params.id +'/aaa/'+this.$route.params.taskId);

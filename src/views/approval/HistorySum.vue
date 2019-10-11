@@ -135,40 +135,43 @@ export default {
   mounted() {},
   methods: {
     init() {
-      com.covertHttp(api.queryExpenseHistory).then(rtn => {
-        this.harlfYearList = rtn.data.expenseHistoryPerMonthList;
-        this.threeMonthList = rtn.data.expenseHistoryPerMonthList.slice(0, 3);
-        this.oneMonthList = rtn.data.expenseHistoryPerMonthList.slice(0, 1);
-        this.dataList = this.oneMonthList;
-        this.chartData = [];
-        this.harlfYearList.forEach((item, index) => {
-          var sum = 0;
-          item.expenseHistoryPerMonthPerSubList.forEach((i, idx) => {
-            sum += i.amt;
+      var _this = this;
+      com
+        .covertHttp(api.queryExpenseHistory, { applyPerCode: _this.$route.params.userName })
+        .then(rtn => {
+          this.harlfYearList = rtn.data.expenseHistoryPerMonthList;
+          this.threeMonthList = rtn.data.expenseHistoryPerMonthList.slice(0, 3);
+          this.oneMonthList = rtn.data.expenseHistoryPerMonthList.slice(0, 1);
+          this.dataList = this.oneMonthList;
+          this.chartData = [];
+          this.harlfYearList.forEach((item, index) => {
+            var sum = 0;
+            item.expenseHistoryPerMonthPerSubList.forEach((i, idx) => {
+              sum += i.amt;
+            });
+            this.chartData.push({
+              year: item.expenseHistoryPerMonthPerSubList[0].title,
+              sales: sum
+            });
+            if (index <= 0) this.oneMonthSum = sum;
+            if (index <= 2) this.threeMonthSum += sum;
+            this.harlfYearSum += sum;
           });
-          this.chartData.push({
-            year: item.expenseHistoryPerMonthPerSubList[0].title,
-            sales: sum
+          this.topSum = this.oneMonthSum;
+          this.chartData = this.chartData.reverse();
+          this.chartData.forEach((item, index) => {
+            this.oneMonthChartColors[item.year] = 'rgb(82, 187, 110)';
+            this.threeMonthChartColors[item.year] = 'rgb(82, 187, 110)';
+            this.harlfYearChartColors[item.year] = 'rgb(82, 187, 110)';
+            if (index > 0) this.oneMonthChartColors[item.year] = 'rgb(192, 224, 201)';
+            if (index > 2) this.threeMonthChartColors[item.year] = 'rgb(192, 224, 201)';
           });
-          if (index <= 0) this.oneMonthSum = sum;
-          if (index <= 2) this.threeMonthSum += sum;
-          this.harlfYearSum += sum;
+          this.chartColors = this.oneMonthChartColors;
+          // console.log(this.oneMonthChartColors, 'oneMonthChartColors');
+          // console.log(this.threeMonthChartColors, 'threeMonthChartColors');
+          // console.log(this.harlfYearChartColors, 'harlfYearChartColors');
+          this.histogram();
         });
-        this.topSum = this.oneMonthSum;
-        this.chartData = this.chartData.reverse();
-        this.chartData.forEach((item, index) => {
-          this.oneMonthChartColors[item.year] = 'rgb(82, 187, 110)';
-          this.threeMonthChartColors[item.year] = 'rgb(82, 187, 110)';
-          this.harlfYearChartColors[item.year] = 'rgb(82, 187, 110)';
-          if (index > 0) this.oneMonthChartColors[item.year] = 'rgb(192, 224, 201)';
-          if (index > 2) this.threeMonthChartColors[item.year] = 'rgb(192, 224, 201)';
-        });
-        this.chartColors = this.oneMonthChartColors;
-        // console.log(this.oneMonthChartColors, 'oneMonthChartColors');
-        // console.log(this.threeMonthChartColors, 'threeMonthChartColors');
-        // console.log(this.harlfYearChartColors, 'harlfYearChartColors');
-        this.histogram();
-      });
     },
     histogram() {
       var _this = this;
