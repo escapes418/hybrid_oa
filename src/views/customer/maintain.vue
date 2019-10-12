@@ -183,7 +183,7 @@ export default {
         custMaintenanceContent: '', //维护内容
         custStage: '', //客户级别
         linkmanId: '', //联系人ID
-        visitType: '2', //拜访类型
+        visitType: '', //拜访类型
         linkmanName: '',
         // custMaintenanceDate: new Date().getTime(),//维护时间
         // custMaintenanceProblem: "",//主要问题
