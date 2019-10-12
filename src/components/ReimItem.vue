@@ -295,11 +295,16 @@ export default {
         flag = false;
         return;
       }
-      if (
-        !/^[0-9]+(.[0-9]{1,2})?$/.test(_this.itemData.expenseAmt) ||
-        _this.itemData.expenseAmt == 0
-      ) {
-        _this.$vux.toast.text('报销金额填写有误');
+      // if (
+      //   !/^[0-9]+(.[0-9]{1,2})?$/.test(_this.itemData.expenseAmt) ||
+      //   _this.itemData.expenseAmt == 0
+      // ) {
+      //   _this.$vux.toast.text('报销金额填写有误');
+      //   flag = false;
+      //   return;
+      // }
+      if (!/^([0-9]{1,7})(\.[0-9]{1,2})?$/.test(_this.itemData.expenseAmt)) {
+        _this.$vux.toast.text('报销金额只允许输入七位整数,两位小数');
         flag = false;
         return;
       }
