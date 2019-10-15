@@ -235,7 +235,10 @@
                 </flexbox>
             </template>
         </box> -->
-        <div style="height:49px" v-if="dataArr.detail.expenseStatus != '0'"></div>
+
+
+
+        <!-- <div style="height:49px" v-if="dataArr.detail.expenseStatus != '0'"></div>
         <box class="fixbtn" v-if="dataArr.detail.expenseStatus != '0'">
           <div>
             <span class="sumtitle">总额:</span>
@@ -256,7 +259,67 @@
               <x-button class="bottombtn" mini type="default" :disabled="disCancel" @click.native="cancel">撤销</x-button>
             </div>
           </div>
+        </box> -->
+
+
+        <div style="height:52px" v-if="dataArr.detail.expenseStatus != '0'"></div>
+        <box class="fixbtn" v-if="dataArr.detail.expenseStatus != '0'">
+          <!-- <div>
+            <span class="sumtitle">总额:</span>
+            <span class="sumcontent">￥{{dataArr.detail.expenseTotal|thousands(2)}}</span>
+          </div>
+          <div>
+            <div v-if="type === 'myself'">
+              <x-button class="bottombtn" mini type="primary" v-if="dataArr.detail.isDeit == 1"  @click.native="editApply">编辑</x-button>
+              <x-button class="bottombtn" mini type="default" v-if="(dataArr.detail.expenseStatus != 1) && (dataArr.detail.expenseStatus != 0)" :disabled="disDel" @click.native="del">删除</x-button>
+              <x-button class="bottombtn" mini type="default" v-if="dataArr.detail.expenseStatus == 2&&!ISEDIT" :disabled="disCancel" @click.native="cancel">撤销</x-button>
+            </div>
+            <div v-if="type === 'todo'&& dataArr.detail.expenseStatus == 2">
+              <x-button class="bottombtn" mini type="primary" v-if="dataArr.detail.isDeit != 1" :disabled="disAgree" @click.native="agreeApply">同意</x-button>
+              <x-button class="bottombtn" mini type="warn" v-if="dataArr.detail.isDeit != 1" :disabled="disRefuse" @click.native="refuseApply">拒绝</x-button>
+              <x-button class="bottombtn" mini type="primary"  v-if="dataArr.detail.isDeit == 1" @click.native="editApply">编辑</x-button>
+            </div>
+            <div v-if="type === 'done'&&dataArr.detail.expenseStatus == 2">
+              <x-button class="bottombtn" mini type="default" :disabled="disCancel" @click.native="cancel">撤销</x-button>
+            </div>
+          </div> -->
+          <flexbox>
+            <flexbox-item :span="3/5">
+              <span class="sumtitle">总额:</span>
+              <span class="sumcontent">￥{{dataArr.detail.expenseTotal|thousands(2)}}</span>
+            </flexbox-item>
+            <flexbox-item :span="2/5">
+              <flexbox v-if="type === 'myself'">
+                <flexbox-item v-if="dataArr.detail.isDeit == 1">
+                  <x-button class="bottombtn" type="primary" @click.native="editApply">编辑</x-button>
+                </flexbox-item>
+                <flexbox-item v-if="(dataArr.detail.expenseStatus != 1) && (dataArr.detail.expenseStatus != 0)">
+                  <x-button class="bottombtn" type="default" :disabled="disDel" @click.native="del">删除</x-button>
+                </flexbox-item>
+                <flexbox-item v-if="dataArr.detail.expenseStatus == 2&&!ISEDIT">
+                  <x-button class="bottombtn" type="default" :disabled="disCancel" @click.native="cancel">撤销</x-button>
+                </flexbox-item>
+              </flexbox>
+              <flexbox v-if="type === 'todo'&& dataArr.detail.expenseStatus == 2">
+                <flexbox-item v-if="dataArr.detail.isDeit != 1">
+                  <x-button class="bottombtn" type="primary" :disabled="disAgree" @click.native="agreeApply">同意</x-button>
+                </flexbox-item>
+                <flexbox-item v-if="dataArr.detail.isDeit != 1">
+                  <x-button class="bottombtn" type="warn" :disabled="disRefuse" @click.native="refuseApply">拒绝</x-button>
+                </flexbox-item>
+                <flexbox-item v-if="dataArr.detail.isDeit == 1">
+                  <x-button class="bottombtn" type="primary" @click.native="editApply">编辑</x-button>
+                </flexbox-item>
+              </flexbox>
+              <flexbox v-if="type === 'done'&&dataArr.detail.expenseStatus == 2">
+                <flexbox-item>
+                  <x-button class="bottombtn" type="default" :disabled="disCancel" @click.native="cancel">撤销</x-button>
+                </flexbox-item>
+              </flexbox>
+            </flexbox-item>
+          </flexbox>
         </box>
+
         <!-- <div style="height:54px" v-if="dataArr.detail.expenseStatus != '0'"></div>
         <box class="fixbtn" v-if="dataArr.detail.expenseStatus != '0'">
             <flexbox>
@@ -579,13 +642,22 @@ export default {
         bottom: 0;
         right: 0;
         left: 0;
-        padding: 10px;
+        padding:5px 10px;
         box-sizing: border-box;
         z-index: 499;
         background: #f0f0f2;
         display: flex;
         align-items:center;
         justify-content:space-between;
+    }
+    .fixbtn::before {
+        content: " ";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 1px;
+        background-image: linear-gradient(to top, transparent 50%, #ddd 50%);
     }
     .bottombtn{
       margin-top:0 !important;
