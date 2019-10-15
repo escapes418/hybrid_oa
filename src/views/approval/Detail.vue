@@ -24,7 +24,7 @@
               <span class="long-detail font-orange">{{ dataArr.detail.applyPerName }}</span>
             </div>
             <div class="long-content">
-              <span class="detail-title long-title">报销人职位</span>
+              <span class="detail-title long-title">申请人职务</span>
               <span class="long-detail">{{ dataArr.detail.postName }}</span>
             </div>
             <div class="long-content">
