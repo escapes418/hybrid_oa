@@ -41,6 +41,7 @@
           ￥{{ el.amt | thousands(2)
           }}<x-icon
             type="ios-arrow-forward"
+            v-if="el.amt != 0"
             size="17"
             style="fill:#999;margin-top:-4px;vertical-align:middle"
           ></x-icon>
@@ -125,7 +126,7 @@ export default {
       threeMonthList: [],
       harlfYearList: [],
       dataList: [],
-      sumData: '1',
+      sumData: '3',
       optMap2: ['key', 'value']
     };
   },
@@ -142,7 +143,7 @@ export default {
           this.harlfYearList = rtn.data.expenseHistoryPerMonthList;
           this.threeMonthList = rtn.data.expenseHistoryPerMonthList.slice(0, 3);
           this.oneMonthList = rtn.data.expenseHistoryPerMonthList.slice(0, 1);
-          this.dataList = this.oneMonthList;
+          this.dataList = this.harlfYearList;
           this.chartData = [];
           this.harlfYearList.forEach((item, index) => {
             var sum = 0;
