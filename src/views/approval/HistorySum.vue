@@ -158,7 +158,7 @@ export default {
             if (index <= 2) this.threeMonthSum += sum;
             this.harlfYearSum += sum;
           });
-          this.topSum = this.oneMonthSum;
+          this.topSum = this.harlfYearSum;
           this.chartData = this.chartData.reverse();
           this.chartData.forEach((item, index) => {
             this.oneMonthChartColors[item.year] = 'rgb(82, 187, 110)';
@@ -167,7 +167,7 @@ export default {
             if (index < 5) this.oneMonthChartColors[item.year] = 'rgb(192, 224, 201)';
             if (index < 3) this.threeMonthChartColors[item.year] = 'rgb(192, 224, 201)';
           });
-          this.chartColors = this.oneMonthChartColors;
+          this.chartColors = this.harlfYearChartColors;
           this.histogram();
         });
     },
