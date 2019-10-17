@@ -32,6 +32,18 @@
                             <span class="detail-title long-title">地址</span>
                             <span class="long-detail">{{dataArr.detail.custAddressCodeName}} {{dataArr.detail.custAddress}}</span>
                         </div>
+                        <div class="long-content">
+                            <span class="detail-title long-title">VIP客服</span>
+                            <span class="long-detail">{{dataArr.detail.vipCustomerName}}</span>
+                        </div>
+                        <div class="long-content">
+                            <span class="detail-title long-title">商务助理</span>
+                            <span class="long-detail">{{dataArr.detail.businessAssistantName}}</span>
+                        </div>
+                        <div class="long-content">
+                            <span class="detail-title long-title">清结算</span>
+                            <span class="long-detail">{{dataArr.detail.accountLeaderName}}</span>
+                        </div>
                     </div>
                 </div>
             </cell-box>
