@@ -98,7 +98,7 @@
         :selectedItem.sync="applyData.impleLeaderId"
       ></departTree>
 
-      <departTree
+      <!-- <departTree
         sTitle="商务助理"
         :isPeople="true"
         sPlaceholder="请选择商务助理"
@@ -121,7 +121,7 @@
         :dataList="accountLeaderList"
         :sendData="applyData.accountLeaderId"
         :selectedItem.sync="applyData.accountLeaderId"
-      ></departTree>
+      ></departTree> -->
       <x-textarea
         title="备注"
         v-model.trim="applyData.remarks"
@@ -453,10 +453,10 @@ export default {
         }
       ],
       applyData: {
-        businessAssistantId: '', //商务助理
+        // businessAssistantId: '', //商务助理
         projectManagerId: '',
-        vipCustomerId: '',
-        accountLeaderId: '',
+        // vipCustomerId: '',
+        // accountLeaderId: '',
         remarks: '',
         carrierGoods: [], //承运货物:1煤炭2钢铁3商砼4其他
         holderCode: '', //企业holderCode

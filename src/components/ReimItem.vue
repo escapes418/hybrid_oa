@@ -1,7 +1,7 @@
 <template>
   <div class="approval">
     <group label-margin-right="1em">
-      <box gap="10px 15px">
+      <box gap="10px 15px" v-if="items.length > 1">
         <div style="height:26px">
           <span></span>
           <span class="fr font-orange" @click="showDelDialog = true">删除</span>
@@ -98,7 +98,7 @@
         v-model="itemData.remarks"
         title="备注"
         placeholder="请输入备注"
-        :max="1000"
+        :max="300"
         :rows="3"
       ></x-textarea>
     </group>
@@ -153,7 +153,8 @@ export default {
   },
   props: {
     index: Number,
-    itemData: Object
+    itemData: Object,
+    items: Array
   },
   components: {
     Group,
@@ -294,11 +295,16 @@ export default {
         flag = false;
         return;
       }
-      if (
-        !/^[0-9]+(.[0-9]{1,2})?$/.test(_this.itemData.expenseAmt) ||
-        _this.itemData.expenseAmt == 0
-      ) {
-        _this.$vux.toast.text('报销金额填写有误');
+      // if (
+      //   !/^[0-9]+(.[0-9]{1,2})?$/.test(_this.itemData.expenseAmt) ||
+      //   _this.itemData.expenseAmt == 0
+      // ) {
+      //   _this.$vux.toast.text('报销金额填写有误');
+      //   flag = false;
+      //   return;
+      // }
+      if (!/^([0-9]{1,7})(\.[0-9]{1,2})?$/.test(_this.itemData.expenseAmt)) {
+        _this.$vux.toast.text('报销金额只允许输入七位整数,两位小数');
         flag = false;
         return;
       }
