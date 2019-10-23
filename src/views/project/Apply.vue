@@ -1,7 +1,6 @@
 <template>
   <div class="approval_apply">
     <group title="基本信息" label-margin-right="1em">
-      <!-- <sinSelector sTitle='客户名称' :isRequired="true" sPlaceholder='请选择' @on-change="changeType" :dataList="dictionary.handleType" :sendData="applyData.custId" :selectedItem.sync="applyData.custId"></sinSelector> -->
       <RemoteSearch
         sTitle="客户名称"
         :isRequired="true"
@@ -10,15 +9,6 @@
         :sendData="applyData.custInfoId"
         :selectedItem.sync="applyData.custInfoId"
       ></RemoteSearch>
-      <!-- <sinSelector
-        sTitle="客户名称"
-        :isRequired="true"
-        sPlaceholder="请选择客户名称"
-        :dataList="custList"
-        :sendData="applyData.custId"
-        :selectedItem.sync="applyData.custId"
-        @on-change="changeCust"
-      ></sinSelector> -->
       <x-input
         title="项目名称"
         v-model.trim="applyData.projectName"
@@ -27,7 +17,6 @@
       >
         <span slot="label">项目名称<span class="required">*</span></span>
       </x-input>
-      <!-- <sinSelector sTitle='企业名称' :isRequired="true" sPlaceholder='请选择' :dataList="dictionary.handleType" :sendData="applyData.companyHolderCode" :selectedItem.sync="applyData.companyHolderCode"></sinSelector> -->
       <RemoteSearch
         sTitle="企业名称"
         :isRequired="true"
@@ -264,7 +253,7 @@
       v-for="(item, index) in mainProjectContacts"
       :key="index"
     >
-      <box gap="10px 15px">
+      <box gap="10px 15px" v-if="mainProjectContacts.length > 1">
         <div style="height:26px">
           <span class="fr font-orange" @click="delItem(index)">删除</span>
         </div>
@@ -307,7 +296,7 @@
       v-for="(item, idx) in applyData.projectNodeReqs"
       :key="idx + 1"
     >
-      <box gap="10px 15px">
+      <box gap="10px 15px" v-if="applyData.projectNodeReqs.length > 1">
         <div style="height:26px">
           <span class="fr font-orange" @click="delNodeItem(idx)">删除</span>
         </div>

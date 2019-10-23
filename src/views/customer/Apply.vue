@@ -161,7 +161,12 @@
           size="25"
         ></x-icon>
         <x-icon class="linkicon" v-else slot="icon" type="ios-checkmark-outline" size="25"></x-icon>
-        <span class="fr font-orange" @click.stop="openDelDialog(index)">删除</span>
+        <span
+          class="fr font-orange"
+          v-if="custLinkman.length > 1"
+          @click.stop="openDelDialog(index)"
+          >删除</span
+        >
       </cell>
       <x-input title="联系人" :max="50" placeholder="请输入" v-model.trim="item.linkmanName">
         <span slot="label">联系人<span class="required">*</span></span>

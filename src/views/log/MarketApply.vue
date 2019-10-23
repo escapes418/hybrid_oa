@@ -54,7 +54,7 @@
       v-for="(item, index) in applyData.dailyCustMaintenanceList"
       :key="index"
     >
-      <box gap="10px 15px">
+      <box gap="10px 15px" v-if="applyData.dailyCustMaintenanceList.length > 1">
         <div style="height:26px">
           <span class="fr font-orange" @click="delItem(index)">删除</span>
         </div>

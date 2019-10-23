@@ -230,7 +230,7 @@
       v-for="(item, index) in linkMan"
       :key="index"
     >
-      <box gap="10px 15px">
+      <box gap="10px 15px" v-if="linkMan.length > 1">
         <div style="height:26px">
           <span class="fr font-orange" @click="delItem(index)">删除</span>
         </div>
@@ -615,9 +615,9 @@ export default {
     },
     submit() {
       var _this = this;
-      this.linkMan.forEach((item,index)=>{
-        item.linkmanPhone = com.onlyNum(item.linkmanPhone)
-      })
+      this.linkMan.forEach((item, index) => {
+        item.linkmanPhone = com.onlyNum(item.linkmanPhone);
+      });
       if (!Utils.valid(this)) return; //校验
       if (!Utils.vailLinkMan(this)) return; //校验
       var postData = {
