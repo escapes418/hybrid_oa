@@ -15,7 +15,7 @@
         :max="64"
         placeholder="请输入项目名称"
       >
-        <span slot="label">项目名称<span class="required">*</span></span>
+        <span slot="label" class="mr-10">项目名称<span class="required">*</span></span>
       </x-input>
       <RemoteSearch
         sTitle="企业名称"
@@ -58,7 +58,7 @@
         :max="15"
         placeholder="请输入计划月运费(万元/月)"
       >
-        <span slot="label">计划月运费<span class="required">*</span></span>
+        <span slot="label" class="mr-10">计划月运费<span class="required">*</span></span>
       </x-input>
       <datetime
         format="YYYY-MM-DD"
@@ -135,7 +135,7 @@
         placeholder="请输入计划月开票频次(次/月)"
         :max="5"
       >
-        <span slot="label">月开票频次<span class="required">*</span></span>
+        <span slot="label" class="mr-10">月开票频次<span class="required">*</span></span>
       </x-input>
       <sinSelector
         sTitle="托管"
@@ -244,7 +244,7 @@
         placeholder="请输入返点比例"
         :max="8"
       >
-        <span slot="label">返点比例(%)<span class="required">*</span></span>
+        <span slot="label" class="mr-10">返点比例(%)<span class="required">*</span></span>
       </x-input>
     </group>
     <group
@@ -264,7 +264,7 @@
         v-model.trim="item.linkmanName"
         :max="16"
       >
-        <span slot="label">联系人<span class="required">*</span></span>
+        <span slot="label" class="mr-10">联系人<span class="required">*</span></span>
       </x-input>
       <x-input
         title="联系方式"
@@ -272,10 +272,10 @@
         v-model="item.linkmanPhone"
         :max="13"
       >
-        <span slot="label">联系方式<span class="required">*</span></span>
+        <span slot="label" class="mr-10">联系方式<span class="required">*</span></span>
       </x-input>
       <x-input title="职位" placeholder="请输入职位" v-model.trim="item.linkmanPost" :max="32">
-        <span slot="label">职位<span class="required">*</span></span>
+        <span slot="label" class="mr-10">职位<span class="required">*</span></span>
       </x-input>
       <x-textarea
         title="备注"

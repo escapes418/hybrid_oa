@@ -35,7 +35,7 @@
         @click.native="openTheme = true"
         readonly
       >
-        <span slot="label">关联主题<span class="required">*</span></span>
+        <span slot="label" class="mr-10">关联主题<span class="required">*</span></span>
       </x-input>
       <!-- 关联项目 -->
       <div v-if="approvalForm.relType == 2">

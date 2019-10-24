@@ -3,7 +3,7 @@
     <group title="基本信息" label-margin-right="1em">
       <x-input title="客户编号" readonly v-model="applyData.custCode"></x-input>
       <x-input title="客户名称" :max="50" placeholder="请输入" v-model.trim="applyData.custName">
-        <span slot="label">客户名称<span class="required">*</span></span>
+        <span slot="label" class="mr-10">客户名称<span class="required">*</span></span>
       </x-input>
       <x-input
         title="客户简称"
@@ -33,7 +33,7 @@
         placeholder="请输入"
         v-model.trim="applyData.custAddress"
       >
-        <span slot="label">详细地址<span class="required">*</span></span>
+        <span slot="label" class="mr-10">详细地址<span class="required">*</span></span>
       </x-input>
     </group>
     <group title="业务情况" label-margin-right="1em">
@@ -169,10 +169,10 @@
         >
       </cell>
       <x-input title="联系人" :max="50" placeholder="请输入" v-model.trim="item.linkmanName">
-        <span slot="label">联系人<span class="required">*</span></span>
+        <span slot="label" class="mr-10">联系人<span class="required">*</span></span>
       </x-input>
       <x-input title="联系方式" :max="13" placeholder="请输入" v-model="item.linkmanPhone">
-        <span slot="label">联系方式<span class="required">*</span></span>
+        <span slot="label" class="mr-10">联系方式<span class="required">*</span></span>
       </x-input>
       <x-input
         title="邮箱"
@@ -181,7 +181,7 @@
         v-model.trim="item.linkmanMail"
       ></x-input>
       <x-input title="职位" :max="50" placeholder="请输入" v-model.trim="item.linkmanPost">
-        <span slot="label">职位<span class="required">*</span></span>
+        <span slot="label" class="mr-10">职位<span class="required">*</span></span>
       </x-input>
       <x-textarea
         title="备注"

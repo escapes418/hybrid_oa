@@ -26,7 +26,7 @@
         placeholder="请输入"
         v-model.trim="applyData.demandPersonelNum"
       >
-        <span slot="label">需求数量<span class="required">*</span></span>
+        <span slot="label" class="mr-10">需求数量<span class="required">*</span></span>
       </x-input>
       <datetime
         title="期望抵达时间"
@@ -37,7 +37,7 @@
         :display-format="expectDate"
       ></datetime>
       <x-input title="预计时长" :max="50" placeholder="请输入" v-model.trim="applyData.timeLong">
-        <span slot="label">预计时长<span class="required">*</span></span>
+        <span slot="label" class="mr-10">预计时长<span class="required">*</span></span>
       </x-input>
       <x-input
         title="预算金额"
@@ -46,7 +46,7 @@
         v-model.trim="applyData.amountSum"
         type="number"
       >
-        <span slot="label">预算金额<span class="required">*</span></span>
+        <span slot="label" class="mr-10">预算金额<span class="required">*</span></span>
       </x-input>
       <x-textarea
         title="备注"
