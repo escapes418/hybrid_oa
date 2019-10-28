@@ -624,7 +624,7 @@ export default {
         });
     },
     draft() {
-      if (!this.valid()) return;
+      // if (!this.valid()) return; //取消草稿的校验
       this.disDraft = true;
       // var itemDatas = JSON.parse(JSON.stringify(this.itemDatas)); // 克隆待处理的提交数据
       var postData = {

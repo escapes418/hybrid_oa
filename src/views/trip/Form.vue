@@ -508,7 +508,7 @@ export default {
         });
     },
     draft() {
-      if (!this.valid()) return;
+      // if (!this.valid()) return;
       this.disDraft = true;
       var postData = {
         ...this.approvalForm,

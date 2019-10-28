@@ -28,6 +28,8 @@ import coop from '@/router/coop';
 import project from '@/router/project';
 import projectApproval from '@/router/projectApproval';
 import calcu from '@/router/calcu';
+import sales from '@/router/sales';
+
 import test from '@/router/test';
 
 Vue.use(Router);
@@ -120,6 +122,7 @@ var router = new Router({
     ...project,
     ...projectApproval,
     ...calcu,
+    ...sales,
     ...test
   ]
 });
