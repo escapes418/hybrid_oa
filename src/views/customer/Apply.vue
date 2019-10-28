@@ -2,9 +2,20 @@
   <div class="approval_apply">
     <group title="基本信息" label-margin-right="1em">
       <x-input title="客户编号" readonly v-model="applyData.custCode"></x-input>
-      <x-input title="客户名称" :max="50" placeholder="请输入" v-model.trim="applyData.custName">
+      <!-- <x-input title="客户名称" :max="50" placeholder="请输入" v-model.trim="applyData.custName">
         <span slot="label" class="mr-10">客户名称<span class="required">*</span></span>
-      </x-input>
+      </x-input> -->
+      <x-textarea
+        title="客户名称"
+        placeholder="请输入"
+        :autosize="true"
+        v-model.trim="applyData.custName"
+        :max="50"
+      >
+        <span slot="label" style="padding-right:10px;"
+          >客户名称<span class="required">*</span></span
+        >
+      </x-textarea>
       <x-input
         title="客户简称"
         :max="50"
@@ -27,14 +38,25 @@
         :list="addressData"
         placeholder="请选择地址"
       ></x-address>
-      <x-input
+      <!-- <x-input
         title="详细地址"
         :max="100"
         placeholder="请输入"
         v-model.trim="applyData.custAddress"
       >
         <span slot="label" class="mr-10">详细地址<span class="required">*</span></span>
-      </x-input>
+      </x-input> -->
+      <x-textarea
+        title="详细地址"
+        placeholder="请输入"
+        :autosize="true"
+        v-model.trim="applyData.custAddress"
+        :max="100"
+      >
+        <span slot="label" style="padding-right:10px;"
+          >详细地址<span class="required">*</span></span
+        >
+      </x-textarea>
     </group>
     <group title="业务情况" label-margin-right="1em">
       <sinSelector

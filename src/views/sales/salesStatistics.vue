@@ -111,18 +111,12 @@ export default {
   data() {
     return {
       baseInfo: {},
-      dataDetail: {},
       personalSaleData: {},
       monthDate: {},
       personmonth: com.timeFormatMonth(new Date().getTime()),
       teammonth: com.timeFormatMonth(new Date().getTime()),
       showTeam: false,
-      tabIndex: 0,
-      mysendList: [],
-      count: -1,
-      page: 1, //当前页数,
-      pageTotal: 1,
-      pageSize: 10 //固定常量
+      tabIndex: 0
     };
   },
   created() {
@@ -156,7 +150,6 @@ export default {
       this.getIsLeader();
       com.comGetStorage('userInfo').then(res => {
         this.baseInfo = Object.assign({}, this.baseInfo, res);
-        if (this.baseInfo.useable == '1') this.approvalForm.costCenterId = this.baseInfo.officeId;
       });
       this.getPersonalSale();
     },

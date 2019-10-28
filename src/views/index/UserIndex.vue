@@ -51,6 +51,7 @@
           @on-item-click="gotoLog"
           v-if="permission['inforManage-logList'] == 1"
         >
+          <badge v-if="dailyCount != 0" class="badge" :text="dailyCount"></badge>
           <img slot="icon" src="../../assets/img/log.png" />
         </grid-item>
         <grid-item
@@ -254,6 +255,7 @@ export default {
       myApplyCount: '', //我的申请红点
       todoCount: '', //带我审批红点
       errorStockOrderCount: '', //异常单红点
+      dailyCount: '',
       permission: {
         'me-reimForm': 0, //报销
         'me-recepList': 0, //接待
@@ -409,6 +411,7 @@ export default {
       com.covertHttp(api.queryNotifyTotalCount, {}, false).then(rtn => {
         this.myApplyCount = rtn.data.myApplyCount || 0;
         this.todoCount = rtn.data.todoCount || 0;
+        this.dailyCount = rtn.data.dailyCount || 0;
         this.errorStockOrderCount = rtn.data.errorStockOrderCount || 0;
       });
     },

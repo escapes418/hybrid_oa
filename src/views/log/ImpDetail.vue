@@ -5,6 +5,10 @@
         <div class="w-100">
           <div class="detail-text">
             <div class="long-content">
+              <span class="detail-title long-title">工作日志编号</span>
+              <span class="long-detail">{{ dataArr.detail.dailyCode }}</span>
+            </div>
+            <div class="long-content">
               <span class="detail-title long-title">提交人</span>
               <span class="long-detail">{{ dataArr.detail.createBy }}</span>
             </div>

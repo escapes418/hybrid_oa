@@ -265,6 +265,10 @@ export default {
         type = '/projectApproval/detail/';
       } else if (el.billType === '12') {
         return; //项目管理不跳转
+      } else if (el.billType === '13') {
+        this.$router.push({ path: '/log/impDetail/' + el.id });
+      } else if (el.billType === '14') {
+        this.$router.push({ path: '/log/marketDetail/' + el.id });
       }
       if (el.pathType == 'myself') {
         this.$router.push({ path: type + el.businessId + '/myself/0' });
