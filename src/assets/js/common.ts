@@ -338,6 +338,13 @@ const com = {
     h = h < 10 ? '0' + h : h;
     return y + '-' + m + '-' + d + ' ' + h;
   },
+  timeFormatMonth: function(date) {
+    date ? (date = new Date(date)) : (date = new Date());
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    m = m < 10 ? '0' + m : m;
+    return y + '-' + m;
+  },
   formatFullDateTime: function(date) {
     // var date = new Date(inputTime);
     // var Y = date.getFullYear();

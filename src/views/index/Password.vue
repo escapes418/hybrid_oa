@@ -10,7 +10,7 @@
         type="password"
         placeholder="请输入当前密码"
       >
-        <span slot="label">当前密码<span class="required">*</span></span>
+        <span slot="label" class="mr-10">当前密码<span class="required">*</span></span>
       </x-input>
       <x-input
         title="新密码"
@@ -19,7 +19,7 @@
         type="password"
         placeholder="请输入新密码"
       >
-        <span slot="label">新密码<span class="required">*</span></span>
+        <span slot="label" class="mr-10">新密码<span class="required">*</span></span>
       </x-input>
       <x-input
         title="确认密码"
@@ -28,7 +28,7 @@
         type="password"
         placeholder="请输入确认密码"
       >
-        <span slot="label">确认密码<span class="required">*</span></span>
+        <span slot="label" class="mr-10">确认密码<span class="required">*</span></span>
       </x-input>
     </group>
     <h3 v-if="type == 'forget'">忘记密码</h3>

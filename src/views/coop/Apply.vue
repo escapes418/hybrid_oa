@@ -2,7 +2,7 @@
   <div>
     <group title="基本信息" label-margin-right="1em">
       <x-input title="标题" :max="50" placeholder="请输入" v-model.trim="applyData.title">
-        <span slot="label">标题<span class="required">*</span></span>
+        <span slot="label" class="mr-10">标题<span class="required">*</span></span>
       </x-input>
       <sinSelector
         sTitle="类型"
@@ -53,21 +53,23 @@
       <flexbox>
         <flexbox-item>
           <x-button v-if="isReadonly" type="primary" @click.native="backStep">返回</x-button>
-          <x-button v-else type="primary" :disabled="disSubmit" @click.native="submit">提交</x-button>
+          <x-button v-else type="primary" :disabled="disSubmit" @click.native="submit"
+            >提交</x-button
+          >
         </flexbox-item>
       </flexbox>
     </box>
   </div>
 </template>
 <script>
-import Vue from "vue";
-import com from "@/assets/js/common";
-import sinSelector from "@/components/sinSelector";
-import mulSelectors from "@/components/mulSelectors";
-import departTree from "@/components/departTree.vue";
-import multree from "@/components/multree.vue";
-import api from "@/assets/api/index.api";
-import Utils from "./utils";
+import Vue from 'vue';
+import com from '@/assets/js/common';
+import sinSelector from '@/components/sinSelector';
+import mulSelectors from '@/components/mulSelectors';
+import departTree from '@/components/departTree.vue';
+import multree from '@/components/multree.vue';
+import api from '@/assets/api/index.api';
+import Utils from './utils';
 import {
   Tab,
   TabItem,
@@ -88,10 +90,10 @@ import {
   Confirm,
   FlexboxItem,
   TransferDomDirective as TransferDom
-} from "vux";
+} from 'vux';
 
 export default {
-  name: "CoopApply",
+  name: 'CoopApply',
   directives: {
     TransferDom
   },
@@ -124,12 +126,12 @@ export default {
       isSubmit: false,
       isReadonly: false,
       applyData: {
-        description: "",
+        description: '',
         participantList: [],
         labelList: [],
-        principal: "",
-        title: "",
-        type: ""
+        principal: '',
+        title: '',
+        type: ''
       },
       projectList: [],
       needLabel: [],
@@ -151,7 +153,7 @@ export default {
   },
   methods: {
     init() {
-      com.comGetStorage("queryDictInfo").then(rtn => {
+      com.comGetStorage('queryDictInfo').then(rtn => {
         rtn.dict.forEach((item, index) => {
           this.projectList.push({
             ...item,
@@ -190,7 +192,7 @@ export default {
       });
     },
     getTreeList() {
-      com.covertHttp(api.orgAndUserInfo, { queryType: "2" }).then(rtn => {
+      com.covertHttp(api.orgAndUserInfo, { queryType: '2' }).then(rtn => {
         var list = com.addTreePeopel(rtn.data);
         var peopelList = com.hasChildren(list);
         this.principalList = com.clone(peopelList);
@@ -209,7 +211,7 @@ export default {
       });
     },
     getDictionary() {
-      com.comGetStorage("queryDict").then(data => {
+      com.comGetStorage('queryDict').then(data => {
         var getData = data.dict;
         function selectDic(type) {
           let temp = [];
@@ -224,9 +226,9 @@ export default {
           }
           return temp;
         }
-        this.dictionary.urgency = selectDic("urgency"); //紧急度
-        this.dictionary.priority = selectDic("priority"); //优先级
-        this.dictionary.product = selectDic("product"); //优先级
+        this.dictionary.urgency = selectDic('urgency'); //紧急度
+        this.dictionary.priority = selectDic('priority'); //优先级
+        this.dictionary.product = selectDic('product'); //优先级
       });
     },
     handleApply() {
@@ -235,7 +237,7 @@ export default {
         if (rtn.status == 0) {
           this.$vux.toast.text(rtn.message);
           this.$router.go(-1);
-          com.delKeepAlive(_this, ["CoopList"]);
+          com.delKeepAlive(_this, ['CoopList']);
         }
         this.disSubmit = false;
       });
@@ -248,8 +250,8 @@ export default {
       if (!Utils.valiApply(this)) return; //校验
       this.disSubmit = true;
       this.$vux.confirm.show({
-        title: "是否提交",
-        content: "确定执行操作？",
+        title: '是否提交',
+        content: '确定执行操作？',
         onCancel() {
           _this.disSubmit = false;
         },
@@ -262,8 +264,8 @@ export default {
 };
 </script>
 <style lang="less">
-@import "../../assets/css/common/reset.fix.less";
-@import "../../assets/css/common/base.less";
-@import "../../assets/css/index.less";
+@import '../../assets/css/common/reset.fix.less';
+@import '../../assets/css/common/base.less';
+@import '../../assets/css/index.less';
 </style>
 

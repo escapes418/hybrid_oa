@@ -98,7 +98,7 @@
         :max="50"
         v-model.trim="applyData.expressCompany"
       >
-        <span slot="label">快递公司<span class="required">*</span></span>
+        <span slot="label" class="mr-10">快递公司<span class="required">*</span></span>
       </x-input>
       <x-input
         title="快递单号"
@@ -107,7 +107,7 @@
         type="number"
         v-model.trim="applyData.expressBill"
       >
-        <span slot="label">快递单号<span class="required">*</span></span>
+        <span slot="label" class="mr-10">快递单号<span class="required">*</span></span>
       </x-input>
     </group>
     <group

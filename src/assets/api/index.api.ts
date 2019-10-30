@@ -184,6 +184,10 @@ var api = {
   projectcompleteTask: baseUrl + '/projectApprovalFlow/completeTask', //APP端立项审批-同意/驳回
   projectrepealApply: baseUrl + '/projectApprovalFlow/repealApply', //APP端立项-删除
   projectrepealTask: baseUrl + '/projectApprovalFlow/repealTask', //APP端立项-流程收回
-  queryMyProjectApprovalFlowList: baseUrl + '/projectApprovalFlow/queryMyProjectApprovalFlowList' //APP端立项-流程收回
+  queryMyProjectApprovalFlowList: baseUrl + '/projectApprovalFlow/queryMyProjectApprovalFlowList', //APP端立项-流程收回
+
+  personalSale: baseUrl + '/custInfo/personalSale', //APP销售工作统计-个人统计
+  teamSale: baseUrl + '/custInfo/teamSale', //APP销售工作统计-团队统计
+  isLeader: baseUrl + '/custInfo/isLeader' //APP销售工作统计-部门负责人判断
 };
 export default api;

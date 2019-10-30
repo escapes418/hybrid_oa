@@ -54,7 +54,7 @@
         @click.native="themeShow = true"
         readonly
       >
-        <span slot="label">关联申请<span class="required">*</span></span>
+        <span slot="label" class="mr-10">关联申请<span class="required">*</span></span>
       </x-input>
       <proSelector
         sTitle="关联项目"
@@ -624,7 +624,7 @@ export default {
         });
     },
     draft() {
-      if (!this.valid()) return;
+      // if (!this.valid()) return; //取消草稿的校验
       this.disDraft = true;
       // var itemDatas = JSON.parse(JSON.stringify(this.itemDatas)); // 克隆待处理的提交数据
       var postData = {

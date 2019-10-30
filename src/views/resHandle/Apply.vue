@@ -6,7 +6,7 @@
             <datetime format="YYYY-MM-DD" class="data-time" v-model="applyData.applyTime" title="申请日期" placeholder="请选择开始时间" readonly></datetime>
             <sinSelector sTitle='办理类型' :isRequired="true" sPlaceholder='请选择' @on-change="changeType" :dataList="dictionary.handleType" :sendData="applyData.handleType" :selectedItem.sync="applyData.handleType"></sinSelector>
             <x-input title="关联主题" v-if="applyData.handleType == '2'" :value="relationTheme" placeholder='请选择' @click.native="openTheme = true" readonly>
-                <span slot="label">关联主题<span class="required">*</span></span>
+                <span slot="label" class="mr-10">关联主题<span class="required">*</span></span>
             </x-input>
             <x-input title="项目名称" v-if="applyData.handleType == '2'" :value="applyData.projectName" readonly></x-input>
             <proSelector sTitle='关联项目' :isRequired="true" v-if="applyData.handleType == '1'" sPlaceholder='请选择'  @on-change="changProject" :sendData="applyData.projectId" :selectedItem.sync="applyData.projectId" :sLabel="applyData.projectName"></proSelector>
@@ -14,10 +14,10 @@
             <datetime title="期望抵达时间" v-if="applyData.handleType == '1'" format="YYYY-MM-DD HH" class="data-time" v-model="applyData.expectDate" placeholder="请选择时间" :display-format="expectDateType"></datetime>
             <x-input title="期望抵达时间" v-else v-model="expectDate" readonly></x-input>
             <x-input title="预计时长" :max="50" v-if="applyData.handleType == '1'" placeholder='请输入' type="number" v-model.number="applyData.timeLong">
-                <span slot="label">预计时长<span class="required">*</span></span>
+                <span slot="label" class="mr-10">预计时长<span class="required">*</span></span>
             </x-input>
             <x-input title="预算费用合计" :max="50" v-if="applyData.handleType == '1'" type="number" placeholder='请输入' v-model.number="applyData.amountSum">
-                <span slot="label">预算费用合计<span class="required">*</span></span>
+                <span slot="label" class="mr-10">预算费用合计<span class="required">*</span></span>
             </x-input>
             <x-input title="预算费用合计" v-else type="number" v-model.number="applyData.amountSum" readonly></x-input>
             <sinSelector sTitle='资源类型' :isRequired="true" v-if="applyData.handleType == '1'" sPlaceholder='请选择' :dataList="dictionary.resourcesType" :sendData="applyData.resourcesType" :selectedItem.sync="applyData.resourcesType"></sinSelector>

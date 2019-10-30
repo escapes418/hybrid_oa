@@ -70,7 +70,7 @@
       v-for="(item, index) in applyData.projectImplementStatusList"
       :key="index"
     >
-      <box gap="10px 15px">
+      <box gap="10px 15px" v-if="applyData.projectImplementStatusList.length > 1">
         <div style="height:26px">
           <span class="fr font-orange" @click="delItem(index)">删除</span>
         </div>
@@ -95,7 +95,7 @@
         :selectedItem.sync="item.nodeId"
       ></sinSelector>
       <x-input title="节点具体地址" v-model="item.nodeAddress" readonly>
-        <span slot="label">节点具体地址<span class="required">*</span></span>
+        <span slot="label" class="mr-10">节点具体地址<span class="required">*</span></span>
       </x-input>
       <x-input
         title="节点人数"
@@ -104,10 +104,10 @@
         type="number"
         v-model.trim="item.nodeEmpNum"
       >
-        <span slot="label">节点人数<span class="required">*</span></span>
+        <span slot="label" class="mr-10">节点人数<span class="required">*</span></span>
       </x-input>
       <x-input title="节点具体人员" :max="50" placeholder="请输入" v-model.trim="item.nodeEmpNames">
-        <span slot="label">节点具体人员<span class="required">*</span></span>
+        <span slot="label" class="mr-10">节点具体人员<span class="required">*</span></span>
       </x-input>
       <sinSelector
         sTitle="异常情况"

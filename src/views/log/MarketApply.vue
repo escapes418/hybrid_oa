@@ -18,7 +18,7 @@
         type="number"
         v-model.trim="applyData.custSignCount"
       >
-        <span slot="label">当日签约数量<span class="required">*</span></span>
+        <span slot="label" class="mr-10">当日签约数量<span class="required">*</span></span>
       </x-input>
       <x-input
         title="明日拜访数量"
@@ -27,7 +27,7 @@
         type="number"
         v-model.trim="applyData.afterVisitCount"
       >
-        <span slot="label">明日拜访数量<span class="required">*</span></span>
+        <span slot="label" class="mr-10">明日拜访数量<span class="required">*</span></span>
       </x-input>
       <x-textarea
         title="明日工作计划"
@@ -54,7 +54,7 @@
       v-for="(item, index) in applyData.dailyCustMaintenanceList"
       :key="index"
     >
-      <box gap="10px 15px">
+      <box gap="10px 15px" v-if="applyData.dailyCustMaintenanceList.length > 1">
         <div style="height:26px">
           <span class="fr font-orange" @click="delItem(index)">删除</span>
         </div>

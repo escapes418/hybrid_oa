@@ -27,7 +27,7 @@
         v-model.trim="approvalForm.recpTheme"
         placeholder="请输入接待主题"
       >
-        <span slot="label">接待主题<span class="required">*</span></span>
+        <span slot="label" class="mr-10">接待主题<span class="required">*</span></span>
       </x-input>
       <proSelector
         sTitle="项目名称"
@@ -46,7 +46,7 @@
         v-model.trim="approvalForm.recpNum"
         placeholder="请输入接待人数"
       >
-        <span slot="label">预计接待人数<span class="required">*</span></span>
+        <span slot="label" class="mr-10">预计接待人数<span class="required">*</span></span>
       </x-input>
       <datetime
         class="data-time"
@@ -438,7 +438,7 @@ export default {
         });
     },
     draft() {
-      if (!this.valid()) return;
+      // if (!this.valid()) return;
       this.disDraft = true;
       var postData = {
         ...this.approvalForm,
