@@ -179,6 +179,11 @@ export default {
         flag = false;
         return;
       }
+      if (_this.itemData.subject[0] == '') {
+        _this.$vux.toast.text('请选择科目');
+        flag = false;
+        return;
+      }
       // if (!/(^[0-9]\d*$)/.test(_this.itemData.dayNum) || _this.itemData.dayNum == 0) {
       //   _this.$vux.toast.text('天数填写有误');
       //   flag = false;

@@ -124,6 +124,13 @@
         >
           <img slot="icon" src="../../assets/img/btn-01.png" />
         </grid-item>
+        <grid-item
+          :label="'销售工作统计'"
+          @on-item-click="gotoSales"
+          v-if="permission['sales'] == 1"
+        >
+          <img slot="icon" src="../../assets/img/sales.png" />
+        </grid-item>
         <!-- <grid-item :label="('工作内务管理')" @on-item-click="gotoHousekeeping">
                     <img slot="icon" src="../../assets/img/btn-cgx.png">
                 </grid-item> -->
@@ -273,7 +280,8 @@ export default {
         listRecived: 0, //待我审批
         'oa-coopList': 0, //协作
         'inforManage-projectList': 0, //项目管理
-        projectApproval: 0
+        projectApproval: 0,
+        sales: 0
       },
       listTools: {
         'tool-colcu': 0 //计算器
@@ -515,6 +523,9 @@ export default {
     },
     gotoContractFill() {
       this.$router.push({ path: '/contractFill/listSend' });
+    },
+    gotoSales() {
+      this.$router.push({ path: '/sales/salesStatistics' });
     }
   }
 };

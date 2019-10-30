@@ -266,9 +266,13 @@ export default {
       } else if (el.billType === '12') {
         return; //项目管理不跳转
       } else if (el.billType === '13') {
-        this.$router.push({ path: '/log/impDetail/' + el.id });
+        this.$router.push({ path: 'log/impDetail/' + el.id });
+        return;
       } else if (el.billType === '14') {
-        this.$router.push({ path: '/log/marketDetail/' + el.id });
+        this.$router.push({ path: 'log/marketDetail/' + el.id });
+        return;
+      } else if (el.billType === '15') {
+        return;
       }
       if (el.pathType == 'myself') {
         this.$router.push({ path: type + el.businessId + '/myself/0' });
