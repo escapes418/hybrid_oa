@@ -289,6 +289,9 @@ export default {
           if (!getD.contractPartyList) console.log('无甲乙方(contractFlowDetail)');
           if (!getD.contractAttachmentList) console.log('无附件(contractFlowDetail)');
           this.getTemplate().then(() => {
+            this.applyData.associationMainName = '';
+            this.applyData.associationMainId = '';
+            this.applyData.projectIds = [];
             //2. 获取表单配置信息
             this.assignDynamic(getD); //3. 动态表单赋值
             this.assignUpload(getD); //4. 附件赋值
