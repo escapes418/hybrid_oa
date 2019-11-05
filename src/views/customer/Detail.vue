@@ -149,6 +149,10 @@
                             <span class="long-detail">{{el.linkmanName}}</span>
                         </div>
                         <div class="long-content">
+                            <span class="detail-title long-title">联系人电话</span>
+                            <span class="long-detail">{{el.linkmanPhone}}</span>
+                        </div>
+                        <div class="long-content">
                             <span class="detail-title long-title">邮箱</span>
                             <span class="long-detail">{{el.linkmanMail}}</span>
                         </div>
