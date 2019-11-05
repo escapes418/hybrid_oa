@@ -10,7 +10,7 @@
         placeholder="请输入"
         :autosize="true"
         v-model.trim="applyData.custName"
-        :max="50"
+        :max="30"
       >
         <span slot="label" style="padding-right:10px;"
           >客户名称<span class="required">*</span></span
