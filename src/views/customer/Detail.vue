@@ -140,7 +140,7 @@
                 <div class="w-100">
                     <div class="detail-text">
                         <div class="long-content">
-                            <span class="detail-title long-title">合同联系人</span>
+                            <span class="detail-title long-title">默认联系人</span>
                             <span class="long-detail" v-if="el.isContractLinkman == 0">否</span>
                             <span class="long-detail" v-if="el.isContractLinkman == 1">是</span>
                         </div>
