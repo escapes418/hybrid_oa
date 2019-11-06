@@ -17,14 +17,14 @@ module.exports = {
         // target: 'http://192.168.12.37:8080/OA', //开发环境（张江浩）
         // target: 'http://192.168.12.79:8080/OA',//开发环境（黄凯）
         // target: 'http://192.168.27.147:8088/OA',//开发环境（万雄波笔记本）
-        // target: 'http://192.168.12.134:8081/OA', //开发环境（向高熊）
+        target: 'http://192.168.12.134:8081/OA', //开发环境（向高熊）
         // target: 'http://192.168.12.112:8080/OA', //开发环境（张联辉）
 
         // target: 'http://192.168.0.202:8158/OA',//内网环境
         // target: 'http://120.31.131.193:8104/OA',//测试环境193
         // target: 'https://webtest1.sijibao.com/OA',//测试环境 阿里
         // target: 'http://webtest.sijibao.com/OA',//测试环境 阿里
-        target: 'http://web.sijibao.co/OA', //测试环境 新地址
+        // target: 'http://web.sijibao.co/OA', //测试环境 新地址
 
         // target: 'https://oa.sijibao.com/OA', //正式环境
         changeOrigin: true,

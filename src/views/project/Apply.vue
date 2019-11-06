@@ -1,7 +1,6 @@
 <template>
   <div class="approval_apply">
     <group title="基本信息" label-margin-right="1em">
-      <!-- <sinSelector sTitle='客户名称' :isRequired="true" sPlaceholder='请选择' @on-change="changeType" :dataList="dictionary.handleType" :sendData="applyData.custId" :selectedItem.sync="applyData.custId"></sinSelector> -->
       <RemoteSearch
         sTitle="客户名称"
         :isRequired="true"
@@ -10,24 +9,14 @@
         :sendData="applyData.custInfoId"
         :selectedItem.sync="applyData.custInfoId"
       ></RemoteSearch>
-      <!-- <sinSelector
-        sTitle="客户名称"
-        :isRequired="true"
-        sPlaceholder="请选择客户名称"
-        :dataList="custList"
-        :sendData="applyData.custId"
-        :selectedItem.sync="applyData.custId"
-        @on-change="changeCust"
-      ></sinSelector> -->
       <x-input
         title="项目名称"
         v-model.trim="applyData.projectName"
         :max="64"
         placeholder="请输入项目名称"
       >
-        <span slot="label">项目名称<span class="required">*</span></span>
+        <span slot="label" class="mr-10">项目名称<span class="required">*</span></span>
       </x-input>
-      <!-- <sinSelector sTitle='企业名称' :isRequired="true" sPlaceholder='请选择' :dataList="dictionary.handleType" :sendData="applyData.companyHolderCode" :selectedItem.sync="applyData.companyHolderCode"></sinSelector> -->
       <RemoteSearch
         sTitle="企业名称"
         :isRequired="true"
@@ -69,7 +58,7 @@
         :max="15"
         placeholder="请输入计划月运费(万元/月)"
       >
-        <span slot="label">计划月运费<span class="required">*</span></span>
+        <span slot="label" class="mr-10">计划月运费<span class="required">*</span></span>
       </x-input>
       <datetime
         format="YYYY-MM-DD"
@@ -146,7 +135,7 @@
         placeholder="请输入计划月开票频次(次/月)"
         :max="5"
       >
-        <span slot="label">月开票频次<span class="required">*</span></span>
+        <span slot="label" class="mr-10">月开票频次<span class="required">*</span></span>
       </x-input>
       <sinSelector
         sTitle="托管"
@@ -255,7 +244,7 @@
         placeholder="请输入返点比例"
         :max="8"
       >
-        <span slot="label">返点比例(%)<span class="required">*</span></span>
+        <span slot="label" class="mr-10">返点比例(%)<span class="required">*</span></span>
       </x-input>
     </group>
     <group
@@ -264,7 +253,7 @@
       v-for="(item, index) in mainProjectContacts"
       :key="index"
     >
-      <box gap="10px 15px">
+      <box gap="10px 15px" v-if="mainProjectContacts.length > 1">
         <div style="height:26px">
           <span class="fr font-orange" @click="delItem(index)">删除</span>
         </div>
@@ -275,7 +264,7 @@
         v-model.trim="item.linkmanName"
         :max="16"
       >
-        <span slot="label">联系人<span class="required">*</span></span>
+        <span slot="label" class="mr-10">联系人<span class="required">*</span></span>
       </x-input>
       <x-input
         title="联系方式"
@@ -283,10 +272,10 @@
         v-model="item.linkmanPhone"
         :max="13"
       >
-        <span slot="label">联系方式<span class="required">*</span></span>
+        <span slot="label" class="mr-10">联系方式<span class="required">*</span></span>
       </x-input>
       <x-input title="职位" placeholder="请输入职位" v-model.trim="item.linkmanPost" :max="32">
-        <span slot="label">职位<span class="required">*</span></span>
+        <span slot="label" class="mr-10">职位<span class="required">*</span></span>
       </x-input>
       <x-textarea
         title="备注"
@@ -307,7 +296,7 @@
       v-for="(item, idx) in applyData.projectNodeReqs"
       :key="idx + 1"
     >
-      <box gap="10px 15px">
+      <box gap="10px 15px" v-if="applyData.projectNodeReqs.length > 1">
         <div style="height:26px">
           <span class="fr font-orange" @click="delNodeItem(idx)">删除</span>
         </div>

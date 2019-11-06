@@ -149,6 +149,10 @@
                             <span class="long-detail">{{el.linkmanName}}</span>
                         </div>
                         <div class="long-content">
+                            <span class="detail-title long-title">联系人电话</span>
+                            <span class="long-detail">{{el.linkmanPhone}}</span>
+                        </div>
+                        <div class="long-content">
                             <span class="detail-title long-title">邮箱</span>
                             <span class="long-detail">{{el.linkmanMail}}</span>
                         </div>
@@ -166,7 +170,7 @@
             </cell-box>
         </group>
 
-        <group title='维护内容' v-if="DetailList.length != 0" style="margin-bottom:60px">
+        <group title='维护内容' v-if="DetailList.length != 0">
             <cell-box v-for="(el,index)  in DetailList" :key="index" class="maintainbox">
                 <div class="w-100">
                     <div class="detail-text">
@@ -213,7 +217,7 @@
                 <span class="pointer" @click="clickLoadMore()">加载更多</span>
             </div>
         </group>
-
+        <div style="margin-bottom:62px"></div>
         <box class="fixbtn">
             <template>
                 <flexbox v-if="type == 1|| type == 2">

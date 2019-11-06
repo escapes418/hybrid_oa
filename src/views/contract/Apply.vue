@@ -98,7 +98,7 @@
         :max="50"
         v-model.trim="applyData.expressCompany"
       >
-        <span slot="label">快递公司<span class="required">*</span></span>
+        <span slot="label" class="mr-10">快递公司<span class="required">*</span></span>
       </x-input>
       <x-input
         title="快递单号"
@@ -107,7 +107,7 @@
         type="number"
         v-model.trim="applyData.expressBill"
       >
-        <span slot="label">快递单号<span class="required">*</span></span>
+        <span slot="label" class="mr-10">快递单号<span class="required">*</span></span>
       </x-input>
     </group>
     <group
@@ -289,6 +289,9 @@ export default {
           if (!getD.contractPartyList) console.log('无甲乙方(contractFlowDetail)');
           if (!getD.contractAttachmentList) console.log('无附件(contractFlowDetail)');
           this.getTemplate().then(() => {
+            this.applyData.associationMainName = '';
+            this.applyData.associationMainId = '';
+            this.applyData.projectIds = [];
             //2. 获取表单配置信息
             this.assignDynamic(getD); //3. 动态表单赋值
             this.assignUpload(getD); //4. 附件赋值

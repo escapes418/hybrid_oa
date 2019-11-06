@@ -271,6 +271,11 @@ export default {
         flag = false;
         return;
       }
+      if (_this.itemData.subject[0] == '') {
+        _this.$vux.toast.text('请选择科目');
+        flag = false;
+        return;
+      }
       if (this.itemData.subject[1].indexOf('no') == -1) {
         _this.itemData.subConfList.forEach((itm, idx) => {
           if (!itm.url || itm.url == '') {

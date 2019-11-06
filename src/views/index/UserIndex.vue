@@ -51,6 +51,7 @@
           @on-item-click="gotoLog"
           v-if="permission['inforManage-logList'] == 1"
         >
+          <badge v-if="dailyCount != 0" class="badge" :text="dailyCount"></badge>
           <img slot="icon" src="../../assets/img/log.png" />
         </grid-item>
         <grid-item
@@ -122,6 +123,13 @@
           v-if="permission['inforManage-projectList'] == 1"
         >
           <img slot="icon" src="../../assets/img/btn-01.png" />
+        </grid-item>
+        <grid-item
+          :label="'销售工作统计'"
+          @on-item-click="gotoSales"
+          v-if="permission['sales'] == 1"
+        >
+          <img slot="icon" src="../../assets/img/sales.png" />
         </grid-item>
         <!-- <grid-item :label="('工作内务管理')" @on-item-click="gotoHousekeeping">
                     <img slot="icon" src="../../assets/img/btn-cgx.png">
@@ -254,6 +262,7 @@ export default {
       myApplyCount: '', //我的申请红点
       todoCount: '', //带我审批红点
       errorStockOrderCount: '', //异常单红点
+      dailyCount: '',
       permission: {
         'me-reimForm': 0, //报销
         'me-recepList': 0, //接待
@@ -271,7 +280,8 @@ export default {
         listRecived: 0, //待我审批
         'oa-coopList': 0, //协作
         'inforManage-projectList': 0, //项目管理
-        projectApproval: 0
+        projectApproval: 0,
+        sales: 0
       },
       listTools: {
         'tool-colcu': 0 //计算器
@@ -409,6 +419,7 @@ export default {
       com.covertHttp(api.queryNotifyTotalCount, {}, false).then(rtn => {
         this.myApplyCount = rtn.data.myApplyCount || 0;
         this.todoCount = rtn.data.todoCount || 0;
+        this.dailyCount = rtn.data.dailyCount || 0;
         this.errorStockOrderCount = rtn.data.errorStockOrderCount || 0;
       });
     },
@@ -512,6 +523,9 @@ export default {
     },
     gotoContractFill() {
       this.$router.push({ path: '/contractFill/listSend' });
+    },
+    gotoSales() {
+      this.$router.push({ path: '/sales/salesStatistics' });
     }
   }
 };
